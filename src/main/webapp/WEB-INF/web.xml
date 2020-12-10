@@ -1,0 +1,22 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_4_0.xsd"
+version="4.0">
+
+  <display-name>Final_project</display-name>
+
+  <servlet>
+    <servlet-name>main</servlet-name>
+    <servlet-class>com.epam.web.controller.MainController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>main</servlet-name>
+    <url-pattern>/controller</url-pattern>
+  </servlet-mapping>
+
+
+
+
+</web-app>
