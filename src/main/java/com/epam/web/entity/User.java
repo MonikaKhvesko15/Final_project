@@ -1,7 +1,7 @@
 package com.epam.web.entity;
 
-import com.sun.corba.se.spi.ior.Identifiable;
-import org.omg.CORBA_2_3.portable.OutputStream;
+
+import java.io.Serializable;
 
 public class User implements Identifiable {
     //table name for users
@@ -15,6 +15,11 @@ public class User implements Identifiable {
     public static final String PASSWORD = "password";
     public static final String ROLE = "role";
     public static final String STATUS = "status";
+
+    @Override
+    public Serializable getId() {
+        return user_id;
+    }
 
 
     public enum Role {
@@ -94,13 +99,5 @@ public class User implements Identifiable {
         this.status = status;
     }
 
-    @Override
-    public int getId() {
-        return this.user_id;
-    }
 
-    @Override
-    public void write(OutputStream arg0) {
-
-    }
 }

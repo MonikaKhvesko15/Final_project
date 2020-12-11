@@ -1,7 +1,8 @@
 package com.epam.web.entity;
 
-import com.sun.corba.se.spi.ior.Identifiable;
-import org.omg.CORBA_2_3.portable.OutputStream;
+
+
+import java.io.Serializable;
 
 public class Book implements Identifiable {
 
@@ -15,14 +16,8 @@ public class Book implements Identifiable {
     public static final String YEAR_OF_PUBLISHING = "year_of_publishing";
     public static final String AMOUNT = "amount";
 
-
     @Override
-    public int getId() {
-        return 0;
-    }
-
-    @Override
-    public void write(OutputStream arg0) {
-
+    public Serializable getId() {
+        return null;
     }
 }

@@ -41,18 +41,6 @@ INSERT INTO images (name)
 VALUES ("");
 
 
-insert into images (image_name)
-values ("bac4ee48-8a79-45c7-9c9f-a0e0f7e9e3bd");
-insert into images (image_name)
-values ("29942f96-44a0-4cc2-a4e0-59dea7b9ce8d");
-insert into images (image_name)
-values ("a8e08e93-4733-4ae8-ac78-ca37d2627813");
-insert into images (image_name)
-values ("f775d326-b776-4584-a141-3376ec291a3f");
-insert into images (image_name)
-values ("6f429a4c-c5c7-48d2-940c-475310bb93fd");
-insert into images (image_name)
-values ("65731a8c-487b-4811-babf-288f25c73318");
 
 INSERT INTO books (title, author, pages, year, amount, image_id)
 VALUES ('Jane Eyre', 'Charlotte Bronte', 217, 1969, 28, 1);

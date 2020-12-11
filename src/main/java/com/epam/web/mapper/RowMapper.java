@@ -1,9 +1,10 @@
 package com.epam.web.mapper;
 
 import com.epam.web.entity.Book;
+import com.epam.web.entity.Identifiable;
 import com.epam.web.entity.Order;
 import com.epam.web.entity.User;
-import com.sun.corba.se.spi.ior.Identifiable;
+
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

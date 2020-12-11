@@ -12,11 +12,11 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     public static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login=? and password=?";
 
     public UserDaoImpl(Connection connection){
-        super(connection,new UserRowMapper());
+        super(connection,new UserRowMapper(),User.TABLE);
     }
 
     @Override
-    public Optional<User> findUserByEmailAndPassword(String login, String password) throws DaoException {
+    public Optional<User> findUserByLoginAndPassword(String login, String password) throws DaoException {
         return executeForSingleResult(
                 FIND_BY_LOGIN_AND_PASSWORD,
                 login,

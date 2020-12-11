@@ -16,9 +16,9 @@ public class LoginCommand implements Command {
     private static final String LOGIN_PARAMETER = "login";
     private static final String PASSWORD_PARAMETER = "password";
     private static final String ERROR_MESSAGE_ATTRIBUTE = "errorMessage";
-    private static final String LOGIN_PAGE_JSP = "/WEB-INF/views/login.jsp";
-    private static final String MAIN_PAGE_COMMAND = "/WEB-INF/views/main_page.jsp";
-    public static final String MESSAGE_PAGE_JSP = "/WEB-INF/views/message.jsp";
+    private static final String LOGIN_PAGE_JSP = "/views/login.jsp";
+    private static final String MAIN_PAGE = "/views/main.jsp";
+    public static final String MESSAGE_PAGE_JSP = "/views/message.jsp";
 
     private final UserService service;
 
@@ -33,7 +33,7 @@ public class LoginCommand implements Command {
         String login = request.getParameter(LOGIN_PARAMETER);
         String password = request.getParameter(PASSWORD_PARAMETER);
         CommandResult commandResult = null;
-        Optional<User> userOptional = service.getUserByLoginAndPassword(login, password);
+        Optional<User> userOptional = service.login(login, password);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             switch (user.getStatus()) {
@@ -43,7 +43,7 @@ public class LoginCommand implements Command {
                     session.setAttribute("user", user);
                     session.setAttribute("user_id", user.getId());
                     session.setAttribute("role", user.getRole());
-                    commandResult = CommandResult.redirect(MAIN_PAGE_COMMAND);
+                    commandResult = CommandResult.redirect(MAIN_PAGE);
                 case BLOCKED:
                     request.setAttribute("errorMessage", "This user is blocked");
                     commandResult = CommandResult.redirect(MESSAGE_PAGE_JSP);

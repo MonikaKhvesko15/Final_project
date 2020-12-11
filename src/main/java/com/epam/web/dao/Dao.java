@@ -1,7 +1,8 @@
 package com.epam.web.dao;
 
+import com.epam.web.entity.Identifiable;
 import com.epam.web.exception.DaoException;
-import com.sun.corba.se.spi.ior.Identifiable;
+
 import java.util.List;
 import java.util.Optional;
 

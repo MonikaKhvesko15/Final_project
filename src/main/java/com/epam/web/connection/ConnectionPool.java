@@ -25,23 +25,21 @@ public class ConnectionPool {
         ProxyConnectionCreator proxyConnectionCreator = new ProxyConnectionCreator();
         freeConnections = new ArrayDeque<>();
         usingConnections = new ArrayDeque<>();
-        try {
+
             for (int i = 0; i < POOL_SIZE; i++) {
                 ProxyConnection proxyConnection = proxyConnectionCreator.create();
-                freeConnections.offer(proxyConnection);
+                freeConnections.add(proxyConnection);
             }
-           // LOGGER.info("Connection pool has been filled");
-        } catch (ConnectionPoolException e) {
-            throw new ConnectionPoolException(e.getMessage(), e);
-        }
     }
 
     public static ConnectionPool getInstance() {
         if (!isCreated.get()) {
             INSTANCE_LOCKER.lock();
             try {
-                instance = new ConnectionPool();
-                isCreated.set(true);
+                if (!isCreated.get()) {
+                    instance = new ConnectionPool();
+                    isCreated.set(true);
+                }
             } catch (ConnectionPoolException e) {
                 throw new RuntimeException("Error connecting to database");
             } finally {
@@ -64,12 +62,26 @@ public class ConnectionPool {
     }
 
     public ProxyConnection getConnection() throws ConnectionPoolException {
-        ProxyConnectionCreator proxyConnectionCreator = new ProxyConnectionCreator();
-        return proxyConnectionCreator.create();
+        CONNECTIONS_LOCKER.lock();
+        try {
+            ProxyConnection proxyConnection = freeConnections.poll();
+            usingConnections.offer(proxyConnection);
+            return proxyConnection;
+        } finally {
+            CONNECTIONS_LOCKER.unlock();
+        }
     }
 
-    public void destroyPool() throws ConnectionPoolException {
+    public void destroyPool() throws ConnectionPoolException, SQLException {
+        for (ProxyConnection connection : usingConnections
+        ) {
+            connection.close();
+        }
 
+        for (ProxyConnection connection : freeConnections
+        ) {
+            connection.close();
+        }
     }
 
 

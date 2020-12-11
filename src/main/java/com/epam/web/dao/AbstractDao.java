@@ -1,9 +1,10 @@
 package com.epam.web.dao;
 
+import com.epam.web.entity.Identifiable;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
 import com.epam.web.mapper.RowMapper;
-import com.sun.corba.se.spi.ior.Identifiable;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +13,13 @@ import java.util.Optional;
 public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     private Connection connection;
     private final RowMapper<T> mapper;
+    private final String tableName;
 
-    protected AbstractDao(Connection connection,RowMapper<T> mapper) {
+    protected AbstractDao(Connection connection,RowMapper<T> mapper,String tableName) {
 
         this.connection = connection;
         this.mapper=mapper;
+        this.tableName = tableName;
     }
 
     // this method executes any SQL queries and return it in List
@@ -25,7 +28,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
         List<T> entities = new ArrayList<>();
 
         try (PreparedStatement statement = createStatement(query, params);
-             ResultSet resultSet = statement.executeQuery(/*query*/)) {
+             ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
                 T entity = mapper.map(resultSet);
                 entities.add(entity);
@@ -52,8 +55,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
     @Override
     public List<T> findAll(String tablename) throws DaoException {
-       //RowMapper<T> mapper = (RowMapper<T>)RowMapper.create(tablename);
-       return executeQuery("SELECT * FROM "+tablename /*, mapper*/);
+        return executeQuery("SELECT * FROM " + tableName);
     }
 
     @Override

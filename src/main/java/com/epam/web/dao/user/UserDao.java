@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface UserDao extends Dao<User> {
     //specific methods for userDao
 
-    Optional<User> findUserByEmailAndPassword(String login, String password) throws DaoException;
+    Optional<User> findUserByLoginAndPassword(String login, String password) throws DaoException;
 }
