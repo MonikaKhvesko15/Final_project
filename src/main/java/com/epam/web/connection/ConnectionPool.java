@@ -26,10 +26,10 @@ public class ConnectionPool {
         freeConnections = new ArrayDeque<>();
         usingConnections = new ArrayDeque<>();
 
-            for (int i = 0; i < POOL_SIZE; i++) {
-                ProxyConnection proxyConnection = proxyConnectionCreator.create();
-                freeConnections.add(proxyConnection);
-            }
+        for (int i = 0; i < POOL_SIZE; i++) {
+            ProxyConnection proxyConnection = proxyConnectionCreator.create();
+            freeConnections.add(proxyConnection);
+        }
     }
 
     public static ConnectionPool getInstance() {
@@ -72,18 +72,31 @@ public class ConnectionPool {
         }
     }
 
-    public void destroyPool() throws ConnectionPoolException, SQLException {
-        for (ProxyConnection connection : usingConnections
-        ) {
-            connection.close();
-        }
+    public void killConnections() throws ConnectionPoolException, SQLException {
+        usingConnections.forEach(this::releaseConnection);
+        closeQueueConnections(freeConnections);
+    }
 
-        for (ProxyConnection connection : freeConnections
-        ) {
-            connection.close();
+    public void releaseConnection(ProxyConnection connection) {
+        CONNECTIONS_LOCKER.lock();
+        try {
+            if (usingConnections.contains(connection)) {
+                usingConnections.remove(connection);
+                freeConnections.offer(connection);
+            }
+        } finally {
+            CONNECTIONS_LOCKER.unlock();
         }
     }
 
-
+    private void closeQueueConnections(Queue<ProxyConnection> freeConnections) {
+        freeConnections.forEach(connection -> {
+            try {
+                connection.reallyClose();
+            } catch (SQLException e) {
+                LOGGER.error(e.getMessage(), e);
+            }
+        });
+    }
 }
 

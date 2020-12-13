@@ -10,15 +10,18 @@ public class UserRowMapper implements RowMapper<User> {
     //create user from columns in database
     @Override
     public User map(ResultSet resultSet) throws SQLException {
-        int user_id = resultSet.getInt(User.USER_ID);
+        int id = resultSet.getInt(User.ID);
         String name = resultSet.getString(User.FIRSTNAME);
         String login = resultSet.getString(User.LOGIN);
         String password = resultSet.getString(User.PASSWORD);
         String firstname = resultSet.getString(User.FIRSTNAME);
         String surname = resultSet.getString(User.SURNAME);
-        User.Role role = (User.Role) resultSet.getObject(User.ROLE);
-        User.Status status = (User.Status) resultSet.getObject(User.STATUS);
 
-        return new User(user_id, login, password, firstname, surname, role, status);
+        String roleString=resultSet.getString(User.ROLE);
+        User.Role role = User.Role.valueOf(roleString.toUpperCase());
+
+        boolean status =resultSet.getBoolean(User.STATUS);
+
+        return new User(id, login, password, firstname, surname, role, status);
     }
 }

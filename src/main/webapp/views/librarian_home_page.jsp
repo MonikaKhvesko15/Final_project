@@ -1,7 +1,7 @@
     <html>
         <head>
         <meta charset = "utf-8">
-        <title>Reader home page</title>
+        <title>Library. Home page</title>
         <link rel = "stylesheet" href = "${pageContext.request.contextPath}/styles/home_page.css">
         <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -27,8 +27,7 @@
         <ul>
         <p id = "menuHeader">Menu</p>
         <li><a href = "index_home_page.html">Home page</a></li>
-        <li><a href = "index_hello.html">Book catalog</a></li>
-        <li><a href = "index_hello.html">My orders</a></li>
+        <li><a href = "index_hello.html">Landing books</a></li>
         </ul>
         </div>
         </nav>
@@ -46,16 +45,9 @@
         <th></th>
         <th class = "edit"><a>Edit</a></th>
         </tr>
-        <tr>
-        <th>Status:</th>
-        <th>ENABLE/BLOCKED</th>
-        </tr>
         </table>
         </div>
         </main>
-        <footer>
-        <div class = "footer"></div>
-        </footer>
         </div>
         </body>
         </html>

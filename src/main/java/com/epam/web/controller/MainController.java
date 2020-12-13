@@ -54,8 +54,9 @@ public class MainController extends HttpServlet {
     @Override
     public void destroy() {
         super.destroy();
+        ConnectionPool pool=ConnectionPool.getInstance();
         try {
-            ConnectionPool.getInstance().destroyPool();
+            pool.killConnections();
         } catch (ConnectionPoolException e) {
             e.printStackTrace();
         } catch (SQLException throwables) {

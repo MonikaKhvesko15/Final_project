@@ -25,11 +25,10 @@ public class ProxyConnectionCreator {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
             InputStream inputStream = classLoader.getResourceAsStream(FILE_NAME);
+
             properties.load(inputStream);
-            String driverName = properties.getProperty(DATABASE_DRIVER_NAME);
-            //load class with claass name
-            Class.forName(driverName);
-        } catch (IOException | ClassNotFoundException e) {
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+        } catch (IOException | SQLException e) {
             throw new ConnectionPoolException("Error with database properties file", e);
         }
     }
@@ -38,7 +37,8 @@ public class ProxyConnectionCreator {
     ProxyConnection create() throws ConnectionPoolException {
         Connection connection;
         try {
-            connection = DriverManager.getConnection(DATABASE_URL, properties);
+            String url= properties.getProperty(DATABASE_URL);
+            connection = DriverManager.getConnection(url, properties);
         } catch (SQLException e) {
             throw new ConnectionPoolException(e.getMessage(),e);
         }

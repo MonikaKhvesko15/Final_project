@@ -22,15 +22,12 @@ public class UserService {
         this.cipher = new CustomCipher();
     }
 
-    public boolean verifyCredentials(String login, String password) throws ServiceException {
-        return login(login, password).isPresent();
-    }
-
     public Optional<User> login(String login, String password) throws ServiceException{
 
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             UserDao userDao = daoHelper.createUserDao();
-            return userDao.findUserByLoginAndPassword(login, password);
+            Optional<User> userOptional=userDao.findUserByLoginAndPassword(login, password);
+            return userOptional;
         } catch (DaoException | ConnectionPoolException | SQLException e) {
             throw new ServiceException(e.getMessage(), e);
         }

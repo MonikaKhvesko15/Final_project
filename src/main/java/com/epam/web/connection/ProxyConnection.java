@@ -19,6 +19,10 @@ public class ProxyConnection implements Connection {
         pool.returnConnection(this);
     }
 
+    void reallyClose() throws SQLException {
+        connection.close();
+    }
+
     @Override
     public Statement createStatement() throws SQLException {
         return connection.createStatement();

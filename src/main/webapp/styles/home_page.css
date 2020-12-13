@@ -1,0 +1,148 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18pt;
+    width: 80%;
+    margin: 0% 10% 0% 10%;
+    box-sizing: boreder-box;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    color: #4D4029;
+    border-right: 1px solid #FAEAB4;
+}
+
+header {
+    display: flex;
+    background-color: #FAEAB4;
+    color: #4D4029;
+    padding: 0% 2%;
+}
+
+a {
+    text-decoration: none;
+    color: #4D4029;
+}
+
+a:hover {
+    border-bottom: 2px solid #4D4029;
+}
+
+li {
+    display: flex;
+    justify-content: flex-start;
+    margin:15px;
+}
+
+#menuHeader {
+    display: flex;
+    justify-content: center;
+    font-size: 24pt;
+    margin: 0px;
+}
+
+.user {
+    display: flex;
+    margin: 0px 25px;
+    padding: 10px 25px;
+    border-left: 1px solid #4D4029;
+    border-right: 1px solid #4D4029;
+}
+.user img {
+    width: 60px;
+    height: 60px;
+    float: left;
+    margin: 0px 10px 0px 0px;
+}
+
+.user p {
+    float: left;
+    font-size: 20px;
+}
+.library {
+    width: 90%;
+    font-family: 'Belgrano', serif;
+    font-size: 64px;
+    padding: 10px;
+}
+
+.buttons {
+    padding: 10px 0px;
+}
+
+.buttons a, .edit a {
+    display: flex;
+    justify-content: center;
+    border: 2px solid #4D4029;
+    border-radius: 5px;
+    font-size: 14pt;
+    background-color: white;
+    padding: 2px 7px;
+    margin: 4px;
+}
+
+.buttons a:hover, .edit a:hover {
+    background: #4D4029;
+    color: white;
+    box-shadow: inset 0 0 0 1px white;
+}
+
+.language {
+    display: flex;
+}
+
+.language a {
+    margin: 0.5px;
+    padding: 2px 5px;
+}
+
+main .buttons {
+    float: right;
+}
+
+.menu, main {
+    display: flex;
+    float: left;
+    min-height: 90vh;
+}
+
+.menu {
+    width: 25%;
+    background-color: #FBF4DA;
+}
+
+main {
+    width: 75%;
+    display: block;
+}
+.data {
+    display: flex;
+    padding: 30px;
+}
+
+.data img {
+    width: 220px;
+    height: 220px;
+}
+
+.data #catalog img {
+    width: 120px;
+    height: 150px;
+}
+
+table {
+    width: 100%;
+    padding: 0px 20px;
+}
+
+th {
+    float:left;
+}
+
+.edit {
+    float: right;
+}
+
+.edit a {
+    width: 80px;
+}

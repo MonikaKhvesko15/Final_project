@@ -8,7 +8,7 @@ public class User implements Identifiable {
     public static final String TABLE = "users";
 
     //columns for table
-    public static final String USER_ID = "user_id";
+    public static final String ID = "id";
     public static final String FIRSTNAME = "firstname";
     public static final String SURNAME = "surname";
     public static final String LOGIN = "login";
@@ -18,37 +18,37 @@ public class User implements Identifiable {
 
     @Override
     public Serializable getId() {
-        return user_id;
+        return id;
     }
 
 
     public enum Role {
-        ADMIN, READER, LIBRARIAN;
+        READER, LIBRARIAN, ADMIN;
     }
 
     public enum Status {
         ENABLE, BLOCKED;
     }
 
-    private int user_id;
+    private int id;
     private String login;
     private String password;
     private String firstname;
     private String surname;
     private Role role;
-    private Status status;
+    private boolean isBlocked;
 
     public User() {
     }
 
-    public User(int user_id, String login, String password, String firstname, String surname, Role role, Status status) {
-        this.user_id = user_id;
+    public User(int id, String login, String password, String firstname, String surname, Role role, boolean isBlocked) {
+        this.id = id;
         this.login = login;
         this.password = password;
         this.firstname = firstname;
         this.surname = surname;
         this.role = role;
-        this.status = status;
+        this.isBlocked = isBlocked;
     }
 
     public String getLogin() {
@@ -91,12 +91,12 @@ public class User implements Identifiable {
         this.role = role;
     }
 
-    public Status getStatus() {
-        return status;
+    public boolean getStatus() {
+        return isBlocked;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(boolean status) {
+        this.isBlocked = isBlocked;
     }
 
 

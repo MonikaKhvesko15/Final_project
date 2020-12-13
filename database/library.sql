@@ -4,10 +4,11 @@ CREATE DATABASE IF NOT EXISTS library CHARACTER SET UTF8 COLLATE utf8_bin;
 
 USE library;
 
-CREATE TABLE IF NOT EXISTS images
+CREATE TABLE IF NOT EXISTS publishers
 (
-    id   INT         NOT NULL AUTO_INCREMENT,
+    id   INT         AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
+    year YEAR        NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -18,24 +19,23 @@ CREATE TABLE IF NOT EXISTS users
     password  VARCHAR(16) NOT NULL,
     firstname VARCHAR(45) NOT NULL,
     surname   VARCHAR(45) NOT NULL,
-    role      ENUM ('reader','librarian','admin'),
-    status    ENUM ('enable','blocked') DEFAULT 'enable',
+    role      ENUM ('READER','LIBRARIAN','ADMIN'),
+    status    BIT                         DEFAULT 0,
 
     PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS books
 (
-    id       INT AUTO_INCREMENT,
-    title    VARCHAR(50)  NOT NULL UNIQUE,
-    author   VARCHAR(100) NOT NULL,
-    pages    INT          NOT NULL,
-    year     YEAR         NOT NULL,
-    amount   INT,
-    image_id INT          NOT NULL,
+    id           INT AUTO_INCREMENT,
+    title        VARCHAR(50)  NOT NULL UNIQUE,
+    author       VARCHAR(100) NOT NULL,
+    pages        INT          NOT NULL,
+    amount       INT,
+    publisher_id INT          NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (image_id)
-        REFERENCES images (id)
+    FOREIGN KEY (publisher_id)
+        REFERENCES publishers (id)
 );
 
 CREATE TABLE IF NOT EXISTS orders
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS orders
     id          INT AUTO_INCREMENT,
     issue_date  DATE,
     return_date DATE,
-    status      ENUM ('accepted','refused','under_consideration') DEFAULT 'under_consideration',
+    status      ENUM ('ACCEPTED','REFUSED','UNDER_CONSIDERATION') DEFAULT 'UNDER_CONSIDERATION',
 
     user_id     INT NOT NULL,
     book_id     INT NOT NULL,
