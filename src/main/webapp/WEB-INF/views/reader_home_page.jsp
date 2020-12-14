@@ -15,10 +15,20 @@
         </div>
         <div class = "buttons">
         <a href = "index_hello.html" id = "logout">Log out</a>
-        <div class = "language">
-        <a href = "index_hello.html">RU</a>
-        <a href = "index_hello.html">ENG</a>
-        </div>
+         <div class = "language">
+
+            <form method="post"
+            action="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.queryString}">
+            <input type="hidden" name="lang" value="ENG"/>
+            <button type="submit">ENG</button>
+            </form>
+
+            <form method="post"
+            action="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.queryString}">
+            <input type="hidden" name="lang" value="RUS"/>
+            <button type="submit">RUS</button>
+            </form>
+         </div>
         </div>
         </header>
         <div class = "container">

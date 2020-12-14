@@ -1,5 +1,6 @@
 package com.epam.web.dao;
 
+import com.epam.web.collector.ParameterCollector;
 import com.epam.web.entity.Identifiable;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
@@ -8,18 +9,21 @@ import com.epam.web.mapper.RowMapper;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     private Connection connection;
     private final RowMapper<T> mapper;
     private final String tableName;
+    private ParameterCollector<T> parameterCollector;
 
-    protected AbstractDao(Connection connection,RowMapper<T> mapper,String tableName) {
+    protected AbstractDao(Connection connection,RowMapper<T> mapper,String tableName,ParameterCollector<T> parameterCollector) {
 
         this.connection = connection;
         this.mapper=mapper;
         this.tableName = tableName;
+        this.parameterCollector=parameterCollector;
     }
 
     // this method executes any SQL queries and return it in List
@@ -59,9 +63,13 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
     @Override
-    public void save(T item) {
-
+    public void save(T item) throws DaoException{
+        List<Object> objectParams =parameterCollector.collect(item);
+        Object[] params=objectParams.toArray();
+        executeQuery(getUpdateQuery(), params);
     }
+
+    protected abstract String getUpdateQuery();
 
     @Override
     public void removeById(int id) {

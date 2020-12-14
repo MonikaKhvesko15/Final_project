@@ -2,6 +2,8 @@ package com.epam.web.entity;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Identifiable {
     //table name for users
@@ -23,11 +25,9 @@ public class User implements Identifiable {
 
 
     public enum Role {
-        READER, LIBRARIAN, ADMIN;
-    }
-
-    public enum Status {
-        ENABLE, BLOCKED;
+        READER,
+        LIBRARIAN,
+        ADMIN;
     }
 
     private int id;
@@ -50,6 +50,8 @@ public class User implements Identifiable {
         this.role = role;
         this.isBlocked = isBlocked;
     }
+
+
 
     public String getLogin() {
         return login;

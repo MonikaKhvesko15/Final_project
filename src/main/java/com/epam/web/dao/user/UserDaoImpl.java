@@ -1,19 +1,21 @@
 package com.epam.web.dao.user;
 
+import com.epam.web.collector.UserParameterCollector;
 import com.epam.web.dao.AbstractDao;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
 import com.epam.web.mapper.UserRowMapper;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.List;
 import java.util.Optional;
 
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
-    public static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = ?";
-
+    private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = ?";
+    private static final String USER_UPDATE = "UPDATE users set login = ?, firstname = ?, surname = ? where id = ?";
 
     public UserDaoImpl(Connection connection){
-        super(connection,new UserRowMapper(),User.TABLE);
+        super(connection,new UserRowMapper(),User.TABLE,new UserParameterCollector());
     }
 
     @Override
@@ -31,7 +33,12 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public void save(User item) {
-        super.save(item);
+
+    }
+
+    @Override
+    protected String getUpdateQuery() {
+        return USER_UPDATE;
     }
 
     @Override

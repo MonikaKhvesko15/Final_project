@@ -1,6 +1,10 @@
-        <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
-                <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-                <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    <%@ page contentType="text/html;charset=UTF-8" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+        <fmt:setLocale value="${currentLocale}"/>
+        <fmt:setBundle basename="property/local"/>
+
         <html>
 
         <head>
@@ -15,7 +19,20 @@
         <header>
         <div class="library">Library</div>
         <div class="buttons"><a href="main.jsp">Login</a>
-        <a href="reader_home_page.jsp">Language</a></div>
+        <div class = "language">
+
+        <form method="post"
+        action="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.queryString}">
+        <input type="hidden" name="lang" value="ENG"/>
+        <button type="submit">ENG</button>
+        </form>
+
+        <form method="post"
+        action="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.queryString}">
+        <input type="hidden" name="lang" value="RUS"/>
+        <button type="submit">RUS</button>
+        </form>
+        </div></div>
         </header>
         <div class="container">
         <nav class="menu"></nav>

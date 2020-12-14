@@ -42,17 +42,20 @@ public class LoginCommand implements Command {
             User user = userOptional.get();
             if (!(user.getStatus())) {
                 HttpSession session = request.getSession();
-
-                session.setAttribute("login", user.getLogin());
                 session.setAttribute("id", user.getId().toString());
+                session.setAttribute("login", user.getLogin());
+                session.setAttribute("user",user);
                 session.setAttribute("role", user.getRole().toString());
                 switch (user.getRole()) {
                     case READER:
                         commandResult = CommandResult.redirect(READER_HOME_PAGE);
+                        break;
                     case LIBRARIAN:
                         commandResult = CommandResult.redirect(LIBRARIAN_HOME_PAGE);
+                        break;
                     case ADMIN:
                         commandResult = CommandResult.redirect(ADMIN_HOME_PAGE);
+                        break;
                 }
             } else if (user.getStatus()) {
                 request.setAttribute("errorMessage", "This user is blocked");

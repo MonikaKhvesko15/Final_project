@@ -18,7 +18,7 @@ public interface Dao<T extends Identifiable> {
     //create/update
     // if entity has id -> update
     // else -> insert
-    void save(T item);
+    void save(T item) throws DaoException;
 
     //delete
     void removeById(int id);

@@ -2,7 +2,6 @@ package com.epam.web.command.impl;
 
 import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
-import com.epam.web.entity.User;
 import com.epam.web.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +13,11 @@ public class LogoutCommand implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
         if(session!=null){
-            session.removeAttribute("user");
             session.removeAttribute("id");
-            //session.setAttribute("role", User.Role.GUEST.toString());
+            session.removeAttribute("login");
+            session.removeAttribute("user");
+            session.removeAttribute("role");
+
         }
         return CommandResult.redirect("/views/login.jsp");
     }

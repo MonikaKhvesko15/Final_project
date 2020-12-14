@@ -32,4 +32,13 @@ public class UserService {
             throw new ServiceException(e.getMessage(), e);
         }
     }
+
+    public void updateUser(User user) throws ServiceException{
+        try(DaoHelper daoHelper= daoHelperFactory.create()){
+            UserDao dao=daoHelper.createUserDao();
+            dao.save(user);
+        } catch (DaoException | ConnectionPoolException | SQLException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
 }
