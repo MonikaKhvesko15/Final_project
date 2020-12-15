@@ -1,3 +1,4 @@
+
     <html>
         <head>
         <meta charset = "utf-8">
@@ -14,7 +15,7 @@
         <p>Username</p>
         </div>
         <div class = "buttons">
-        <a href = "index_hello.html" id = "logout">Log out</a>
+        <a href = "/Final_project_war/controller?command=logout" id = "logout">Log out</a>
          <div class = "language">
 
             <form method="post"

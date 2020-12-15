@@ -14,7 +14,7 @@
         <p>Username</p>
         </div>
         <div class = "buttons">
-        <a href = "index_hello.html" id = "logout">Log out</a>
+        <a href = "/Final_project_war/controller?command=logout" id = "logout">Log out</a>
         <div class = "language">
         <a href = "index_hello.html">RU</a>
         <a href = "index_hello.html">ENG</a>

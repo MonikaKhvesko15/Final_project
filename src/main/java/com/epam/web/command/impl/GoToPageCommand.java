@@ -11,8 +11,10 @@ public class GoToPageCommand implements Command {
     private final String page;
 
     public GoToPageCommand(String page) {
+
         this.page = page;
     }
+
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         return CommandResult.forward(page);

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LogoutCommand implements Command {
+    private static final String LOGIN_PAGE = "/Final_project_war/controller?command=login_page";
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession(false);
@@ -19,6 +20,6 @@ public class LogoutCommand implements Command {
             session.removeAttribute("role");
 
         }
-        return CommandResult.redirect("/views/login.jsp");
+        return CommandResult.redirect(LOGIN_PAGE);
     }
 }

@@ -18,6 +18,8 @@ import java.sql.SQLException;
 
 public class MainController extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger(MainController.class);
+    public static final String MESSAGE_PAGE = "/controller?command=message_page";
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -38,7 +40,7 @@ public class MainController extends HttpServlet {
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
             request.setAttribute("errorMessage", e.getMessage());
-            dispatch(request, response, CommandResult.redirect("/views/error.jsp"));
+            dispatch(request, response, CommandResult.redirect(MESSAGE_PAGE));
         }
     }
 
