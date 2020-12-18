@@ -12,9 +12,11 @@ The reader has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by 
         1. Login/Logout
         2. Edit personal information
         3. Book catalog browsing
-        4. Book search
-        3. Book order
-        4. Changing language
+        4. Search books
+        5. Order a book
+        6. View "My orders"
+        7. Return ordered book
+        8. Switch language
 ##### 2. Librarian
 
 The librarian has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
@@ -24,7 +26,7 @@ The librarian has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked 
         1. Login/Logout
         2. Edit personal information
         3. Accept/refuse orders
-        4. Changing language
+        4. Switch language
         
 ##### 3. Administrator
 
@@ -38,7 +40,7 @@ The administrator fills the site with books, changes their description if necess
         4. Add/Edit/Delete book
         5. Block/Unblock reader
         6. Block/Unblock librarian
-        7. Changing language
+        7. Switch language
     
 ### **Objects:** **book**, **order**.
-The *book* has parameters such as title, author, numb of pages, year of publishing, amount, image. The *order* can be either approved or rejected.
+The *book* has parameters such as title, author, numb of pages,  amount, publishing. The *order* can be either approved or rejected.
