@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
-    private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = ?";
-    private static final String USER_UPDATE = "UPDATE users set login = ?, firstname = ?, surname = ? where id = ?";
+    private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = SHA1(?)";
+    private static final String UPDATE_USER = "UPDATE users set firstname = ?, surname = ? where id = ?";
 
     public UserDaoImpl(Connection connection){
         super(connection,new UserRowMapper(),User.TABLE,new UserParameterCollector());
@@ -38,7 +38,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     protected String getUpdateQuery() {
-        return USER_UPDATE;
+        return UPDATE_USER;
     }
 
     @Override

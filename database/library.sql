@@ -6,7 +6,7 @@ USE library;
 
 CREATE TABLE IF NOT EXISTS publishers
 (
-    id   INT         AUTO_INCREMENT,
+    id   INT AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
     year YEAR        NOT NULL,
     PRIMARY KEY (id)
@@ -16,11 +16,11 @@ CREATE TABLE IF NOT EXISTS users
 (
     id        INT AUTO_INCREMENT,
     login     VARCHAR(45) NOT NULL UNIQUE,
-    password  VARCHAR(16) NOT NULL,
+    password  VARCHAR(50) NOT NULL,
     firstname VARCHAR(45) NOT NULL,
     surname   VARCHAR(45) NOT NULL,
     role      ENUM ('READER','LIBRARIAN','ADMIN'),
-    status    BIT                         DEFAULT 0,
+    isBlocked BIT DEFAULT 0,
 
     PRIMARY KEY (id)
 );

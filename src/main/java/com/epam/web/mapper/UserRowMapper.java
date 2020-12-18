@@ -20,8 +20,8 @@ public class UserRowMapper implements RowMapper<User> {
         String roleString=resultSet.getString(User.ROLE);
         User.Role role = User.Role.valueOf(roleString.toUpperCase());
 
-        boolean status =resultSet.getBoolean(User.STATUS);
+        boolean isBlocked = resultSet.getBoolean(User.STATUS);
 
-        return new User(id, login, password, firstname, surname, role, status);
+        return new User(id, login, password, firstname, surname, role, isBlocked);
     }
 }

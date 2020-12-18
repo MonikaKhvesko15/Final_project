@@ -4,7 +4,7 @@ body {
     font-size: 18pt;
     width: 80%;
     margin: 0% 10% 1% 10%;
-    box-sizing: boreder-box;
+    box-sizing: border-box;
 }
 
 header {
@@ -26,11 +26,7 @@ a {
     padding: 10px;
 }
 
-.buttons {
-
-}
-
-.buttons {
+.buttons a {
     display: flex;
     justify-content: center;
     border: 2px solid #4D4029;
@@ -67,4 +63,3 @@ a {
 .content p {
     font-size: 26pt;
 }
-

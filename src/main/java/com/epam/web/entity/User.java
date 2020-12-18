@@ -16,7 +16,7 @@ public class User implements Identifiable {
     public static final String LOGIN = "login";
     public static final String PASSWORD = "password";
     public static final String ROLE = "role";
-    public static final String STATUS = "status";
+    public static final String STATUS = "isBlocked";
 
     @Override
     public Serializable getId() {
@@ -93,11 +93,11 @@ public class User implements Identifiable {
         this.role = role;
     }
 
-    public boolean getStatus() {
+    public boolean isBlocked() {
         return isBlocked;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(boolean isBlocked) {
         this.isBlocked = isBlocked;
     }
 

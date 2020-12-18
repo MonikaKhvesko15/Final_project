@@ -6,36 +6,9 @@ body {
     box-sizing: border-box;
 }
 
-header {
-    display: flex;
-    background-color: #FAEAB4;
-    color: #4D4029;
-    padding: 1%;
-}
-
 a {
     text-decoration: none;
     color: #4D4029;
-}
-
-.library {
-    width: 90%;
-    font-family: 'Belgrano', serif;
-    font-size: 45pt;
-    padding: 10px;
-}
-
-.buttons {}
-
-.buttons a {
-    display: flex;
-    justify-content: center;
-    border: 2px solid #4D4029;
-    border-radius: 5px;
-    font-size: 14pt;
-    background-color: white;
-    padding: 5px;
-    margin: 10px;
 }
 
 .container {
@@ -63,7 +36,7 @@ a {
     align-items: center;
 }
 
-form {
+.login {
     display: flex;
     flex-direction: column;
     max-width: 350px;
@@ -120,4 +93,3 @@ label input {
 .content p {
     font-size: 26pt;
 }
-

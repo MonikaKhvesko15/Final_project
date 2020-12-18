@@ -12,6 +12,9 @@ import javax.servlet.http.HttpSession;
 
 
 public class EditUserCommand implements Command {
+    public static final String FIRSTNAME_PARAMETER = "firstname";
+    public static final String SURNAME_PARAMETER = "surname";
+    private static final String HOME_PAGE = "/Final_project_war/controller?command=home_page";
     private final UserService service;
 
     public EditUserCommand() {
@@ -21,16 +24,16 @@ public class EditUserCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        HttpSession session = request.getSession();
+        String userFirstname = request.getParameter(FIRSTNAME_PARAMETER);
+        String userSurname = request.getParameter(SURNAME_PARAMETER);
 
+        HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        user.setFirstname(userFirstname);
+        user.setSurname(userSurname);
         service.updateUser(user);
 
-        String currentPage = getCurrentPage(request, session);
-        return CommandResult.redirect(currentPage);
+        return CommandResult.redirect(HOME_PAGE);
     }
 
-    private String getCurrentPage(HttpServletRequest request, HttpSession session) {
-        return (String) session.getAttribute(request.getRequestURI());
-    }
 }

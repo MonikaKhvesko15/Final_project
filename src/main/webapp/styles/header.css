@@ -13,12 +13,19 @@ body {
     border-right: 1px solid #FAEAB4;
 }
 
+header {
+    display: flex;
+    background-color: #FAEAB4;
+    color: #4D4029;
+    padding: 0% 2%;
+}
+
 a {
     text-decoration: none;
     color: #4D4029;
 }
 
-a:hover {
+li a:hover {
     border-bottom: 2px solid #4D4029;
 }
 
@@ -42,6 +49,7 @@ li {
     border-left: 1px solid #4D4029;
     border-right: 1px solid #4D4029;
 }
+
 .user img {
     width: 60px;
     height: 60px;
@@ -65,7 +73,7 @@ li {
     padding: 10px 0px;
 }
 
-.buttons a, .edit a {
+.buttons a, .language {
     display: flex;
     justify-content: center;
     border: 2px solid #4D4029;
@@ -76,21 +84,21 @@ li {
     margin: 4px;
 }
 
-.buttons a:hover, .edit a:hover {
+.buttons a:hover {
     background: #4D4029;
     color: white;
     box-shadow: inset 0 0 0 1px white;
 }
 
-.language {
-    display: flex;
+select {
+    border: none;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    color: #4D4029;
+    outline: none;
 }
 
-.language a {
-    margin: 0.5px;
-    padding: 2px 5px;
-}
-
+/*
 main .buttons {
     float: right;
 }
@@ -133,11 +141,84 @@ table {
 th {
     float:left;
 }
-
 .edit {
     float: right;
 }
-
 .edit a {
     width: 80px;
+}*/
+
+.menu,
+.content {
+    display: flex;
+    float: left;
+    min-height: 100vh;
+}/*
+
+.menu {
+    width: 25%;
+    background-color: #FBF4DA;
 }
+
+.content_login {
+    width: 75%;
+    flex-direction: column;
+    align-items: center;
+}*/
+/*
+
+.library__search {
+    width: 35%;
+    height: 15%;
+    left: 40px;
+    display: flex;
+    float: left;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    background: #C4C4C4;
+    border: 1.5px solid #4D4029;
+    box-sizing: border-box;
+}
+.library__search-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.library__search-form>input {
+    width: 90%;
+    height: 15%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 200;
+    font-size: 36px;
+    line-height: 42px;
+    color: #818181;
+    background: #C4C4C4;
+    border: none;
+    outline: none;
+}
+
+#search-button {
+    width: 10%;
+    height: 33.33%;
+    margin: 0 10px 0 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #C4C4C4;
+    border: none;
+    outline: none;
+}
+
+#search-button>img {
+    width: 100%;
+    height: 100%;
+}
+*/
+
