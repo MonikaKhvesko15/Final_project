@@ -1,11 +1,9 @@
-package com.epam.web.mapper;
+package com.epam.web.dao.mapper;
 
-import com.epam.web.entity.Book;
 import com.epam.web.entity.Identifiable;
-import com.epam.web.entity.Order;
-import com.epam.web.entity.User;
 
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

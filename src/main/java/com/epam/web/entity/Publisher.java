@@ -11,12 +11,12 @@ public class Publisher implements Identifiable{
     //columns for table
     public static final String ID = "id";
     public static final String NAME = "name";
-    public static final String YEAR = "year";
+    public static final String ESTABLISH_YEAR = "establish_year";
 
 
     private int id;
     private String name;
-    private Year year;
+    private Year establishYear;
 
 
     @Override
@@ -28,10 +28,10 @@ public class Publisher implements Identifiable{
 
     }
 
-    public Publisher(int id, String name, Year year) {
+    public Publisher(int id, String name, Year establishYear) {
         this.id = id;
         this.name = name;
-        this.year = year;
+        this.establishYear = establishYear;
     }
 
     public void setId(int id) {
@@ -46,11 +46,11 @@ public class Publisher implements Identifiable{
         this.name = name;
     }
 
-    public Year getYear() {
-        return year;
+    public Year getEstablishyear() {
+        return establishYear;
     }
 
-    public void setYear(Year year) {
-        this.year = year;
+    public void setEstablishYear(Year establishYear) {
+        this.establishYear = establishYear;
     }
 }

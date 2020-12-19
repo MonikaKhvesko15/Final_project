@@ -3,7 +3,7 @@ package com.epam.web.dao;
 import com.epam.web.extractor.FieldsExtractor;
 import com.epam.web.entity.Identifiable;
 import com.epam.web.exception.DaoException;
-import com.epam.web.mapper.RowMapper;
+import com.epam.web.dao.mapper.RowMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -50,6 +50,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
             throw new DaoException(e);
         }
     }
+
 
     //in this method we write parameters in form <<?>> then substitute them in the statement
     private PreparedStatement createStatement(String query, Object ...params) throws SQLException {

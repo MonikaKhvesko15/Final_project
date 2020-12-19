@@ -1,4 +1,4 @@
-package com.epam.web.mapper;
+package com.epam.web.dao.mapper;
 
 import com.epam.web.entity.User;
 

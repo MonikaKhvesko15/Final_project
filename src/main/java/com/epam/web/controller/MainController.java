@@ -18,7 +18,8 @@ import java.sql.SQLException;
 
 public class MainController extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger(MainController.class);
-    public static final String MESSAGE_PAGE = "/controller?command=message_page";
+    private static final String ERROR_JSP = "WEB-INF/views/error.jsp";
+    private static final String COMMAND_PARAMETER = "command";
 
 
     @Override
@@ -33,14 +34,14 @@ public class MainController extends HttpServlet {
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
-            String commandName = request.getParameter("command");
+            String commandName = request.getParameter(COMMAND_PARAMETER);
             Command command = CommandFactory.create(commandName);
             CommandResult commandResult = command.execute(request, response);
             dispatch(request, response, commandResult);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
-            request.setAttribute("errorMessage", e.getMessage());
-            dispatch(request, response, CommandResult.redirect(MESSAGE_PAGE));
+            request.setAttribute("errorMessage", true);
+            dispatch(request, response, CommandResult.forward(ERROR_JSP));
         }
     }
 

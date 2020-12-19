@@ -1,4 +1,4 @@
-package com.epam.web.service;
+package com.epam.web.service.user;
 
 import com.epam.web.dao.helper.DaoHelper;
 import com.epam.web.dao.helper.DaoHelperFactory;
@@ -11,13 +11,14 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 
-public class UserService {
+public class UserServiceImpl implements UserService {
     private DaoHelperFactory daoHelperFactory;
 
-    public UserService() {
+    public UserServiceImpl() {
         this.daoHelperFactory = new DaoHelperFactory();
     }
 
+    @Override
     public Optional<User> login(String login, String password) throws ServiceException {
 
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
@@ -29,6 +30,7 @@ public class UserService {
         }
     }
 
+    @Override
     public void updateUser(User user) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             UserDao dao = daoHelper.createUserDao();

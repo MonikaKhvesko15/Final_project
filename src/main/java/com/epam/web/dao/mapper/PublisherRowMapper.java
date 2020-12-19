@@ -1,8 +1,6 @@
-package com.epam.web.mapper;
+package com.epam.web.dao.mapper;
 
-import com.epam.web.entity.Book;
 import com.epam.web.entity.Publisher;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Year;
@@ -12,9 +10,10 @@ public class PublisherRowMapper implements RowMapper<Publisher> {
     public Publisher map(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(Publisher.ID);
         String name = resultSet.getString(Publisher.NAME);
-        String yearString = resultSet.getString(Publisher.YEAR);
+        String yearString = resultSet.getString(Publisher.ESTABLISH_YEAR);
         Year year=Year.parse(yearString);
 
         return new Publisher(id, name, year);
     }
+
 }

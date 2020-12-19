@@ -11,7 +11,6 @@ public class GoToPageCommand implements Command {
     private final String page;
 
     public GoToPageCommand(String page) {
-
         this.page = page;
     }
 

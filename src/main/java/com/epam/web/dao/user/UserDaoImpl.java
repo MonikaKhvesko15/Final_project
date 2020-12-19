@@ -4,13 +4,16 @@ import com.epam.web.extractor.UserFieldsExtractor;
 import com.epam.web.dao.AbstractDao;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
-import com.epam.web.mapper.UserRowMapper;
+import com.epam.web.dao.mapper.UserRowMapper;
 import java.sql.Connection;
 import java.util.Optional;
 
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = SHA1(?)";
-    private static final String UPDATE_USER = "UPDATE users set firstname = ?, surname = ? where id = ?";
+    private static final String UPDATE_USER = "UPDATE library.users\n" +
+            "    SET library.users.firstname = '?', library.users.surname = '?'\n" +
+            "    WHERE library.users.id = ?";
+
 
     public UserDaoImpl(Connection connection){
         super(connection,new UserRowMapper(),User.TABLE,new UserFieldsExtractor());

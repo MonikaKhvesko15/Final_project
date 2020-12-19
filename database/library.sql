@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS publishers
 (
     id   INT AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL,
-    year YEAR        NOT NULL,
+    establish_year YEAR        NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS orders
     id          INT AUTO_INCREMENT,
     issue_date  DATE,
     return_date DATE,
-    status      ENUM ('ACCEPTED','REFUSED','UNDER_CONSIDERATION') DEFAULT 'UNDER_CONSIDERATION',
+    status      ENUM ('ACCEPTED','FINISHED','UNDER_CONSIDERATION') DEFAULT 'UNDER_CONSIDERATION',
 
     user_id     INT NOT NULL,
     book_id     INT NOT NULL,

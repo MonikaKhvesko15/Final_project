@@ -1,34 +1,44 @@
 USE library;
 
+/*--------------filling in the table "users"---------------------*/
 
-INSERT INTO users (login, password, firstname, surname, role, isBlocked)
-VALUES ('marinaborisyuk1', SHA1('45180'), 'Marina', 'Borisyuk', 'READER', 0);
+INSERT INTO users (login, password, firstname, surname, role)
+VALUES ('monika15', SHA1('150202'), 'Monika', 'Khvesko', 'READER');
 
 INSERT INTO users (login, password, firstname, surname, role, isBlocked)
 VALUES ('alice111', SHA1('abc321'), 'Alice', 'Simmons', 'READER', 1);
 
-INSERT INTO users (login, password, firstname, surname, role, isBlocked)
-VALUES ('user333', SHA1('user'), 'Adrian', 'Watkins', 'LIBRARIAN', 0);
+INSERT INTO users (login, password, firstname, surname, role)
+VALUES ('user333', SHA1('user'), 'Adrian', 'Watkins', 'LIBRARIAN');
 
 INSERT INTO users (login, password, firstname, surname, role, isBlocked)
 VALUES ('gloria15', SHA1('141414'), 'Gloria', 'Bailey', 'LIBRARIAN', 1);
 
-INSERT INTO users (login, password, firstname, surname, role, isBlocked)
-VALUES ('nic3444', SHA1('11111'), 'Nicole', 'Rivera', 'ADMIN', 0);
+INSERT INTO users (login, password, firstname, surname, role)
+VALUES ('nic3444', SHA1('11111'), 'Nicole', 'Rivera', 'ADMIN');
 
 INSERT INTO users (login, password, firstname, surname, role, isBlocked)
 VALUES ('admin11', SHA1('admin'), 'Alberto', 'Jenkins', 'ADMIN', 1);
 
-INSERT INTO publishers (name, year)
+
+/*--------------filling in the table "publishers"---------------------*/
+
+INSERT INTO publishers (name, establish_year)
 VALUES ('Penguin Random House', 2013);
-INSERT INTO publishers (name, year)
+
+INSERT INTO publishers (name, establish_year)
 VALUES ('Hachette Livre', 1992);
-INSERT INTO publishers (name, year)
+
+INSERT INTO publishers (name, establish_year)
 VALUES ('HarperCollins', 1989);
-INSERT INTO publishers (name, year)
+
+INSERT INTO publishers (name, establish_year)
 VALUES ('Macmillan Publishers', 2015);
-INSERT INTO publishers (name, year)
+
+INSERT INTO publishers (name, establish_year)
 VALUES ('Simon & Schuster', 1924);
+
+/*--------------filling in the table "books"---------------------*/
 
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Jane Eyre', 'Charlotte Bronte', 217, 28, 1);
@@ -59,3 +69,21 @@ VALUES ('Dracula', 'Bram Stoker', 322, 76, 4);
 
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('War and Peace', 'Leo Tolstoy', 416, 90, 5);
+
+/*--------------filling in the table "orders"---------------------*/
+
+INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
+VALUES ('2020-12-01', '2020-12-20','ACCEPTED', 1, 1);
+
+INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
+VALUES ('2020-11-01', '2020-12-01', 'FINISHED', 1, 2);
+
+INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
+VALUES ('2020-11-29', '2020-12-31','ACCEPTED', 1, 8);
+
+INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
+VALUES ('2020-06-01', '2020-06-01','FINISHED', 1, 10);
+
+INSERT INTO orders (issue_date, return_date, user_id, book_id)
+VALUES ('2020-10-15', '2020-11-15', 1, 7);
+

@@ -13,7 +13,7 @@ public class Book implements Identifiable {
     public static final String AUTHOR = "author";
     public static final String PAGES = "pages";
     public static final String AMOUNT = "amount";
-    public static final String PUBLISHER = "publisher";
+    public static final String PUBLISHER_ID = "publisher_id";
 
 
     @Override
@@ -25,20 +25,18 @@ public class Book implements Identifiable {
     private String title;
     private String author;
     private int pages;
-    private String surname;
-    private int amount;
+    private Integer amount;
     private Publisher publisher;
 
     Book() {
 
     }
 
-    public Book(int id, String title, String author, int pages, String surname, int amount, Publisher publisher) {
+    public Book(int id, String title, String author, int pages, Integer amount, Publisher publisher) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.surname = surname;
         this.amount = amount;
         this.publisher = publisher;
     }
@@ -71,19 +69,11 @@ public class Book implements Identifiable {
         this.pages = pages;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 

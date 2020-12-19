@@ -4,7 +4,7 @@ import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
 import com.epam.web.entity.User;
 import com.epam.web.exception.ServiceException;
-import com.epam.web.service.UserService;
+import com.epam.web.service.user.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,12 +19,13 @@ public class LoginCommand implements Command {
 
     private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
     private static final String HOME_PAGE = "/Final_project_war/controller?command=home_page";
-    public static final String MESSAGE_PAGE = "/Final_project_war/controller?command=message_page";
+    private static final String ERROR_PAGE = "/Final_project_war/controller?command=error_page";
+    private static final String ERROR_JSP = "WEB-INF/views/error.jsp";
 
-    private final UserService service;
+    private final UserServiceImpl service;
 
     public LoginCommand() {
-        service = new UserService();
+        service = new UserServiceImpl();
     }
 
     @Override
@@ -46,8 +47,8 @@ public class LoginCommand implements Command {
                 session.setAttribute("role", user.getRole().toString());
                 commandResult = CommandResult.redirect(HOME_PAGE);
             } else if (user.isBlocked()) {
-                request.setAttribute("errorMessage", "This user is blocked");
-                commandResult = CommandResult.redirect(MESSAGE_PAGE);
+                request.setAttribute("userBlockErrorMessage", true);
+                commandResult = CommandResult.forward(ERROR_JSP);
             }
 
         } else {
