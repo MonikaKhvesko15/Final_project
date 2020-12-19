@@ -43,5 +43,5 @@ The administrator fills the site with books, changes their description if necess
         6. Block/Unblock librarian
         7. Switch language
     
-### **Objects:** **book**, **order**.
-The *book* has parameters such as title, author, numb of pages,  amount, publishing. The *order* can be either approved or rejected.
+### **Objects:** **book**, **order**,**publisher**.
+The *book* has parameters such as title, author, numb of pages,  amount, publisher (publisher name, establish year). The *order* can be either accepted or returned.
