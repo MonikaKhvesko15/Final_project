@@ -7,6 +7,7 @@ The reader has the ability to search and order books in the catalog. The librari
 ### Users:
 ##### 1. Reader
 The reader has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
+
     Functionality:
 
         1. Login/Logout
@@ -16,6 +17,7 @@ The reader has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by 
         5. Order a book
         6. View "My orders"
         7. Switch language
+        
 ##### 2. Librarian
 
 The librarian has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
