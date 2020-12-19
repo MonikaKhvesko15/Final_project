@@ -20,7 +20,7 @@
 
 <div class = "container">
     <jsp:include page="templates/leftMenu.jsp"/>
-
+<%--
     <main class = "content">
         <div class = "data">
             <table>
@@ -64,7 +64,40 @@
         <div class = "pagination">
             <span>1</span><a href="index_reader_book_catalog_2.html">&raquo;</a>
         </div>
+    </main>--%>
+
+    <main class="content">
+
+
+        <section class="content__container">
+
+
+            <div class="container-element">
+                <img src="${pageContext.request.contextPath}/images/person.jpg" alt="book_cover">
+                <div class="element-description">
+                    <p><b>Book title:</b> Обложка книги</p>
+                    <p><b>Author:</b> Неизвестно</p>
+                    <p><b>Numb of pages:</b> 624стр.</p>
+                    <p><b>Year of publishing:</b> 2002 год</p>
+                </div>
+                <div class="element-amount">
+                    <p><b>Amount:</b> 1</p>
+                </div>
+                <button class="element-order">Order</button>
+            </div>
+
+        </section>
+
+
+        <section class="pagination">
+            <button>&lt;&lt;</button>
+            <button class="numbers active">1</button>
+            <button class="numbers">2</button>
+            <button class="numbers">3</button>
+            <button>&gt;&gt;</button>
+        </section>
     </main>
+
 </div>
 </body>
 </html>

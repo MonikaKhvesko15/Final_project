@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Reader home page</title>
+    <title>Home page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/home_page.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
@@ -31,7 +31,9 @@
                     <tr>
                         <th><fmt:message key="local.name"/></th>
                         <th><c:out value="${sessionScope.user.firstname}"/></th>
-                        <th class="edit"><a><fmt:message key="local.edit"/></a></th>
+                        <th class="edit">
+                            <a><fmt:message key="local.edit"/></a>
+                        </th>
                     </tr>
                 </form>
 
@@ -39,9 +41,13 @@
                     <tr>
                         <th><fmt:message key="local.surname"/></th>
                         <th><c:out value="${sessionScope.user.surname}"/></th>
-                        <th class="edit"><a><fmt:message key="local.edit"/></a></th>
+                        <th class="edit">
+                            <input class="btn-submit" type="submit" value="Edit">
+                            <a><fmt:message key="local.edit" /></a>
+                        </th>
                     </tr>
                 </form>
+
 
                 <tr>
                     <th><fmt:message key="local.status"/></th>

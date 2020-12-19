@@ -1,13 +1,11 @@
 package com.epam.web.dao.user;
 
-import com.epam.web.collector.UserParameterCollector;
+import com.epam.web.extractor.UserFieldsExtractor;
 import com.epam.web.dao.AbstractDao;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
 import com.epam.web.mapper.UserRowMapper;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.List;
 import java.util.Optional;
 
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
@@ -15,7 +13,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final String UPDATE_USER = "UPDATE users set firstname = ?, surname = ? where id = ?";
 
     public UserDaoImpl(Connection connection){
-        super(connection,new UserRowMapper(),User.TABLE,new UserParameterCollector());
+        super(connection,new UserRowMapper(),User.TABLE,new UserFieldsExtractor());
     }
 
     @Override
@@ -32,11 +30,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public void save(User item) {
-
-    }
-
-    @Override
     protected String getUpdateQuery() {
         return UPDATE_USER;
     }
@@ -48,5 +41,10 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     protected String getTableName(){
         return User.TABLE;
+    }
+
+    @Override
+    public void updateFirstnameAndSurnameById(int id, String firstname, String surname) throws DaoException {
+        executeUpdate(UPDATE_USER,firstname,surname,id);
     }
 }

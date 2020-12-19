@@ -7,7 +7,6 @@ public class CommandFactory {
     private static final String LOGIN_COMMAND = "login";
     private static final String LOGOUT_COMMAND = "logout";
     private static final String EDIT_USER_COMMAND = "edit_user";
-    //private static final String BOOK_CATALOG_COMMAND = "book_catalog";
 
 
     private static final String LOGIN_PAGE_COMMAND = "login_page";
@@ -20,7 +19,7 @@ public class CommandFactory {
     private static final String MESSAGE_PAGE = "WEB-INF/views/message.jsp";
 
     private static final String BOOK_CATALOG_PAGE_COMMAND = "book_catalog_page";
-    private static final String BOOK_CATALOG_PAGE = "WEB-INF/views/book_catalog.jsp";
+    private static final String BOOK_CATALOG_PAGE = "WEB-INF/views/catalog.jsp";
 
     public static Command create(String сommandName) {
         switch (сommandName) {
@@ -36,8 +35,6 @@ public class CommandFactory {
                 return new GoToPageCommand(MESSAGE_PAGE);
             case EDIT_USER_COMMAND:
                 return new EditUserCommand();
-//            case BOOK_CATALOG_COMMAND:
-//                return new BookCatalogCommand();
             case BOOK_CATALOG_PAGE_COMMAND:
                 return new GoToPageCommand(BOOK_CATALOG_PAGE);
 

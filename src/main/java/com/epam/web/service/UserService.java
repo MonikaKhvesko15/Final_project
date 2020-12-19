@@ -32,7 +32,7 @@ public class UserService {
     public void updateUser(User user) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             UserDao dao = daoHelper.createUserDao();
-            dao.save(user);
+            dao.updateFirstnameAndSurnameById((Integer) user.getId(), user.getFirstname(), user.getSurname());
         } catch (DaoException | ConnectionPoolException | SQLException e) {
             throw new ServiceException(e.getMessage(), e);
         }

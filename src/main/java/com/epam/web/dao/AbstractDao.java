@@ -1,29 +1,27 @@
 package com.epam.web.dao;
 
-import com.epam.web.collector.ParameterCollector;
+import com.epam.web.extractor.FieldsExtractor;
 import com.epam.web.entity.Identifiable;
-import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
 import com.epam.web.mapper.RowMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     private Connection connection;
     private final RowMapper<T> mapper;
     private final String tableName;
-    private ParameterCollector<T> parameterCollector;
+    private FieldsExtractor<T> fieldsExtractor;
 
-    protected AbstractDao(Connection connection,RowMapper<T> mapper,String tableName,ParameterCollector<T> parameterCollector) {
+    protected AbstractDao(Connection connection, RowMapper<T> mapper, String tableName, FieldsExtractor<T> fieldsExtractor) {
 
         this.connection = connection;
         this.mapper=mapper;
         this.tableName = tableName;
-        this.parameterCollector=parameterCollector;
+        this.fieldsExtractor =fieldsExtractor;
     }
 
     // this method executes any SQL queries and return it in List
@@ -38,6 +36,16 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
                 entities.add(entity);
             }
             return entities;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    protected void executeUpdate(String query,Object ...params) throws DaoException {
+
+        try (PreparedStatement statement = createStatement(query, params)){
+            statement.executeUpdate();
+
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -64,9 +72,9 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
     @Override
     public void save(T item) throws DaoException{
-        List<Object> objectParams =parameterCollector.collect(item);
+        List<Object> objectParams = fieldsExtractor.extract(item);
         Object[] params=objectParams.toArray();
-        executeQuery(getUpdateQuery(), params);
+        executeUpdate(getUpdateQuery(), params);
     }
 
     protected abstract String getUpdateQuery();

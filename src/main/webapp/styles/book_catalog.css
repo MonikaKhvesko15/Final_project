@@ -123,7 +123,7 @@ main {
 .data img {
     width: 120px;
     height: 150px;
-    margin: 40px, 0px;
+    margin: 40px,0px;
 }
 
 table {
@@ -182,3 +182,4 @@ th p {
 span {
     padding: 0 20px 50px;
 }
+

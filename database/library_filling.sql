@@ -28,9 +28,7 @@ VALUES ('HarperCollins', 1989);
 INSERT INTO publishers (name, year)
 VALUES ('Macmillan Publishers', 2015);
 INSERT INTO publishers (name, year)
-VALUES (' Simon & Schuster', 1924);
-
-
+VALUES ('Simon & Schuster', 1924);
 
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Jane Eyre', 'Charlotte Bronte', 217, 28, 1);

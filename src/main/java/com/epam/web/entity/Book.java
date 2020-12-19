@@ -27,7 +27,7 @@ public class Book implements Identifiable {
     private int pages;
     private String surname;
     private int amount;
-    Publisher publisher;
+    private Publisher publisher;
 
     Book() {
 
