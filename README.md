@@ -15,8 +15,7 @@ The reader has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by 
         4. Search books
         5. Order a book
         6. View "My orders"
-        7. Return ordered book
-        8. Switch language
+        7. Switch language
 ##### 2. Librarian
 
 The librarian has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
@@ -25,7 +24,7 @@ The librarian has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked 
     
         1. Login/Logout
         2. Edit personal information
-        3. Accept/refuse orders
+        3. Issue/return book
         4. Switch language
         
 ##### 3. Administrator
