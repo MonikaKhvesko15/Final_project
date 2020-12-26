@@ -23,13 +23,13 @@
                             key="local.menu.home"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/controller?command=book_catalog"><fmt:message
                             key="local.menu.book.catalog"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/controller?command=my_orders"><fmt:message
+                    <li><a href="${pageContext.request.contextPath}/controller?command=view_orders"><fmt:message
                             key="local.menu.reader.orders"/></a></li>
                 </c:when>
                 <c:when test="${sessionScope.user.role == 'LIBRARIAN'}">
                     <li><a href="${pageContext.request.contextPath}/controller?command=home_page"><fmt:message
                             key="local.menu.home"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/controller?command=all_orders"><fmt:message
+                    <li><a href="${pageContext.request.contextPath}/controller?command=view_orders"><fmt:message
                             key="local.menu.all.orders"/></a></li>
                 </c:when>
                 <c:when test="${sessionScope.user.role == 'ADMIN'}">

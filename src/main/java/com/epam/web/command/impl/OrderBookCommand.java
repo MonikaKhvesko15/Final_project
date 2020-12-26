@@ -2,8 +2,8 @@ package com.epam.web.command.impl;
 
 import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
-import com.epam.web.entity.dto.Order;
-import com.epam.web.entity.OrderDto;
+import com.epam.web.entity.Order;
+import com.epam.web.entity.dto.OrderDto;
 import com.epam.web.exception.ConnectionPoolException;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.service.order.OrderService;
@@ -39,8 +39,8 @@ public class OrderBookCommand implements Command {
             LocalDate issueDate = LocalDate.now();
             LocalDate returnDate = issueDate.plusDays(60);
 
-            OrderDto orderDto = new OrderDto(null, issueDate, returnDate, null, issueType, bookId, userId);
-            orderService.createOrder(orderDto);
+            Order order = new Order(null, issueDate, returnDate, null, issueType, bookId, userId);
+            orderService.createOrder(order);
 
             request.setAttribute("bookOrdered", true);
             return CommandResult.forward(MESSAGE_JSP);

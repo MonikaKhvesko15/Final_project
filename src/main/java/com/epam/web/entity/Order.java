@@ -1,23 +1,42 @@
 package com.epam.web.entity;
-import com.epam.web.entity.dto.Order;
-import com.epam.web.entity.dto.Order.Status;
-import com.epam.web.entity.dto.Order.Type;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class OrderDto implements Identifiable {
+public class Order implements Identifiable {
+    //table name for orders
+    public static final String TABLE = "orders";
+
+    //columns for table
+    public static final String ID = "id";
+    public static final String ISSUE_DATE = "issue_date";
+    public static final String RETURN_DATE = "return_date";
+    public static final String STATUS = "status";
+    public static final String TYPE = "type";
+    public static final String USER_ID = "user_id";
+    public static final String BOOK_ID = "book_id";
+
+    public enum Status {
+        ACCEPTED,
+        UNDER_CONSIDERATION,
+        FINISHED;
+    }
+
+    public enum Type {
+        READER_ROOM,
+        SUBSCRIPTION;
+    }
 
     private final Integer id;
     private final LocalDate issueDate;
     private final LocalDate returnDate;
-    private final Order.Status status;
-    private final Order.Type type;
+    private final Status status;
+    private final Type type;
     private final Integer bookId;
     private final Integer userId;
 
 
-    public OrderDto(Integer id, LocalDate issueDate, LocalDate returnDate, Status status, Type type, Integer bookId, Integer userId) {
+    public Order(Integer id, LocalDate issueDate, LocalDate returnDate, Status status, Type type, Integer bookId, Integer userId) {
         this.id = id;
         this.issueDate = issueDate;
         this.returnDate = returnDate;

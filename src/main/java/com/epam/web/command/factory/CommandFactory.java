@@ -10,7 +10,7 @@ public class CommandFactory {
     private static final String BOOK_CATALOG_COMMAND = "book_catalog";
     private static final String BOOK_SEARCH_COMMAND = "book_search";
     private static final String ORDER_BOOK_COMMAND = "order_book";
-    private static final String MY_ORDERS_COMMAND = "my_orders";
+    private static final String VIEW_ORDERS_COMMAND = "view_orders";
 
     private static final String LOGIN_PAGE_COMMAND = "login_page";
     private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
@@ -36,8 +36,8 @@ public class CommandFactory {
                 return new BookSearchCommand();
             case ORDER_BOOK_COMMAND:
                 return new OrderBookCommand();
-            case MY_ORDERS_COMMAND:
-                return new MyOrdersCommand();
+            case VIEW_ORDERS_COMMAND:
+                return new ViewOrdersCommand();
 
             default:
                 throw new IllegalArgumentException("No such this command");

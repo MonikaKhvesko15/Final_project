@@ -25,18 +25,17 @@
         <div class="data">
             <table>
 
-                    <c:when test="${requestScope.foundBook == null}">
-
                         <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
-                            <tr>
-                                <td>${(5)*(requestScope.currentPage - 1) + index.count}</td>
-                                <td>${order.book.title}</td>
-                                <td>${order.book.author}</td>
-                                <td>${order.issueDate}</td>
-                                <td>${order.returnDate}</td>
-                                <td>${order.type}</td>
-                                <td>${order.status}</td>
-                            </tr>
+                            <c:if test="${order.userName==sessionScope.user.firstname}">
+                                <tr>
+                                    <td>${order.bookTitle}</td>
+                                    <td>${order.bookAuthor}</td>
+                                    <td>${order.issueDate}</td>
+                                    <td>${order.returnDate}</td>
+                                    <td>${order.type}</td>
+                                    <td>${order.status}</td>
+                                </tr>
+                            </c:if>
                         </c:forEach>
                         <c:choose>
                             <c:when test="${(requestScope.currentPage - 1) == 0}">
@@ -59,7 +58,6 @@
                                    type="submit" class="pagination"><fmt:message key="orders.next"/></a>
                             </c:otherwise>
                         </c:choose>
-                    </c:when>
             </table>
 
 

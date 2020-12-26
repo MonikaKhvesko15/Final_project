@@ -4,8 +4,8 @@ import com.epam.web.dao.connection.ConnectionPool;
 import com.epam.web.dao.connection.ProxyConnection;
 import com.epam.web.dao.book.BookDao;
 import com.epam.web.dao.book.BookDaoImpl;
-import com.epam.web.dao.order.OrderDtoDao;
-import com.epam.web.dao.order.OrderDtoDaoImpl;
+import com.epam.web.dao.order.OrderDao;
+import com.epam.web.dao.order.OrderDaoImpl;
 import com.epam.web.dao.user.UserDao;
 import com.epam.web.dao.user.UserDaoImpl;
 import com.epam.web.exception.ConnectionPoolException;
@@ -29,7 +29,7 @@ public class DaoHelper implements AutoCloseable {
 
     public BookDao createBookDao(){return new BookDaoImpl(connection); }
 
-    public OrderDtoDao createOrderDtoDao(){return new OrderDtoDaoImpl(connection); }
+    public OrderDao createOrderDao(){return new OrderDaoImpl(connection); }
 
     public void startTransaction() throws DaoException {
         try {

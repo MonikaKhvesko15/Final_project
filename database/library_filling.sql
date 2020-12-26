@@ -76,13 +76,13 @@ INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
 VALUES ('2020-12-01', '2020-12-20','ACCEPTED', 1, 1);
 
 INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
-VALUES ('2020-11-01', '2020-12-01', 'FINISHED', 1, 2);
+VALUES ('2020-11-01', '2020-12-01', 'FINISHED', 3, 2);
 
 INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
-VALUES ('2020-11-29', '2020-12-31','ACCEPTED', 1, 8);
+VALUES ('2020-11-29', '2020-12-31','ACCEPTED', 4, 8);
 
 INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
-VALUES ('2020-06-01', '2020-06-01','FINISHED', 1, 10);
+VALUES ('2020-06-01', '2020-06-01','FINISHED', 4, 10);
 
 INSERT INTO orders (issue_date, return_date, user_id, book_id)
 VALUES ('2020-10-15', '2020-11-15', 1, 7);

@@ -16,9 +16,12 @@ import java.util.Optional;
 public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
     private static final String FIND_ALL_BOOKS = "SELECT * FROM books INNER JOIN publishers ON books.publisher_id=publishers.id";
     private static final String GET_BOOKS_PART = "SELECT * FROM books INNER JOIN publishers ON books.publisher_id=publishers.id limit ?, ?";
-    private static final String FIND_BOOK = "SELECT books.id, books.title, books.author,books.pages,books.amount, publishers.id, publishers.name,publishers.establish_year\n" +
+    private static final String FIND_BOOK_BY_TITLE = "SELECT books.id, books.title, books.author,books.pages,books.amount, publishers.id, publishers.name,publishers.establish_year\n" +
             "FROM books INNER JOIN publishers ON books.publisher_id=publishers.id\n" +
             "WHERE books.title = ?";
+    private static final String FIND_BOOK_BY_ID = "SELECT books.id, books.title, books.author,books.pages,books.amount, publishers.id, publishers.name,publishers.establish_year\n" +
+            "FROM books INNER JOIN publishers ON books.publisher_id=publishers.id\n" +
+            "WHERE books.id = ?";
     private static final String UPDATE_BOOK_AMOUNT = "UPDATE books SET books.amount = books.amount-1 WHERE books.id = ?";
 
     public BookDaoImpl(Connection connection) {
@@ -43,11 +46,16 @@ public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
 
     @Override
     public Optional<Book> getBookByTitle(String title) throws DaoException {
-        return executeForSingleResult(FIND_BOOK, title);
+        return executeForSingleResult(FIND_BOOK_BY_TITLE, title);
     }
 
     @Override
     public void updateBookAmount(Integer id) throws DaoException {
         executeUpdate(UPDATE_BOOK_AMOUNT, id);
+    }
+
+    @Override
+    public Optional<Book> getById(int id) throws DaoException {
+        return executeForSingleResult(FIND_BOOK_BY_ID, id);
     }
 }
