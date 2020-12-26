@@ -26,7 +26,7 @@
                         <h3><fmt:message key="local.form.login.message" /></h3>
                         <label><span><fmt:message key="local.form.login.username"/></span> <input type="text" name="login" required></label>
                         <label><span><fmt:message key="local.form.login.password"/> </span> <input type="password" name="password" required></label>
-                        <input class="btn-submit" type="submit" value="Login">
+                        <input class="btn-submit" type="submit" value=<fmt:message key="local.form.button.login"/>>
                     </form>
                     ${errorMessage}
                 </main>

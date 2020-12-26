@@ -1,6 +1,6 @@
 package com.epam.web.dao.user;
 
-import com.epam.web.extractor.UserFieldsExtractor;
+import com.epam.web.dao.extractor.UserFieldsExtractor;
 import com.epam.web.dao.AbstractDao;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
@@ -10,9 +10,7 @@ import java.util.Optional;
 
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = SHA1(?)";
-    private static final String UPDATE_USER = "UPDATE library.users\n" +
-            "    SET library.users.firstname = '?', library.users.surname = '?'\n" +
-            "    WHERE library.users.id = ?";
+    private static final String UPDATE_USER_NAME_SURNAME = "UPDATE users SET firstname = ?, surname = ? WHERE id = ?";
 
 
     public UserDaoImpl(Connection connection){
@@ -28,13 +26,13 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public Optional<User> getById(int id) {
+    public Optional<User> getById(int id) throws DaoException {
         return super.getById(id);
     }
 
     @Override
     protected String getUpdateQuery() {
-        return UPDATE_USER;
+        return UPDATE_USER_NAME_SURNAME;
     }
 
     @Override
@@ -48,6 +46,6 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public void updateFirstnameAndSurnameById(int id, String firstname, String surname) throws DaoException {
-        executeUpdate(UPDATE_USER,firstname,surname,id);
+        executeUpdate(UPDATE_USER_NAME_SURNAME,firstname,surname,id);
     }
 }

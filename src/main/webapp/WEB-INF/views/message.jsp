@@ -8,7 +8,7 @@
 <html lang="${requestScope.language}">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <title>Message</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
@@ -21,14 +21,21 @@
 
     <main class="content">
 
-        <c:if test="${errorMessage}">
-            <p><fmt:message key="error_page.main_controller"/></p>
+        <c:if test="${bookNotFound}">
+            <p><fmt:message key="message.book.not.found"/></p>
         </c:if>
 
-        <c:if test="${userBlockErrorMessage}">
-            <p><fmt:message key="error_page.user_blocked"/></p>
+        <%--        <c:if test="${noBooks}">--%>
+        <%--            <p><fmt:message key="message.no.books"/></p>--%>
+        <%--        </c:if>--%>
+
+        <c:if test="${bookOrdered}">
+            <p><fmt:message key="message.book.ordered"/></p>
         </c:if>
 
+        <c:if test="${noOrders}">
+            <p><fmt:message key="message.no.orders"/></p>
+        </c:if>
     </main>
 
 </div>

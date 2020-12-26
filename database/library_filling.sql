@@ -3,7 +3,7 @@ USE library;
 /*--------------filling in the table "users"---------------------*/
 
 INSERT INTO users (login, password, firstname, surname, role)
-VALUES ('monika15', SHA1('150202'), 'Monika', 'Khvesko', 'READER');
+VALUES ('123', SHA1('123'), 'Monika', 'Khvesko', 'READER');
 
 INSERT INTO users (login, password, firstname, surname, role, isBlocked)
 VALUES ('alice111', SHA1('abc321'), 'Alice', 'Simmons', 'READER', 1);
@@ -43,8 +43,8 @@ VALUES ('Simon & Schuster', 1924);
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Jane Eyre', 'Charlotte Bronte', 217, 28, 1);
 
-INSERT INTO books (title, author, pages, amount, publisher_id)
-VALUES ('Pride and Prjudice', 'Jane Austen', 291, 88, 2);
+INSERT INTO books (title, author, pages, publisher_id)
+VALUES ('Pride and Prjudice', 'Jane Austen', 291, 2);
 
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Great Expectations', 'Charles Dickens', 696, 16, 3);
@@ -55,8 +55,8 @@ VALUES ('Emma', 'Jane Austen', 636, 55, 4);
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Romeo and Juliet', 'William Shakespeare', 329, 66, 5);
 
-INSERT INTO books (title, author, pages, amount, publisher_id)
-VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', 345, 98, 1);
+INSERT INTO books (title, author, pages,  publisher_id)
+VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', 345, 1);
 
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Candide', 'Voltaire', 374, 34, 2);
@@ -65,7 +65,7 @@ INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Anna Karenina', 'Leo Tolstoy', 523, 40, 3);
 
 INSERT INTO books (title, author, pages, amount, publisher_id)
-VALUES ('Dracula', 'Bram Stoker', 322, 76, 4);
+VALUES ('Dracula', 'Bram Stoker', 322, 2, 4);
 
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('War and Peace', 'Leo Tolstoy', 416, 90, 5);

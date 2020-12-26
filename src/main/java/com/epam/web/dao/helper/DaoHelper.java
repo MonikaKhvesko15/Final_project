@@ -1,9 +1,11 @@
 package com.epam.web.dao.helper;
 
-import com.epam.web.connection.ConnectionPool;
-import com.epam.web.connection.ProxyConnection;
+import com.epam.web.dao.connection.ConnectionPool;
+import com.epam.web.dao.connection.ProxyConnection;
 import com.epam.web.dao.book.BookDao;
 import com.epam.web.dao.book.BookDaoImpl;
+import com.epam.web.dao.order.OrderDtoDao;
+import com.epam.web.dao.order.OrderDtoDaoImpl;
 import com.epam.web.dao.user.UserDao;
 import com.epam.web.dao.user.UserDaoImpl;
 import com.epam.web.exception.ConnectionPoolException;
@@ -25,10 +27,9 @@ public class DaoHelper implements AutoCloseable {
         return new UserDaoImpl(connection);
     }
 
-    public BookDao createBookDao(){return new BookDaoImpl(connection);
-    }
+    public BookDao createBookDao(){return new BookDaoImpl(connection); }
 
-
+    public OrderDtoDao createOrderDtoDao(){return new OrderDtoDaoImpl(connection); }
 
     public void startTransaction() throws DaoException {
         try {
@@ -38,8 +39,27 @@ public class DaoHelper implements AutoCloseable {
         }
     }
 
+    public void commitTransaction() throws DaoException {
+        try {
+            connection.commit();
+        } catch (SQLException commitException) {
+            try {
+                connection.rollback();
+            } catch (SQLException rollbackException) {
+                throw new DaoException(rollbackException);
+            }
+        }
+    }
+
+
     @Override
-    public void close() throws SQLException {
-        connection.close();
+    public void close() throws SQLException, DaoException {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new DaoException(e);
+            }
+        }
     }
 }

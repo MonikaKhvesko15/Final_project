@@ -16,21 +16,38 @@ public class BookServiceImpl implements BookService {
     private DaoHelperFactory daoHelperFactory;
 
     public BookServiceImpl() {
+
         this.daoHelperFactory = new DaoHelperFactory();
     }
 
+//    @Override
+//    public List<Book> findAll() throws ServiceException {
+//        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+//            BookDao bookDao = daoHelper.createBookDao();
+//            return bookDao.findAllBooks();
+//        } catch (ConnectionPoolException | SQLException | DaoException e) {
+//            throw new ServiceException(e.getMessage(), e);
+//        }
+//    }
+
     @Override
-    public List<Book> findAll() throws ServiceException {
+    public List<Book> getBooksPart(int startPosition, int endPosition) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             BookDao bookDao = daoHelper.createBookDao();
-            return bookDao.findAllBooks();
-        } catch (ConnectionPoolException | SQLException | DaoException e) {
+            return bookDao.findBooksPart(startPosition, endPosition);
+        } catch (DaoException | ConnectionPoolException | SQLException e) {
             throw new ServiceException(e.getMessage(), e);
         }
     }
 
+
     @Override
-    public Optional<Book> getBookById(int id) {
-        return Optional.empty();
+    public Optional<Book> findBookByTitle(String title) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            BookDao bookDao = daoHelper.createBookDao();
+            return bookDao.getBookByTitle(title);
+        } catch (DaoException | ConnectionPoolException | SQLException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
     }
 }

@@ -4,6 +4,7 @@ package com.epam.web.entity;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class User implements Identifiable {
     //table name for users
@@ -30,7 +31,7 @@ public class User implements Identifiable {
         ADMIN;
     }
 
-    private int id;
+    private Integer id;
     private String login;
     private String password;
     private String firstname;
@@ -41,7 +42,7 @@ public class User implements Identifiable {
     public User() {
     }
 
-    public User(int id, String login, String password, String firstname, String surname, Role role, boolean isBlocked) {
+    public User(Integer id, String login, String password, String firstname, String surname, Role role, boolean isBlocked) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -50,8 +51,6 @@ public class User implements Identifiable {
         this.role = role;
         this.isBlocked = isBlocked;
     }
-
-
 
     public String getLogin() {
         return login;
@@ -101,5 +100,31 @@ public class User implements Identifiable {
         this.isBlocked = isBlocked;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return isBlocked == user.isBlocked &&
+                Objects.equals(id, user.id) &&
+                Objects.equals(login, user.login) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(firstname, user.firstname) &&
+                Objects.equals(surname, user.surname) &&
+                role == user.role;
+    }
 
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", surname='" + surname + '\'' +
+                ", role=" + role +
+                ", isBlocked=" + isBlocked +
+                '}';
+    }
 }

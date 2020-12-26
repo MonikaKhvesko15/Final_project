@@ -23,7 +23,7 @@
                             key="local.menu.home"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/controller?command=book_catalog"><fmt:message
                             key="local.menu.book.catalog"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/controller?command=reader_orders_page"><fmt:message
+                    <li><a href="${pageContext.request.contextPath}/controller?command=my_orders"><fmt:message
                             key="local.menu.reader.orders"/></a></li>
                 </c:when>
                 <c:when test="${sessionScope.user.role == 'LIBRARIAN'}">
@@ -37,6 +37,8 @@
                             key="local.menu.home"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/controller?command=book_catalog"><fmt:message
                             key="local.menu.book.catalog"/></a></li>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=add_book"><fmt:message
+                            key="local.menu.librarian.add.book"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/controller?command=reader_list"><fmt:message
                             key="local.menu.reader.list"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/controller?command=librarian_list"><fmt:message

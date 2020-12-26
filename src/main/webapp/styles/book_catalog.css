@@ -162,14 +162,14 @@ th p {
     width: 20%;
 }
 
-.edit {
+.order {
     display: flex;
     justify-content: flex-end;
     width: 22%;
     float: right;
 }
 
-.edit a {
+.order a {
     width: 80px;
 }
 

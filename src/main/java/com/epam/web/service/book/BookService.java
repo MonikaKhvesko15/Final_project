@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookService {
-    List<Book> findAll() throws ServiceException;
-    Optional<Book> getBookById(int id);
+    //List<Book> findAll() throws ServiceException;
+    List<Book> getBooksPart(int startPosition, int endPosition) throws ServiceException;
+    Optional<Book> findBookByTitle(String title) throws ServiceException;
 }

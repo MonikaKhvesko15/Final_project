@@ -8,7 +8,9 @@ public class CommandFactory {
     private static final String LOGOUT_COMMAND = "logout";
     private static final String EDIT_USER_COMMAND = "edit_user";
     private static final String BOOK_CATALOG_COMMAND = "book_catalog";
-
+    private static final String BOOK_SEARCH_COMMAND = "book_search";
+    private static final String ORDER_BOOK_COMMAND = "order_book";
+    private static final String MY_ORDERS_COMMAND = "my_orders";
 
     private static final String LOGIN_PAGE_COMMAND = "login_page";
     private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
@@ -29,7 +31,13 @@ public class CommandFactory {
             case EDIT_USER_COMMAND:
                 return new EditUserCommand();
             case BOOK_CATALOG_COMMAND:
-                return new ViewAllBooksCommand();
+                return new BookCatalogCommand();
+            case BOOK_SEARCH_COMMAND:
+                return new BookSearchCommand();
+            case ORDER_BOOK_COMMAND:
+                return new OrderBookCommand();
+            case MY_ORDERS_COMMAND:
+                return new MyOrdersCommand();
 
             default:
                 throw new IllegalArgumentException("No such this command");

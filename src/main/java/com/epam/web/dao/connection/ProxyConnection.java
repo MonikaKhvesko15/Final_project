@@ -1,4 +1,4 @@
-package com.epam.web.connection;
+package com.epam.web.dao.connection;
 
 import java.sql.*;
 import java.util.Map;

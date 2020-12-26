@@ -10,7 +10,7 @@ import java.util.Optional;
 //CRUD
 public interface Dao<T extends Identifiable> {
 
-    Optional<T> getById(int id);
+    Optional<T> getById(int id) throws DaoException;
 
     //read
     List<T> findAll(String tablename) throws DaoException;

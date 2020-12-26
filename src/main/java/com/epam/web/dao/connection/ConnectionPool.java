@@ -1,10 +1,9 @@
-package com.epam.web.connection;
+package com.epam.web.dao.connection;
 
 import com.epam.web.exception.ConnectionPoolException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.Queue;

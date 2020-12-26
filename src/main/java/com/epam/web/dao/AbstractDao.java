@@ -1,6 +1,6 @@
 package com.epam.web.dao;
 
-import com.epam.web.extractor.FieldsExtractor;
+import com.epam.web.dao.extractor.FieldsExtractor;
 import com.epam.web.entity.Identifiable;
 import com.epam.web.exception.DaoException;
 import com.epam.web.dao.mapper.RowMapper;
@@ -62,8 +62,8 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
     @Override
-    public Optional<T> getById(int id) {
-        return Optional.empty();
+    public Optional<T> getById(int id) throws DaoException {
+        return executeForSingleResult("SELECT * FROM "+ tableName+" WHERE id= "+id );
     }
 
     @Override

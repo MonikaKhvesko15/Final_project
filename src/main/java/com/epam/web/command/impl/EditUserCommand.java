@@ -16,7 +16,7 @@ public class EditUserCommand implements Command {
     private static final String SURNAME_PARAMETER = "surname";
     private static final String HOME_PAGE = "/Final_project_war/controller?command=home_page";
     private final UserServiceImpl service;
-    private static final String ERROR_JSP = "WEB-INF/views/error.jsp";
+    private static final String ERROR_JSP = "WEB-INF/views/message.jsp";
 
     public EditUserCommand() {
 
@@ -38,8 +38,7 @@ public class EditUserCommand implements Command {
 
             return CommandResult.redirect(HOME_PAGE);
         } catch (ServiceException e) {
-            request.setAttribute("editUserErrorMessage", true);
-            return CommandResult.forward(ERROR_JSP);
+            throw new ServiceException(e.getMessage(),e);
         }
     }
 

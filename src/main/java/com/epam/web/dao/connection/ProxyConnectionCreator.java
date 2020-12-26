@@ -1,4 +1,4 @@
-package com.epam.web.connection;
+package com.epam.web.dao.connection;
 
 import com.epam.web.exception.ConnectionPoolException;
 import org.apache.logging.log4j.LogManager;

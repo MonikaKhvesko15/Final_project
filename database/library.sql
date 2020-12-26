@@ -6,8 +6,8 @@ USE library;
 
 CREATE TABLE IF NOT EXISTS publishers
 (
-    id   INT AUTO_INCREMENT,
-    name VARCHAR(45) NOT NULL,
+    id             INT AUTO_INCREMENT,
+    name           VARCHAR(45) NOT NULL,
     establish_year YEAR        NOT NULL,
     PRIMARY KEY (id)
 );
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS books
     title        VARCHAR(50)  NOT NULL UNIQUE,
     author       VARCHAR(100) NOT NULL,
     pages        INT          NOT NULL,
-    amount       INT,
+    amount       INT DEFAULT 0,
     publisher_id INT          NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (publisher_id)
@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS books
 CREATE TABLE IF NOT EXISTS orders
 (
     id          INT AUTO_INCREMENT,
-    issue_date  DATE,
-    return_date DATE,
+    issue_date  DATE NOT NULL,
+    return_date DATE NOT NULL,
     status      ENUM ('ACCEPTED','FINISHED','UNDER_CONSIDERATION') DEFAULT 'UNDER_CONSIDERATION',
-
+    type        ENUM ('READER_ROOM','SUBSCRIPTION') DEFAULT 'READER_ROOM',
     user_id     INT NOT NULL,
     book_id     INT NOT NULL,
 

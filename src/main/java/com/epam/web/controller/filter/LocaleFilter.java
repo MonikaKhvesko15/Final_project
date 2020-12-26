@@ -1,4 +1,4 @@
-package com.epam.web.controller;
+package com.epam.web.controller.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +19,7 @@ public class LocaleFilter implements Filter {
         if (language != null) {
             req.getSession().setAttribute(LANG_PARAMETER, language);
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

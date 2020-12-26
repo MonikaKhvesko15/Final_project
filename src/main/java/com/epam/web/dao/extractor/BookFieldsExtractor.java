@@ -1,4 +1,4 @@
-package com.epam.web.extractor;
+package com.epam.web.dao.extractor;
 
 
 import com.epam.web.entity.Book;

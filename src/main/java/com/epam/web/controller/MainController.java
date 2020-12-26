@@ -3,7 +3,7 @@ package com.epam.web.controller;
 import com.epam.web.command.factory.Command;
 import com.epam.web.command.factory.CommandFactory;
 import com.epam.web.command.CommandResult;
-import com.epam.web.connection.ConnectionPool;
+import com.epam.web.dao.connection.ConnectionPool;
 import com.epam.web.exception.ConnectionPoolException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 

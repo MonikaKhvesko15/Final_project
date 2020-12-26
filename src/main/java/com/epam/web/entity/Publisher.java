@@ -2,6 +2,7 @@ package com.epam.web.entity;
 
 import java.io.Serializable;
 import java.time.Year;
+import java.util.Objects;
 
 public class Publisher implements Identifiable{
 
@@ -14,9 +15,9 @@ public class Publisher implements Identifiable{
     public static final String ESTABLISH_YEAR = "establish_year";
 
 
-    private int id;
+    private Integer id;
     private String name;
-    private Year establishYear;
+    private int establishYear;
 
 
     @Override
@@ -28,14 +29,10 @@ public class Publisher implements Identifiable{
 
     }
 
-    public Publisher(int id, String name, Year establishYear) {
+    public Publisher(Integer id, String name, int establishYear) {
         this.id = id;
         this.name = name;
         this.establishYear = establishYear;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -46,11 +43,35 @@ public class Publisher implements Identifiable{
         this.name = name;
     }
 
-    public Year getEstablishyear() {
+    public int getEstablishyear() {
         return establishYear;
     }
 
-    public void setEstablishYear(Year establishYear) {
+    public void setEstablishYear(int establishYear) {
         this.establishYear = establishYear;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publisher publisher = (Publisher) o;
+        return establishYear == publisher.establishYear &&
+                Objects.equals(id, publisher.id) &&
+                Objects.equals(name, publisher.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, establishYear);
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", establishYear=" + establishYear +
+                '}';
     }
 }

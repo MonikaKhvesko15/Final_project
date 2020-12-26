@@ -41,7 +41,7 @@ public class LoginCommand implements Command {
             User user = userOptional.get();
             if (!(user.isBlocked())) {
                 HttpSession session = request.getSession();
-                session.setAttribute("id", user.getId().toString());
+                session.setAttribute("userId", user.getId().toString());
                 session.setAttribute("login", user.getLogin());
                 session.setAttribute("user", user);
                 session.setAttribute("role", user.getRole().toString());
