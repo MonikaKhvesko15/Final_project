@@ -1,6 +1,6 @@
 package com.epam.web.service.user;
 
-import com.epam.web.dao.helper.DaoHelper;
+import com.epam.web.dao.helper.DaoHelperImpl;
 import com.epam.web.dao.helper.DaoHelperFactory;
 import com.epam.web.dao.user.UserDao;
 import com.epam.web.entity.User;
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> login(String login, String password) throws ServiceException {
 
-        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+        try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
             UserDao userDao = daoHelper.createUserDao();
             Optional<User> userOptional = userDao.findUserByLoginAndPassword(login, password);
             return userOptional;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user) throws ServiceException {
-        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+        try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
             UserDao dao = daoHelper.createUserDao();
             dao.updateFirstnameAndSurnameById((Integer) user.getId(), user.getFirstname(), user.getSurname());
         } catch (DaoException | ConnectionPoolException | SQLException e) {

@@ -21,5 +21,5 @@ public interface Dao<T extends Identifiable> {
     void save(T item) throws DaoException;
 
     //delete
-    void removeById(int id);
+    void removeById(int id) throws DaoException;
 }

@@ -19,13 +19,13 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     protected AbstractDao(Connection connection, RowMapper<T> mapper, String tableName, FieldsExtractor<T> fieldsExtractor) {
 
         this.connection = connection;
-        this.mapper=mapper;
+        this.mapper = mapper;
         this.tableName = tableName;
-        this.fieldsExtractor =fieldsExtractor;
+        this.fieldsExtractor = fieldsExtractor;
     }
 
     // this method executes any SQL queries and return it in List
-    protected List<T> executeQuery(String query,Object ...params) throws DaoException {
+    protected List<T> executeQuery(String query, Object... params) throws DaoException {
 
         List<T> entities = new ArrayList<>();
 
@@ -41,9 +41,9 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
         }
     }
 
-    protected void executeUpdate(String query,Object ...params) throws DaoException {
+    protected void executeUpdate(String query, Object... params) throws DaoException {
 
-        try (PreparedStatement statement = createStatement(query, params)){
+        try (PreparedStatement statement = createStatement(query, params)) {
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -53,7 +53,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
 
     //in this method we write parameters in form <<?>> then substitute them in the statement
-    private PreparedStatement createStatement(String query, Object ...params) throws SQLException {
+    private PreparedStatement createStatement(String query, Object... params) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         for (int i = 1; i <= params.length; i++) {
             statement.setObject(i, params[i - 1]);
@@ -63,7 +63,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
 
     @Override
     public Optional<T> getById(int id) throws DaoException {
-        return executeForSingleResult("SELECT * FROM "+ tableName+" WHERE id= "+id );
+        return executeForSingleResult("SELECT * FROM " + tableName + " WHERE id= " + id);
     }
 
     @Override
@@ -72,27 +72,27 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
     @Override
-    public void save(T item) throws DaoException{
+    public void save(T item) throws DaoException {
         List<Object> objectParams = fieldsExtractor.extract(item);
-        Object[] params=objectParams.toArray();
+        Object[] params = objectParams.toArray();
         executeUpdate(getUpdateQuery(), params);
     }
 
     protected abstract String getUpdateQuery();
 
     @Override
-    public void removeById(int id) {
-
+    public void removeById(int id) throws DaoException {
+        executeUpdate("DELETE FROM " + tableName + " WHERE id =" + id);
     }
 
     // this method executes any SQL queries and return it in Optional
-    protected Optional<T> executeForSingleResult(String query,Object ...params) throws DaoException{
+    protected Optional<T> executeForSingleResult(String query, Object... params) throws DaoException {
         List<T> items = executeQuery(query, params);
-        if(items.size()==1){
+        if (items.size() == 1) {
             return Optional.of(items.get(0));
-        }else if(items.size()>1){
+        } else if (items.size() > 1) {
             throw new IllegalArgumentException("More than one record found");
-        }else{
+        } else {
             return Optional.empty();
         }
     }

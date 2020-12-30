@@ -36,6 +36,15 @@
         <c:if test="${noOrders}">
             <p><fmt:message key="message.no.orders"/></p>
         </c:if>
+
+        <c:if test="${bookDeleted}">
+            <p><fmt:message key="message.book.deleted"/></p>
+        </c:if>
+
+        <c:if test="${bookEdited}">
+            <p><fmt:message key="message.book.edited"/></p>
+        </c:if>
+
     </main>
 
 </div>

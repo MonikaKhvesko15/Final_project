@@ -16,7 +16,7 @@ public class OrderFieldsExtractor implements FieldsExtractor<Order> {
         int userId = order.getUserId();
         int bookId = order.getBookId();
 
-        //  params.add(id);
+        //params.add(id);
         params.add(issueDate);
         params.add(returnDate);
         params.add(type);

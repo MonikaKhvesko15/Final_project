@@ -36,7 +36,9 @@
                     <th><c:out value="${sessionScope.user.surname}"/></th>
                 </tr>
 
-                <tr><th></th></tr>
+                <tr>
+                    <th></th>
+                </tr>
 
                 <tr>
                     <th><fmt:message key="local.status"/></th>
@@ -51,9 +53,9 @@
                 </tr>
             </table>
             <form action="${pageContext.request.contextPath}/controller?command=edit_user" method="POST">
-                <div class = "editField"><input type="text" name="firstname" required></div>
-                <div class = "editField"><input type="text" name="surname" required></div>
-                <input class = "edit" type="submit" value=<fmt:message key="local.edit"/>>
+                <div class="editField"><input type="text" name="firstname" required></div>
+                <div class="editField"><input type="text" name="surname" required></div>
+                <input class="edit" type="submit" value=<fmt:message key="local.edit"/>>
             </form>
         </div>
     </main>

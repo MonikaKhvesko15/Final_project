@@ -26,7 +26,7 @@
             <table>
 
                         <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
-                            <c:if test="${order.userName==sessionScope.user.firstname}">
+                            <c:if test="${order.userName==sessionScope.user.firstname&&order.status!='FINISHED'}">
                                 <tr>
                                     <td>${order.bookTitle}</td>
                                     <td>${order.bookAuthor}</td>

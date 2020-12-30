@@ -15,6 +15,7 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     private static final String INSERT_ORDER = "INSERT INTO orders (issue_date, return_date, type, user_id, book_id) " +
             "VALUES (?, ?, ?, ?, ?)";
     private static final String GET_ORDER_PARTS = "SELECT * FROM orders limit ?, ?";
+    private static final String UPDATE_ORDER_STATUS = "UPDATE orders SET status = ? WHERE id = ?";
 
     public OrderDaoImpl(Connection connection) {
         super(connection, new OrderRowMapper(), Order.TABLE, new OrderFieldsExtractor());
@@ -29,4 +30,10 @@ public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
     public List<Order> findOrdersPart(int startPosition, int endPosition) throws DaoException {
         return executeQuery(GET_ORDER_PARTS, startPosition, endPosition);
     }
+
+    @Override
+    public void updateStatus(int id, String newStatus) throws DaoException {
+        executeUpdate(UPDATE_ORDER_STATUS, newStatus, id);
+    }
+
 }

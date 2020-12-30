@@ -1,6 +1,7 @@
 package com.epam.web.service.book;
 
 import com.epam.web.entity.Book;
+import com.epam.web.exception.DaoException;
 import com.epam.web.exception.ServiceException;
 
 import java.util.List;
@@ -10,4 +11,7 @@ public interface BookService {
     //List<Book> findAll() throws ServiceException;
     List<Book> getBooksPart(int startPosition, int endPosition) throws ServiceException;
     Optional<Book> findBookByTitle(String title) throws ServiceException;
+    void deleteBookById(Integer bookId) throws DaoException, ServiceException;
+    Optional<Book> getBookById(Integer bookId) throws ServiceException;
+    void editBook(Book book) throws ServiceException;
 }

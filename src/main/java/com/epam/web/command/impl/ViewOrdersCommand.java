@@ -46,11 +46,12 @@ public class ViewOrdersCommand implements Command {
         request.setAttribute(ORDER_LIST_PARAMETER, orderList);
         request.setAttribute(CURRENT_PAGE_PARAMETER, currentPage);
 
-        User.Role role = (User.Role) session.getAttribute("role");
+        String roleString = session.getAttribute("role").toString();
+        User.Role role = User.Role.valueOf(roleString);
 
         if (role == User.Role.READER) {
             commandResult = CommandResult.forward(MY_ORDERS_PAGE);
-        } else if (role == User.Role.READER) {
+        } else if (role == User.Role.LIBRARIAN) {
             commandResult = CommandResult.forward(ALL_ORDERS_PAGE);
         }
         return commandResult;

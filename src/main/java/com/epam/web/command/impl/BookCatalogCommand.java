@@ -57,17 +57,3 @@ public class BookCatalogCommand implements Command {
      return commandResult;
     }
 }
-
-
-//
-//    String stringCurrentPage = requestContext.getRequestParameter(CURRENT_PAGE);
-//    int currentPage;
-//        if (stringCurrentPage == null) {
-//                currentPage = FIRST_PAGE;
-//                } else {
-//                currentPage = Integer.parseInt(stringCurrentPage);
-//                }
-//                List<Film> films = filmServiceImpl.getFilmsPart((currentPage - 1) * FILMS_PER_PAGE, FILMS_PER_PAGE);
-//        requestContext.setRequestAttribute(FILMS, films);
-//        requestContext.setRequestAttribute(CURRENT_PAGE, currentPage);
-//        return CommandResult.forward(FILMS_PAGE);

@@ -23,6 +23,7 @@ public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
             "FROM books INNER JOIN publishers ON books.publisher_id=publishers.id\n" +
             "WHERE books.id = ?";
     private static final String UPDATE_BOOK_AMOUNT = "UPDATE books SET books.amount = books.amount-1 WHERE books.id = ?";
+    private static final String UPDATE_BOOK = "UPDATE books SET title=?, author=?, pages=?, amount=?, publisher_id=? WHERE id = ?";
 
     public BookDaoImpl(Connection connection) {
         super(connection, new BookRowMapper(), Book.TABLE, new BookFieldsExtractor());
@@ -30,7 +31,7 @@ public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
 
     @Override
     protected String getUpdateQuery() {
-        return UPDATE_BOOK_AMOUNT;
+        return UPDATE_BOOK;
     }
 
 

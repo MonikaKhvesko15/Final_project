@@ -15,7 +15,7 @@ INSERT INTO users (login, password, firstname, surname, role, isBlocked)
 VALUES ('gloria15', SHA1('141414'), 'Gloria', 'Bailey', 'LIBRARIAN', 1);
 
 INSERT INTO users (login, password, firstname, surname, role)
-VALUES ('nic3444', SHA1('11111'), 'Nicole', 'Rivera', 'ADMIN');
+VALUES ('admin', SHA1('11111'), 'Nicole', 'Rivera', 'ADMIN');
 
 INSERT INTO users (login, password, firstname, surname, role, isBlocked)
 VALUES ('admin11', SHA1('admin'), 'Alberto', 'Jenkins', 'ADMIN', 1);
@@ -82,7 +82,7 @@ INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
 VALUES ('2020-11-29', '2020-12-31','ACCEPTED', 4, 8);
 
 INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
-VALUES ('2020-06-01', '2020-06-01','FINISHED', 4, 10);
+VALUES ('2020-06-01', '2020-06-01','FINISHED', 1, 10);
 
 INSERT INTO orders (issue_date, return_date, user_id, book_id)
 VALUES ('2020-10-15', '2020-11-15', 1, 7);

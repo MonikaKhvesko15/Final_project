@@ -4,6 +4,7 @@ import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
 import com.epam.web.entity.User;
 import com.epam.web.exception.ServiceException;
+import com.epam.web.service.user.UserService;
 import com.epam.web.service.user.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,7 @@ public class EditUserCommand implements Command {
     private static final String FIRSTNAME_PARAMETER = "firstname";
     private static final String SURNAME_PARAMETER = "surname";
     private static final String HOME_PAGE = "/Final_project_war/controller?command=home_page";
-    private final UserServiceImpl service;
+    private final UserService service;
     private static final String ERROR_JSP = "WEB-INF/views/message.jsp";
 
     public EditUserCommand() {

@@ -40,31 +40,54 @@
                                 <td>${book.publisher.establishyear}</td>
 
                                 <div class="buttons">
-                                    <c:choose>
-                                        <c:when test="${book.amount > 0}">
-                                            <form class="order"
-                                                  action="${pageContext.request.contextPath}/controller?command=order_book"
-                                                  method="POST">
-                                                <th class="order"><a>
-                                                    <select id="type" name="issue_type">
-                                                        <option value="reader_room" ${type == 'reader_room' ? 'selected' : ''}>
-                                                            <fmt:message
-                                                                    key="local.form.button.reader_room"/></option>
+                                    <c:if test="${sessionScope.role=='READER'}">
+                                        <c:choose>
+                                            <c:when test="${book.amount > 0}">
+                                                <form class="order"
+                                                      action="${pageContext.request.contextPath}/controller?command=order_book"
+                                                      method="POST">
+                                                    <th class="order"><a>
+                                                        <select id="type" name="issue_type">
+                                                            <option value="reader_room" ${type == 'reader_room' ? 'selected' : ''}>
+                                                                <fmt:message
+                                                                        key="local.form.button.reader_room"/></option>
 
-                                                        <option value="subscription" ${type == 'subscription' ? 'selected' : ''}>
-                                                            <fmt:message
-                                                                    key="local.form.button.subscription"/></option>
-                                                    </select>
-                                                    <input type="" name="bookId" value=${book.id}>
-                                                    <input class="btn-submit" type="submit" value=<fmt:message
-                                                            key="local.form.button.order"/>>
-                                                </a></th>
-                                            </form>
-                                        </c:when>
-                                        <c:when test="${book.amount == 0}">
-                                            <fmt:message key="book.order.not.possible"/>
-                                        </c:when>
-                                    </c:choose>
+                                                            <option value="subscription" ${type == 'subscription' ? 'selected' : ''}>
+                                                                <fmt:message
+                                                                        key="local.form.button.subscription"/></option>
+                                                        </select>
+                                                        <input type="hidden" name="bookId" value=${book.id}>
+                                                        <input class="btn-submit" type="submit" value=<fmt:message
+                                                                key="local.form.button.order"/>>
+                                                    </a></th>
+                                                </form>
+                                            </c:when>
+                                            <c:when test="${book.amount == 0}">
+                                                <fmt:message key="book.order.not.possible"/>
+                                            </c:when>
+                                        </c:choose>
+                                    </c:if>
+                                    <c:if test="${sessionScope.role=='ADMIN'}">
+                                        <form class="delete"
+                                              action="${pageContext.request.contextPath}/controller?command=delete_book"
+                                              method="post">
+                                            <th class="delete"><a>
+                                                <input type="hidden" name="bookId" value="${book.id}">
+                                                <input class="btn-submit" type="submit" value=<fmt:message
+                                                        key="local.delete"/>>
+                                            </a></th>
+                                        </form>
+                                        <form class="edit"
+                                              action="${pageContext.request.contextPath}/controller?command=edit_book_page"
+                                              method="post">
+                                            <th class="edit"><a>
+                                                <input type="hidden" name="bookId" value="${book.id}">
+                                                <input class="btn-submit" type="submit" value=<fmt:message
+                                                        key="local.edit"/>>
+                                            </a></th>
+                                        </form>
+                                    </c:if>
+
                                 </div>
                             </tr>
                         </c:forEach>
@@ -104,31 +127,54 @@
                             <td>${requestScope.foundBook.publisher.establishyear}</td>
 
                             <div class="buttons">
-                                <c:choose>
-                                    <c:when test="${requestScope.foundBook.amount > 0}">
-                                        <form class="order"
-                                              action="${pageContext.request.contextPath}/controller?command=order_book"
-                                              method="POST">
-                                            <th class="order"><a>
-                                                <select id="type" name="issue_type">
-                                                    <option value="reader_room" ${type == 'reader_room' ? 'selected' : ''}>
-                                                        <fmt:message
-                                                                key="local.form.button.reader_room"/></option>
+                                <c:if test="${sessionScope.role=='READER'}">
+                                    <c:choose>
+                                        <c:when test="${requestScope.foundBook.amount > 0}">
+                                            <form class="order"
+                                                  action="${pageContext.request.contextPath}/controller?command=order_book"
+                                                  method="POST">
+                                                <th class="order"><a>
+                                                    <select id="type" name="issue_type">
+                                                        <option value="reader_room" ${type == 'reader_room' ? 'selected' : ''}>
+                                                            <fmt:message
+                                                                    key="local.form.button.reader_room"/></option>
 
-                                                    <option value="subscription" ${type == 'subscription' ? 'selected' : ''}>
-                                                        <fmt:message
-                                                                key="local.form.button.subscription"/></option>
-                                                </select>
-                                                <input type="" name="bookId" value=${requestScope.foundBook.id}>
-                                                <input class="btn-submit" type="submit" value=<fmt:message
-                                                        key="local.form.button.order"/>>
-                                            </a></th>
-                                        </form>
-                                    </c:when>
-                                    <c:when test="${book.amount == 0}">
-                                        <fmt:message key="book.order.not.possible"/>
-                                    </c:when>
-                                </c:choose>
+                                                        <option value="subscription" ${type == 'subscription' ? 'selected' : ''}>
+                                                            <fmt:message
+                                                                    key="local.form.button.subscription"/></option>
+                                                    </select>
+                                                    <input type="hidden" name="bookId" value=${requestScope.foundBook.id}>
+                                                    <input class="btn-submit" type="submit" value=<fmt:message
+                                                            key="local.form.button.order"/>>
+                                                </a></th>
+                                            </form>
+                                        </c:when>
+                                        <c:when test="${book.amount == 0}">
+                                            <fmt:message key="book.order.not.possible"/>
+                                        </c:when>
+                                    </c:choose>
+                                </c:if>
+                                <c:if test="${sessionScope.role=='ADMIN'}">
+                                    <form class="delete"
+                                          action="${pageContext.request.contextPath}/controller?command=delete_book"
+                                          method="post">
+                                        <th class="delete"><a>
+                                            <input type="hidden" name="bookId" value="${requestScope.foundBook.id}">
+                                            <input class="btn-submit" type="submit" value=<fmt:message
+                                                    key="local.delete"/>>
+                                        </a></th>
+                                    </form>
+                                    <form class="edit"
+                                          action="${pageContext.request.contextPath}/controller?command=edit_book_page"
+                                          method="post">
+                                        <th class="edit"><a>
+                                            <input type="hidden" name="bookId" value="${requestScope.foundBook.id}">
+                                            <input class="btn-submit" type="submit" value=<fmt:message
+                                                    key="local.edit"/>>
+                                        </a></th>
+                                    </form>
+                                </c:if>
+
                             </div>
                         </tr>
                     </c:otherwise>

@@ -31,7 +31,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     }
 
     @Override
-    public void removeById(int id) {
+    public void removeById(int id) throws DaoException {
         super.removeById(id);
     }
 

@@ -9,5 +9,8 @@ import java.util.List;
 
 public interface OrderService {
     void createOrder(Order order) throws ConnectionPoolException, ServiceException;
+
     List<OrderDto> getOrdersDtoPart(int startPosition, int endPosition) throws ServiceException;
+
+    void changeOrderStatus(Integer orederId, Order.Status newStatus) throws ServiceException;
 }
