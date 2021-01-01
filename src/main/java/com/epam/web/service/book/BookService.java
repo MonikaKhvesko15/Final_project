@@ -13,5 +13,5 @@ public interface BookService {
     Optional<Book> findBookByTitle(String title) throws ServiceException;
     void deleteBookById(Integer bookId) throws DaoException, ServiceException;
     Optional<Book> getBookById(Integer bookId) throws ServiceException;
-    void editBook(Book book) throws ServiceException;
+    void saveBook(Book book) throws ServiceException;
 }

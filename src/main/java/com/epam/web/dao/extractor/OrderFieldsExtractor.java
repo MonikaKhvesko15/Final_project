@@ -9,14 +9,14 @@ public class OrderFieldsExtractor implements FieldsExtractor<Order> {
     @Override
     public List<Object> extract(Order order) {
         List<Object> params = new ArrayList<>();
-        //int id = (int) order.getId();
+        // Integer id = (Integer) order.getId();
         String issueDate = order.getIssueDate().toString();
         String returnDate = order.getReturnDate().toString();
         String type = order.getType().toString();
         int userId = order.getUserId();
         int bookId = order.getBookId();
 
-        //params.add(id);
+        // params.add(id);
         params.add(issueDate);
         params.add(returnDate);
         params.add(type);

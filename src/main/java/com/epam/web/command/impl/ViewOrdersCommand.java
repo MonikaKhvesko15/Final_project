@@ -11,6 +11,7 @@ import com.epam.web.service.order.OrderServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -45,7 +46,7 @@ public class ViewOrdersCommand implements Command {
 
         request.setAttribute(ORDER_LIST_PARAMETER, orderList);
         request.setAttribute(CURRENT_PAGE_PARAMETER, currentPage);
-
+        request.setAttribute("currentData", LocalDate.now());
         String roleString = session.getAttribute("role").toString();
         User.Role role = User.Role.valueOf(roleString);
 

@@ -16,6 +16,7 @@ public class CommandFactory {
     private static final String DELETE_BOOK_COMMAND = "delete_book";
     private static final String EDIT_BOOK_COMMAND = "edit_book";
     private static final String EDIT_BOOK_PAGE_COMMAND = "edit_book_page";
+    private static final String ADD_BOOK_COMMAND = "add_book";
 
 
     private static final String LOGIN_PAGE_COMMAND = "login_page";
@@ -24,8 +25,8 @@ public class CommandFactory {
     private static final String HOME_PAGE_COMMAND = "home_page";
     private static final String HOME_PAGE = "WEB-INF/views/home_page.jsp";
 
-
-    //private static final String EDIT_BOOK_PAGE = "WEB-INF/views/edit_book_page.jsp";
+    private static final String ADD_BOOK_PAGE_COMMAND = "add_book_page";
+    private static final String ADD_BOOK_PAGE = "WEB-INF/views/add_book_page.jsp";
 
 
     public static Command create(String сommandName) {
@@ -57,7 +58,10 @@ public class CommandFactory {
             case EDIT_BOOK_PAGE_COMMAND:
                 return new EditBookPageCommand();
             case EDIT_BOOK_COMMAND:
-                return new EditBookCommand();
+            case ADD_BOOK_COMMAND:
+                return new SaveBookCommand();
+            case ADD_BOOK_PAGE_COMMAND:
+                return new GoToPageCommand(ADD_BOOK_PAGE);
             default:
                 throw new IllegalArgumentException("No such this command");
         }

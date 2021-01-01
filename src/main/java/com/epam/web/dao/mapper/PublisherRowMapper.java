@@ -15,7 +15,7 @@ public class PublisherRowMapper implements RowMapper<Publisher> {
     public Publisher map(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt(Publisher.ID);
         String name = resultSet.getString(Publisher.NAME);
-        int year=resultSet.getInt(Publisher.ESTABLISH_YEAR);
+        int year = resultSet.getInt(Publisher.ESTABLISH_YEAR);
 
         return new Publisher(id, name, year);
     }

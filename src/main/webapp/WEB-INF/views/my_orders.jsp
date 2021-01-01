@@ -25,39 +25,46 @@
         <div class="data">
             <table>
 
-                        <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
-                            <c:if test="${order.userName==sessionScope.user.firstname&&order.status!='FINISHED'}">
-                                <tr>
-                                    <td>${order.bookTitle}</td>
-                                    <td>${order.bookAuthor}</td>
-                                    <td>${order.issueDate}</td>
-                                    <td>${order.returnDate}</td>
-                                    <td>${order.type}</td>
-                                    <td>${order.status}</td>
-                                </tr>
-                            </c:if>
-                        </c:forEach>
-                        <c:choose>
-                            <c:when test="${(requestScope.currentPage - 1) == 0}">
-                                <a align="center" href="" type="submit" class="pagination"><fmt:message key="orders.previous"/></a>
-                            </c:when>
-                            <c:otherwise>
-                                <a align="center"
-                                   href="${pageContext.request.contextPath}/controller?command=my_orders&currentPage=${requestScope.currentPage-1}"
-                                   type="submit" class="pagination"><fmt:message key="orders.previous"/></a>
-                            </c:otherwise>
-                        </c:choose>
-                        <div class="pagination">${requestScope.currentPage}</div>
-                        <c:choose>
-                            <c:when test="${requestScope.orderList.size() != 10}">
-                                <a align="center" href="" type="submit" class="pagination"><fmt:message key="orders.next"/></a>
-                            </c:when>
-                            <c:otherwise>
-                                <a align="center"
-                                   href="${pageContext.request.contextPath}/controller?command=my_orders&currentPage=${requestScope.currentPage+1}"
-                                   type="submit" class="pagination"><fmt:message key="orders.next"/></a>
-                            </c:otherwise>
-                        </c:choose>
+                <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
+                    <c:if test="${order.userName==sessionScope.user.firstname&&order.status!='FINISHED'}">
+                        <tr>
+                            <td>${order.bookTitle}</td>
+                            <td>${order.bookAuthor}</td>
+                            <td>${order.issueDate}</td>
+                            <td>${order.returnDate}
+<%--                                <c:when test="${requestScope.currentData.isAfter(order.returnDate)}">--%>
+<%--                                <span--%>
+<%--                                        style="color:orangered">${order.returnDate}</span>--%>
+<%--                            </c:when>--%>
+<%--                                <c:otherwise>${order.returnDate}</c:otherwise>--%>
+                            </td>
+                            <td>${order.type}</td>
+                            <td>${order.status}</td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
+                <c:choose>
+                    <c:when test="${(requestScope.currentPage - 1) == 0}">
+                        <a align="center" href="" type="submit" class="pagination"><fmt:message
+                                key="orders.previous"/></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a align="center"
+                           href="${pageContext.request.contextPath}/controller?command=my_orders&currentPage=${requestScope.currentPage-1}"
+                           type="submit" class="pagination"><fmt:message key="orders.previous"/></a>
+                    </c:otherwise>
+                </c:choose>
+                <div class="pagination">${requestScope.currentPage}</div>
+                <c:choose>
+                    <c:when test="${requestScope.orderList.size() != 10}">
+                        <a align="center" href="" type="submit" class="pagination"><fmt:message key="orders.next"/></a>
+                    </c:when>
+                    <c:otherwise>
+                        <a align="center"
+                           href="${pageContext.request.contextPath}/controller?command=my_orders&currentPage=${requestScope.currentPage+1}"
+                           type="submit" class="pagination"><fmt:message key="orders.next"/></a>
+                    </c:otherwise>
+                </c:choose>
             </table>
 
 

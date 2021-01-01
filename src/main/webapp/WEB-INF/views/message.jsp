@@ -45,6 +45,10 @@
             <p><fmt:message key="message.book.edited"/></p>
         </c:if>
 
+        <c:if test="${bookAdded}">
+            <p><fmt:message key="message.book.added"/></p>
+        </c:if>
+
     </main>
 
 </div>

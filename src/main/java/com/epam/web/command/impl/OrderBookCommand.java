@@ -37,7 +37,11 @@ public class OrderBookCommand implements Command {
             Integer bookId = Integer.parseInt(bookIdString);
 
             LocalDate issueDate = LocalDate.now();
-            LocalDate returnDate = issueDate.plusDays(60);
+            LocalDate returnDate = LocalDate.now();
+            if (issueType == Order.Type.SUBSCRIPTION) {
+                returnDate = issueDate.plusDays(30);
+            }
+
 
             Order order = new Order(null, issueDate, returnDate, null, issueType, bookId, userId);
             orderService.createOrder(order);

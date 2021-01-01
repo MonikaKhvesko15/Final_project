@@ -36,7 +36,7 @@ public class OrderServiceMapper {
 
     private OrderDto convertToOrderDto(Order order) throws ConnectionPoolException, DaoException, ServiceException {
 
-        Integer id= (Integer) order.getId();
+        Integer id = (Integer) order.getId();
         LocalDate issueDate = order.getIssueDate();
         LocalDate returnDate = order.getReturnDate();
         Order.Status status = order.getStatus();

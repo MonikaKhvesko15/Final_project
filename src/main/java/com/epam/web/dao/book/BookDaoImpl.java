@@ -24,21 +24,11 @@ public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
             "WHERE books.id = ?";
     private static final String UPDATE_BOOK_AMOUNT = "UPDATE books SET books.amount = books.amount-1 WHERE books.id = ?";
     private static final String UPDATE_BOOK = "UPDATE books SET title=?, author=?, pages=?, amount=?, publisher_id=? WHERE id = ?";
+    private static final String SAVE_BOOK = "INSERT INTO books (title, author, pages, amount, publisher_id) VALUES (?, ?, ?, ?, ?)";
 
     public BookDaoImpl(Connection connection) {
-        super(connection, new BookRowMapper(), Book.TABLE, new BookFieldsExtractor());
+        super(connection, new BookRowMapper(), Book.TABLE, new BookFieldsExtractor(),SAVE_BOOK,UPDATE_BOOK);
     }
-
-    @Override
-    protected String getUpdateQuery() {
-        return UPDATE_BOOK;
-    }
-
-
-//    @Override
-//    public List<Book> findAllBooks() throws DaoException {
-//        return executeQuery(FIND_ALL_BOOKS);
-//    }
 
     @Override
     public List<Book> findBooksPart(int startPosition, int endPosition) throws DaoException {

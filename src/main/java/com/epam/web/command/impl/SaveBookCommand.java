@@ -13,13 +13,12 @@ import com.epam.web.service.publisher.PublisherServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class EditBookCommand implements Command {
-    public static final String PUBLISHER_NAME_PARAMETER = "publisherName";
+public class SaveBookCommand implements Command {
     private final BookService bookService;
     private final PublisherService publisherService;
     private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
 
-    public EditBookCommand() {
+    public SaveBookCommand() {
         this.bookService = new BookServiceImpl();
         this.publisherService = new PublisherServiceImpl();
     }
@@ -27,22 +26,25 @@ public class EditBookCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
-            String publisherName = request.getParameter(PUBLISHER_NAME_PARAMETER);
+            String publisherName = request.getParameter("publisherName");
             Publisher publisher = publisherService.getPublisherByName(publisherName).get();
-
             String idString = request.getParameter("bookId");
-            int id = Integer.parseInt(idString);
+            Integer id = idString.isEmpty() ? null : Integer.parseInt(idString);
             String title = request.getParameter("title");
             String author = request.getParameter("author");
             String pagesString = request.getParameter("pages");
             int pages = Integer.parseInt(pagesString);
             String amountString = request.getParameter("amount");
             Integer amount = Integer.parseInt(amountString);
-
             Book book = new Book(id, title, author, pages, amount, publisher);
-            bookService.editBook(book);
 
-            request.setAttribute("bookEdited", true);
+            bookService.saveBook(book);
+
+            if (idString.isEmpty()) {
+                request.setAttribute("bookAdded", true);
+            } else {
+                request.setAttribute("bookEdited", true);
+            }
             return CommandResult.forward(MESSAGE_JSP);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage(), e);

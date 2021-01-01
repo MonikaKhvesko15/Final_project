@@ -15,13 +15,18 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     private final RowMapper<T> mapper;
     private final String tableName;
     private FieldsExtractor<T> fieldsExtractor;
+    private String saveQuery;
+    private String updateQuery;
 
-    protected AbstractDao(Connection connection, RowMapper<T> mapper, String tableName, FieldsExtractor<T> fieldsExtractor) {
+    protected AbstractDao(Connection connection, RowMapper<T> mapper, String tableName, FieldsExtractor<T> fieldsExtractor,
+                          String saveQuery, String updateQuery) {
 
         this.connection = connection;
         this.mapper = mapper;
         this.tableName = tableName;
         this.fieldsExtractor = fieldsExtractor;
+        this.saveQuery = saveQuery;
+        this.updateQuery = updateQuery;
     }
 
     // this method executes any SQL queries and return it in List
@@ -74,11 +79,16 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     @Override
     public void save(T item) throws DaoException {
         List<Object> objectParams = fieldsExtractor.extract(item);
-        Object[] params = objectParams.toArray();
-        executeUpdate(getUpdateQuery(), params);
+        if (item.getId() == null) {
+            Object[] params = objectParams.toArray();
+            executeUpdate(saveQuery, params);
+        } else {
+            Integer id = (Integer) item.getId();
+            objectParams.add(id);
+            Object[] params = objectParams.toArray();
+            executeUpdate(updateQuery, params);
+        }
     }
-
-    protected abstract String getUpdateQuery();
 
     @Override
     public void removeById(int id) throws DaoException {

@@ -72,7 +72,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void editBook(Book book) throws ServiceException {
+    public void saveBook(Book book) throws ServiceException {
         try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
             BookDao bookDao = daoHelper.createBookDao();
             bookDao.save(book);

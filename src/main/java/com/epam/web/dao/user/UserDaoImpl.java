@@ -6,15 +6,18 @@ import com.epam.web.entity.Book;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
 import com.epam.web.dao.mapper.UserRowMapper;
+
 import java.sql.Connection;
 import java.util.Optional;
 
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = SHA1(?)";
     private static final String UPDATE_USER_NAME_SURNAME = "UPDATE users SET firstname = ?, surname = ? WHERE id = ?";
+    private static final String UPDATE_USER = "UPDATE users SET login=?, password=?, firstname=?, surname=?, role=?, isBlocked=? WHERE id = ?";
+    private static final String SAVE_USER = "INSERT INTO users (login, password, firstname, surname, role, isBlocked) VALUES (?, ?, ?, ?, ?, ?)";
 
-    public UserDaoImpl(Connection connection){
-        super(connection,new UserRowMapper(),User.TABLE,new UserFieldsExtractor());
+    public UserDaoImpl(Connection connection) {
+        super(connection, new UserRowMapper(), User.TABLE, new UserFieldsExtractor(), SAVE_USER, UPDATE_USER);
     }
 
     @Override
@@ -25,23 +28,10 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
                 password);
     }
 
-    @Override
-    protected String getUpdateQuery() {
-        return UPDATE_USER_NAME_SURNAME;
-    }
-
-    @Override
-    public void removeById(int id) throws DaoException {
-        super.removeById(id);
-    }
-
-    protected String getTableName(){
-        return User.TABLE;
-    }
 
     @Override
     public void updateFirstnameAndSurnameById(int id, String firstname, String surname) throws DaoException {
-        executeUpdate(UPDATE_USER_NAME_SURNAME,firstname,surname,id);
+        executeUpdate(UPDATE_USER_NAME_SURNAME, firstname, surname, id);
     }
 
 }

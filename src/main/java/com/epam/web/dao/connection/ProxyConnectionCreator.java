@@ -37,10 +37,10 @@ public class ProxyConnectionCreator {
     ProxyConnection create() throws ConnectionPoolException {
         Connection connection;
         try {
-            String url= properties.getProperty(DATABASE_URL);
+            String url = properties.getProperty(DATABASE_URL);
             connection = DriverManager.getConnection(url, properties);
         } catch (SQLException e) {
-            throw new ConnectionPoolException(e.getMessage(),e);
+            throw new ConnectionPoolException(e.getMessage(), e);
         }
         return new ProxyConnection(connection);
     }

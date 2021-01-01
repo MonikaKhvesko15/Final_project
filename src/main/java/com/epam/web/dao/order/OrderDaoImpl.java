@@ -12,18 +12,15 @@ import java.util.List;
 
 public class OrderDaoImpl extends AbstractDao<Order> implements OrderDao {
 
-    private static final String INSERT_ORDER = "INSERT INTO orders (issue_date, return_date, type, user_id, book_id) " +
+    private static final String SAVE_ORDER = "INSERT INTO orders (issue_date, return_date, type, user_id, book_id) " +
             "VALUES (?, ?, ?, ?, ?)";
+    private static final String UPDATE_ORDER = "UPDATE orders SET issue_date=?, return_date=?, type=?, user_id=?, book_id=? " +
+            "WHERE id = ?";
     private static final String GET_ORDER_PARTS = "SELECT * FROM orders limit ?, ?";
     private static final String UPDATE_ORDER_STATUS = "UPDATE orders SET status = ? WHERE id = ?";
 
     public OrderDaoImpl(Connection connection) {
-        super(connection, new OrderRowMapper(), Order.TABLE, new OrderFieldsExtractor());
-    }
-
-    @Override
-    protected String getUpdateQuery() {
-        return INSERT_ORDER;
+        super(connection, new OrderRowMapper(), Order.TABLE, new OrderFieldsExtractor(), SAVE_ORDER, UPDATE_ORDER);
     }
 
     @Override

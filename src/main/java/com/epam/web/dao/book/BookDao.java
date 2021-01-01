@@ -11,7 +11,6 @@ import java.util.Optional;
 public interface BookDao extends Dao<Book> {
     //specific methods for bookDao
 
-    //List<Book> findAllBooks() throws DaoException;
     List<Book> findBooksPart(int startPosition,int endPosition) throws DaoException;
     Optional<Book> getBookByTitle(String title) throws DaoException;
     void updateBookAmount(Integer id) throws DaoException;
