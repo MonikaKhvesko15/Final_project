@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class IssueBookCommand implements Command {
-    public static final String ORDER_ID_PARAMETER = "orderId";
-    public static final String VIEW_ORDERS_PAGE = "/Final_project_war/controller?command=view_orders";
+    private static final String ORDER_ID_PARAMETER = "orderId";
+    private static final String VIEW_ORDERS_PAGE = "/Final_project_war/controller?command=view_orders";
     private final OrderService service;
 
 

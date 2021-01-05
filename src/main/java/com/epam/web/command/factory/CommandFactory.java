@@ -17,6 +17,10 @@ public class CommandFactory {
     private static final String EDIT_BOOK_COMMAND = "edit_book";
     private static final String EDIT_BOOK_PAGE_COMMAND = "edit_book_page";
     private static final String ADD_BOOK_COMMAND = "add_book";
+    private static final String VIEW_READERS_COMMAND = "view_readers";
+    private static final String VIEW_LIBRARIANS_COMMAND = "view_librarians";
+    private static final String BLOCK_USER = "block_user";
+    private static final String UNBLOCK_USER = "unblock_user";
 
 
     private static final String LOGIN_PAGE_COMMAND = "login_page";
@@ -62,6 +66,14 @@ public class CommandFactory {
                 return new SaveBookCommand();
             case ADD_BOOK_PAGE_COMMAND:
                 return new GoToPageCommand(ADD_BOOK_PAGE);
+            case VIEW_READERS_COMMAND:
+                return new ViewReadersCommand();
+            case VIEW_LIBRARIANS_COMMAND:
+                return new ViewLibrariansCommand();
+            case BLOCK_USER:
+                return new BlockUserCommand();
+            case UNBLOCK_USER:
+                return new UnblockUserCommand();
             default:
                 throw new IllegalArgumentException("No such this command");
         }

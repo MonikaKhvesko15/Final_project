@@ -13,5 +13,6 @@ public interface BookDao extends Dao<Book> {
 
     List<Book> findBooksPart(int startPosition,int endPosition) throws DaoException;
     Optional<Book> getBookByTitle(String title) throws DaoException;
-    void updateBookAmount(Integer id) throws DaoException;
+    void increaseBookAmount(Integer id) throws DaoException;
+    void decreaseBookAmount(Integer id) throws DaoException;
 }

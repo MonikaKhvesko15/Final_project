@@ -63,7 +63,7 @@
                                                 </form>
                                             </c:when>
                                             <c:when test="${book.amount == 0}">
-                                                <fmt:message key="book.order.not.possible"/>
+                                                <th><fmt:message key="book.order.not.possible"/></th>
                                             </c:when>
                                         </c:choose>
                                     </c:if>
@@ -143,7 +143,8 @@
                                                             <fmt:message
                                                                     key="local.form.button.subscription"/></option>
                                                     </select>
-                                                    <input type="hidden" name="bookId" value=${requestScope.foundBook.id}>
+                                                    <input type="hidden" name="bookId"
+                                                           value=${requestScope.foundBook.id}>
                                                     <input class="btn-submit" type="submit" value=<fmt:message
                                                             key="local.form.button.order"/>>
                                                 </a></th>

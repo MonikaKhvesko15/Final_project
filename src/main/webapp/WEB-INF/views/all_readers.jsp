@@ -8,7 +8,7 @@
 <html lang="${sessionScope.language}">
 <head>
     <meta charset="utf-8">
-    <title>My orders</title>
+    <title>Readers</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/book_catalog.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
@@ -25,39 +25,39 @@
         <div class="data">
             <table>
 
-                <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
+                <c:forEach var="reader" items="${requestScope.readerList}" varStatus="index">
                     <tr>
                         <td>${(15)*(requestScope.currentPage - 1) + index.count}</td>
-                        <td>${order.userName}</td>
-                        <td>${order.userSurname}</td>
-                        <td>${order.bookTitle}</td>
-                        <td>${order.bookAuthor}</td>
-                        <td>${order.type}</td>
+                        <td>${reader.firstname}</td>
+                        <td>${reader.surname}</td>
+                        <td>${reader.blocked}</td>
 
                         <div class="buttons">
                             <c:choose>
-                                <c:when test="${order.status=='UNDER_CONSIDERATION'}">
-                                    <form class="issue"
-                                          action="${pageContext.request.contextPath}/controller?command=issue_book"
+                                <c:when test="${!reader.blocked}">
+                                    <form class="block"
+                                          action="${pageContext.request.contextPath}/controller?command=block_user"
                                           method="POST">
-                                        <th class="issue">
+                                        <th class="block">
                                             <a>
-                                                <input type="hidden" name="orderId" value=${order.id}>
+                                                <input type="hidden" name = "userId" value=${reader.id}>
+                                                <input type="hidden" name = "userRole" value=${reader.role}>
                                                 <input class="btn-submit" type="submit" value=<fmt:message
-                                                        key="local.issue"/>>
+                                                        key="local.block"/>>
                                             </a>
                                         </th>
                                     </form>
                                 </c:when>
-                                <c:when test="${order.status=='ACCEPTED'}">
-                                    <form class="return"
-                                          action="${pageContext.request.contextPath}/controller?command=return_book"
+                                <c:when test="${reader.blocked}">
+                                    <form class="unblock"
+                                          action="${pageContext.request.contextPath}/controller?command=unblock_user"
                                           method="POST">
-                                        <th class="return">
+                                        <th class="unblock">
                                             <a>
-                                                <input type="hidden" name="orderId" value=${order.id}>
+                                                <input type="hidden" name="userId" value=${reader.id}>
+                                                <input type="hidden" name = "userRole" value=${reader.role}>
                                                 <input class="btn-submit" type="submit" value=<fmt:message
-                                                        key="local.return"/>>
+                                                        key="local.unblock"/>>
                                             </a>
                                         </th>
                                     </form>
@@ -73,18 +73,18 @@
                     </c:when>
                     <c:otherwise>
                         <a align="center"
-                           href="${pageContext.request.contextPath}/controller?command=view_orders&currentPage=${requestScope.currentPage-1}"
+                           href="${pageContext.request.contextPath}/controller?command=view_readers&currentPage=${requestScope.currentPage-1}"
                            type="submit" class="pagination"><fmt:message key="orders.previous"/></a>
                     </c:otherwise>
                 </c:choose>
                 <div class="pagination">${requestScope.currentPage}</div>
                 <c:choose>
-                    <c:when test="${requestScope.orderList.size() != 15}">
+                    <c:when test="${requestScope.readerList.size() != 15}">
                         <a align="center" href="" type="submit" class="pagination"><fmt:message key="orders.next"/></a>
                     </c:when>
                     <c:otherwise>
                         <a align="center"
-                           href="${pageContext.request.contextPath}/controller?command=view_orders&currentPage=${requestScope.currentPage+1}"
+                           href="${pageContext.request.contextPath}/controller?command=view_readers&currentPage=${requestScope.currentPage+1}"
                            type="submit" class="pagination"><fmt:message key="orders.next"/></a>
                     </c:otherwise>
                 </c:choose>

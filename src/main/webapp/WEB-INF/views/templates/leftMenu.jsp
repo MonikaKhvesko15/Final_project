@@ -39,9 +39,9 @@
                             key="local.menu.book.catalog"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/controller?command=add_book_page"><fmt:message
                             key="local.menu.librarian.add.book"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/controller?command=reader_list"><fmt:message
+                    <li><a href="${pageContext.request.contextPath}/controller?command=view_readers"><fmt:message
                             key="local.menu.reader.list"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/controller?command=librarian_list"><fmt:message
+                    <li><a href="${pageContext.request.contextPath}/controller?command=view_librarians"><fmt:message
                             key="local.menu.librarian.list"/></a></li>
                 </c:when>
             </c:choose>

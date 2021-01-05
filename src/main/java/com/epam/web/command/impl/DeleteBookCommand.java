@@ -28,6 +28,7 @@ public class DeleteBookCommand implements Command {
             request.setAttribute("bookDeleted", true);
             return CommandResult.forward(MESSAGE_JSP);
         } catch (ServiceException | DaoException e) {
+            //forward to error.jsp?
             throw new ServiceException(e.getMessage(), e);
         }
     }

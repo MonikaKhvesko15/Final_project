@@ -2,14 +2,33 @@ package com.epam.web.command.impl;
 
 import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
+import com.epam.web.entity.Order;
 import com.epam.web.exception.ServiceException;
+import com.epam.web.service.order.OrderService;
+import com.epam.web.service.order.OrderServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ReturnBookCommand implements Command {
+    private final OrderService service;
+    public static final String VIEW_ORDERS_PAGE = "/Final_project_war/controller?command=view_orders";
+
+    public ReturnBookCommand() {
+        this.service = new OrderServiceImpl();
+    }
+
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        return null;
+        try {
+            String orderIdString = request.getParameter("orderId");
+            Integer orderId = Integer.parseInt(orderIdString);
+
+            Order order = service.getOrderById(orderId).get();
+            service.destroyOrder(order);
+            return CommandResult.redirect(VIEW_ORDERS_PAGE);
+        } catch (ServiceException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
     }
 }

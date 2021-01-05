@@ -18,7 +18,7 @@ import java.util.List;
 public class ViewOrdersCommand implements Command {
     private static final String CURRENT_PAGE_PARAMETER = "currentPage";
     private static final int FIRST_PAGE = 1;
-    private static final int RECORDS_PER_PAGE = 10;
+    private static final int RECORDS_PER_PAGE = 15;
     private static final String ORDER_LIST_PARAMETER = "orderList";
     private static final String MY_ORDERS_PAGE = "WEB-INF/views/my_orders.jsp";
     private static final String ALL_ORDERS_PAGE = "WEB-INF/views/all_orders.jsp";

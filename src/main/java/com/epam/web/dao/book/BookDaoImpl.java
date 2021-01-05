@@ -22,7 +22,8 @@ public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
     private static final String FIND_BOOK_BY_ID = "SELECT books.id, books.title, books.author,books.pages,books.amount, publishers.id, publishers.name,publishers.establish_year\n" +
             "FROM books INNER JOIN publishers ON books.publisher_id=publishers.id\n" +
             "WHERE books.id = ?";
-    private static final String UPDATE_BOOK_AMOUNT = "UPDATE books SET books.amount = books.amount-1 WHERE books.id = ?";
+    private static final String DECREASE_BOOK_AMOUNT = "UPDATE books SET books.amount = books.amount-1 WHERE books.id = ?";
+    private static final String INCREASE_BOOK_AMOUNT = "UPDATE books SET books.amount = books.amount+1 WHERE books.id = ?";
     private static final String UPDATE_BOOK = "UPDATE books SET title=?, author=?, pages=?, amount=?, publisher_id=? WHERE id = ?";
     private static final String SAVE_BOOK = "INSERT INTO books (title, author, pages, amount, publisher_id) VALUES (?, ?, ?, ?, ?)";
 
@@ -41,8 +42,13 @@ public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
     }
 
     @Override
-    public void updateBookAmount(Integer id) throws DaoException {
-        executeUpdate(UPDATE_BOOK_AMOUNT, id);
+    public void increaseBookAmount(Integer id) throws DaoException {
+        executeUpdate(INCREASE_BOOK_AMOUNT, id);
+    }
+
+    @Override
+    public void decreaseBookAmount(Integer id) throws DaoException {
+        executeUpdate(DECREASE_BOOK_AMOUNT, id);
     }
 
     @Override
