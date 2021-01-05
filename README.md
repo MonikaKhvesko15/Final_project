@@ -6,7 +6,7 @@
 The reader has the ability to search and order books in the catalog. The librarian issues a book to the reader for a subscription or to the reading room. The book may be present in the library at one or more copies. Administrator manages librarians, readers and books.
 ### Users:
 ##### 1. Reader
-The reader has 2 statuses: *ENABLE*, *BLOCKED*, *ENABLE* user can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
+The reader has 2 statuses: *ENABLE*, *BLOCKED*. Reader with status *ENABLE* can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
 
     Functionality:
 
@@ -20,7 +20,7 @@ The reader has 2 statuses: *ENABLE*, *BLOCKED*, *ENABLE* user can be blocked by 
         
 ##### 2. Librarian
 
-The librarian has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
+The librarian has 2 statuses: *ENABLE*, *BLOCKED*. Librarian with status *ENABLE* can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
 
     Functionality:
     
@@ -31,7 +31,7 @@ The librarian has 2 statuses: *ENABLE*, *BLOCKED*. *ENABLE* user can be blocked 
         
 ##### 3. Administrator
 
-The administrator fills the site with books, changes their description if necessary, reviews orders, manages users and librarians.
+The administrator fills the site with books, changes their description if necessary, manages users and librarians.
 
     Functionality:
     
