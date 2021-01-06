@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ReturnBookCommand implements Command {
+    private static final String ORDER_ID_PARAMETER = "orderId";
+    private static final String VIEW_ORDERS_PAGE = "/Final_project_war/controller?command=view_orders";
+
     private final OrderService service;
-    public static final String VIEW_ORDERS_PAGE = "/Final_project_war/controller?command=view_orders";
 
     public ReturnBookCommand() {
         this.service = new OrderServiceImpl();
@@ -21,7 +23,7 @@ public class ReturnBookCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
-            String orderIdString = request.getParameter("orderId");
+            String orderIdString = request.getParameter(ORDER_ID_PARAMETER);
             Integer orderId = Integer.parseInt(orderIdString);
 
             Order order = service.getOrderById(orderId).get();

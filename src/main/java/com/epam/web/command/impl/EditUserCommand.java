@@ -16,8 +16,10 @@ public class EditUserCommand implements Command {
     private static final String FIRSTNAME_PARAMETER = "firstname";
     private static final String SURNAME_PARAMETER = "surname";
     private static final String HOME_PAGE = "/Final_project_war/controller?command=home_page";
-    private final UserService service;
     private static final String ERROR_JSP = "WEB-INF/views/message.jsp";
+    private static final String USER_ATTRIBUTE = "user";
+
+    private final UserService service;
 
     public EditUserCommand() {
 
@@ -32,14 +34,14 @@ public class EditUserCommand implements Command {
             String userSurname = request.getParameter(SURNAME_PARAMETER);
 
             HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
+            User user = (User) session.getAttribute(USER_ATTRIBUTE);
             user.setFirstname(userFirstname);
             user.setSurname(userSurname);
             service.updateUser(user);
 
             return CommandResult.redirect(HOME_PAGE);
         } catch (ServiceException e) {
-            throw new ServiceException(e.getMessage(),e);
+            throw new ServiceException(e.getMessage(), e);
         }
     }
 

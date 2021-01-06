@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class EditBookPageCommand implements Command {
+
+    private static final String BOOK_ID_PARAMETER = "bookId";
+    private static final String EDIT_BOOK = "editBook";
+    private static final String EDIT_BOOK_PAGE_JSP = "WEB-INF/views/edit_book_page.jsp";
+
     private final BookService service;
 
     public EditBookPageCommand() {
@@ -20,12 +25,12 @@ public class EditBookPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
-            String bookIdString = request.getParameter("bookId");
+            String bookIdString = request.getParameter(BOOK_ID_PARAMETER);
             Integer bookId = Integer.parseInt(bookIdString);
 
             Book book = service.getBookById(bookId).get();
-            request.setAttribute("editBook", book);
-            return CommandResult.forward("WEB-INF/views/edit_book_page.jsp");
+            request.setAttribute(EDIT_BOOK, book);
+            return CommandResult.forward(EDIT_BOOK_PAGE_JSP);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage(), e);
         }

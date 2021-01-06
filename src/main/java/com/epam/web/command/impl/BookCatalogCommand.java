@@ -36,7 +36,8 @@ public class BookCatalogCommand implements Command {
         request.setAttribute(IS_BOOK_PAGE, true);
 
         int currentPage;
-        CommandResult commandResult=null;
+        CommandResult commandResult = null;
+
         if (request.getParameter(CURRENT_PAGE_PARAMETER) != null) {
             currentPage = Integer.parseInt(request.getParameter(CURRENT_PAGE_PARAMETER));
         } else {
@@ -44,16 +45,10 @@ public class BookCatalogCommand implements Command {
         }
 
         List<Book> bookList = service.getBooksPart((currentPage - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE);
-       // if(!bookList.isEmpty()){
-            request.setAttribute(BOOK_LIST_PARAMETER, bookList);
-            request.setAttribute(CURRENT_PAGE_PARAMETER, currentPage);
+        request.setAttribute(BOOK_LIST_PARAMETER, bookList);
+        request.setAttribute(CURRENT_PAGE_PARAMETER, currentPage);
 
-            commandResult=CommandResult.forward(BOOK_CATALOG_PAGE);
-       // }
-//        else{
-//            request.setAttribute("noBooks", true);
-//            commandResult = CommandResult.forward(MESSAGE_JSP);
-//        }
-     return commandResult;
+        commandResult = CommandResult.forward(BOOK_CATALOG_PAGE);
+        return commandResult;
     }
 }

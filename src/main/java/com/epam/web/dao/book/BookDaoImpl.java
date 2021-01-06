@@ -28,7 +28,7 @@ public class BookDaoImpl extends AbstractDao<Book> implements BookDao {
     private static final String SAVE_BOOK = "INSERT INTO books (title, author, pages, amount, publisher_id) VALUES (?, ?, ?, ?, ?)";
 
     public BookDaoImpl(Connection connection) {
-        super(connection, new BookRowMapper(), Book.TABLE, new BookFieldsExtractor(),SAVE_BOOK,UPDATE_BOOK);
+        super(connection, new BookRowMapper(), Book.TABLE, new BookFieldsExtractor(), SAVE_BOOK, UPDATE_BOOK);
     }
 
     @Override

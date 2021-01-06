@@ -17,9 +17,10 @@ import java.sql.SQLException;
 
 public class MainController extends HttpServlet {
     private static final Logger LOGGER = LogManager.getLogger(MainController.class);
+
     private static final String ERROR_JSP = "WEB-INF/views/error.jsp";
     private static final String COMMAND_PARAMETER = "command";
-
+    private static final String ERROR_MESSAGE_ATTRIBUTE = "errorMessage";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -39,7 +40,7 @@ public class MainController extends HttpServlet {
             dispatch(request, response, commandResult);
         } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
-            request.setAttribute("errorMessage", true);
+            request.setAttribute(ERROR_MESSAGE_ATTRIBUTE, true);
             dispatch(request, response, CommandResult.forward(ERROR_JSP));
         }
     }
@@ -56,7 +57,7 @@ public class MainController extends HttpServlet {
     @Override
     public void destroy() {
         super.destroy();
-        ConnectionPool pool=ConnectionPool.getInstance();
+        ConnectionPool pool = ConnectionPool.getInstance();
         try {
             pool.killConnections();
         } catch (ConnectionPoolException e) {

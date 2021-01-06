@@ -6,14 +6,16 @@ import com.epam.web.entity.User;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.service.user.UserService;
 import com.epam.web.service.user.UserServiceImpl;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 public class BlockUserCommand implements Command {
-    private final UserService service;
+    private static final String USER_ID_PARAMETER = "userId";
+    private static final String USER_ROLE_PARAMETER = "userRole";
+    private static final String VIEW_READERS_PAGE = "/Final_project_war/controller?command=view_readers";
+    private static final String VIEW_LIBRARIANS_PAGE = "/Final_project_war/controller?command=view_librarians";
 
+    private final UserService service;
 
     public BlockUserCommand() {
         this.service = new UserServiceImpl();
@@ -22,19 +24,19 @@ public class BlockUserCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
-            String userIdString = request.getParameter("userId");
+            String userIdString = request.getParameter(USER_ID_PARAMETER);
             Integer userId = Integer.parseInt(userIdString);
 
             service.blockUserById(userId);
 
-            CommandResult commandResult = null;
-            String roleString = request.getParameter("userRole");
+            String roleString = request.getParameter(USER_ROLE_PARAMETER);
             User.Role role = User.Role.valueOf(roleString);
 
+            CommandResult commandResult = null;
             if (role == User.Role.READER) {
-                commandResult = CommandResult.redirect("/Final_project_war/controller?command=view_readers");
+                commandResult = CommandResult.redirect(VIEW_READERS_PAGE);
             } else if (role == User.Role.LIBRARIAN) {
-                commandResult = CommandResult.redirect("/Final_project_war/controller?command=view_librarians");
+                commandResult = CommandResult.redirect(VIEW_LIBRARIANS_PAGE);
             }
             return commandResult;
         } catch (ServiceException e) {

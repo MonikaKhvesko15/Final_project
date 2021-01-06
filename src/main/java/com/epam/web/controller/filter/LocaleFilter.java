@@ -19,7 +19,6 @@ public class LocaleFilter implements Filter {
         if (language != null) {
             req.getSession().setAttribute(LANG_PARAMETER, language);
         }
-
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

@@ -16,11 +16,15 @@ public class LoginCommand implements Command {
     private static final String LOGIN_PARAMETER = "login";
     private static final String PASSWORD_PARAMETER = "password";
     private static final String ERROR_MESSAGE_ATTRIBUTE = "errorMessage";
+    private static final String USER_ID_ATTRIBUTE = "userId";
+    private static final String USER_ATTRIBUTE = "user";
+    private static final String ROLE_ATTRIBUTE = "role";
 
     private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
     private static final String HOME_PAGE = "/Final_project_war/controller?command=home_page";
     private static final String ERROR_PAGE = "/Final_project_war/controller?command=error_page";
     private static final String ERROR_JSP = "WEB-INF/views/error.jsp";
+    private static final String USER_BLOCK_ERROR_MESSAGE = "userBlockErrorMessage";
 
     private final UserServiceImpl service;
 
@@ -41,13 +45,13 @@ public class LoginCommand implements Command {
             User user = userOptional.get();
             if (!(user.isBlocked())) {
                 HttpSession session = request.getSession();
-                session.setAttribute("userId", user.getId().toString());
-                session.setAttribute("login", user.getLogin());
-                session.setAttribute("user", user);
-                session.setAttribute("role", user.getRole().toString());
+                session.setAttribute(USER_ID_ATTRIBUTE, user.getId().toString());
+                session.setAttribute(LOGIN_PARAMETER, user.getLogin());
+                session.setAttribute(USER_ATTRIBUTE, user);
+                session.setAttribute(ROLE_ATTRIBUTE, user.getRole().toString());
                 commandResult = CommandResult.redirect(HOME_PAGE);
             } else if (user.isBlocked()) {
-                request.setAttribute("userBlockErrorMessage", true);
+                request.setAttribute(USER_BLOCK_ERROR_MESSAGE, true);
                 commandResult = CommandResult.forward(ERROR_JSP);
             }
 

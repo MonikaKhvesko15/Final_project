@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 public class IssueBookCommand implements Command {
     private static final String ORDER_ID_PARAMETER = "orderId";
     private static final String VIEW_ORDERS_PAGE = "/Final_project_war/controller?command=view_orders";
-    private final OrderService service;
 
+    private final OrderService service;
 
     public IssueBookCommand() {
         this.service = new OrderServiceImpl();

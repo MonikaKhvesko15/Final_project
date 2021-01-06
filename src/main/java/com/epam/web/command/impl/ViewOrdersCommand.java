@@ -22,7 +22,8 @@ public class ViewOrdersCommand implements Command {
     private static final String ORDER_LIST_PARAMETER = "orderList";
     private static final String MY_ORDERS_PAGE = "WEB-INF/views/my_orders.jsp";
     private static final String ALL_ORDERS_PAGE = "WEB-INF/views/all_orders.jsp";
-
+    private static final String CURRENT_DATA_ATTRIBUTE = "currentData";
+    private static final String ROLE_ATTRIBUTE = "role";
 
     private final OrderService service;
 
@@ -34,6 +35,7 @@ public class ViewOrdersCommand implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int currentPage;
         CommandResult commandResult = null;
+
         HttpSession session = request.getSession();
 
         if (request.getParameter(CURRENT_PAGE_PARAMETER) != null) {
@@ -46,8 +48,9 @@ public class ViewOrdersCommand implements Command {
 
         request.setAttribute(ORDER_LIST_PARAMETER, orderList);
         request.setAttribute(CURRENT_PAGE_PARAMETER, currentPage);
-        request.setAttribute("currentData", LocalDate.now());
-        String roleString = session.getAttribute("role").toString();
+        request.setAttribute(CURRENT_DATA_ATTRIBUTE, LocalDate.now());
+
+        String roleString = session.getAttribute(ROLE_ATTRIBUTE).toString();
         User.Role role = User.Role.valueOf(roleString);
 
         if (role == User.Role.READER) {

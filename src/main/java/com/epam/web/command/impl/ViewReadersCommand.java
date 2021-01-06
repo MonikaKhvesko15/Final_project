@@ -21,7 +21,6 @@ public class ViewReadersCommand implements Command {
     private static final String READER_LIST_PARAMETER = "readerList";
     private static final String READERS_PAGE = "WEB-INF/views/all_readers.jsp";
 
-
     private final UserService service;
 
     public ViewReadersCommand() {

@@ -16,10 +16,13 @@ import java.util.Optional;
 public class BookSearchCommand implements Command {
 
     private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
-    private final BookService service;
     private static final String TITLE_PARAMETER = "title";
     private static final String FOUND_BOOK_PARAMETER = "foundBook";
     private static final String BOOK_CATALOG_PAGE = "WEB-INF/views/book_catalog.jsp";
+    private static final String IS_BOOK_PAGE = "isBookPage";
+    private static final String BOOK_NOT_FOUND_MESSAGE = "bookNotFound";
+
+    private final BookService service;
 
     public BookSearchCommand() {
         this.service = new BookServiceImpl();
@@ -29,7 +32,7 @@ public class BookSearchCommand implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
 
         //for searching in header
-        request.setAttribute("isBookPage",true);
+        request.setAttribute(IS_BOOK_PAGE, true);
         String title = request.getParameter(TITLE_PARAMETER);
         Book book = null;
         CommandResult commandResult = null;
@@ -38,9 +41,9 @@ public class BookSearchCommand implements Command {
             if (foundBookOptional.isPresent()) {
                 book = foundBookOptional.get();
                 request.setAttribute(FOUND_BOOK_PARAMETER, book);
-                commandResult=CommandResult.forward(BOOK_CATALOG_PAGE);
-            }else{
-                request.setAttribute("bookNotFound", true);
+                commandResult = CommandResult.forward(BOOK_CATALOG_PAGE);
+            } else {
+                request.setAttribute(BOOK_NOT_FOUND_MESSAGE, true);
                 commandResult = CommandResult.forward(MESSAGE_JSP);
             }
         }

@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class UnblockUserCommand implements Command {
-    private final UserService service;
+    private static final String USER_ID_PARAMETER = "userId";
+    private static final String USER_ROLE_PARAMETER = "userRole";
+    private static final String VIEW_READERS = "/Final_project_war/controller?command=view_readers";
+    private static final String VIEW_LIBRARIANS = "/Final_project_war/controller?command=view_librarians";
 
+    private final UserService service;
 
     public UnblockUserCommand() {
         this.service = new UserServiceImpl();
@@ -21,18 +25,19 @@ public class UnblockUserCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         try {
-            String userIdString = request.getParameter("userId");
+            String userIdString = request.getParameter(USER_ID_PARAMETER);
             Integer userId = Integer.parseInt(userIdString);
+
             service.unblockUserById(userId);
 
             CommandResult commandResult = null;
-            String roleString = request.getParameter("userRole");
+            String roleString = request.getParameter(USER_ROLE_PARAMETER);
             User.Role role = User.Role.valueOf(roleString);
 
             if (role == User.Role.READER) {
-                commandResult = CommandResult.redirect("/Final_project_war/controller?command=view_readers");
+                commandResult = CommandResult.redirect(VIEW_READERS);
             } else if (role == User.Role.LIBRARIAN) {
-                commandResult = CommandResult.redirect("/Final_project_war/controller?command=view_librarians");
+                commandResult = CommandResult.redirect(VIEW_LIBRARIANS);
             }
             return commandResult;
         } catch (ServiceException e) {
