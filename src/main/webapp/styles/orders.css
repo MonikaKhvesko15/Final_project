@@ -26,12 +26,6 @@ main {
     padding: 30px;
 }
 
-.data img {
-    width: 120px;
-    height: 150px;
-    margin: 40px 0px;
-}
-
 table {
     width: 100%;
     padding: 0px 20px;
@@ -46,33 +40,12 @@ th p {
     font-size: 13pt;
 }
 
-.book_name {
-    width: 15%;
+td {
+    color: #4D4029;
 }
 
-.book_name {
-    width: 35%;
-    padding: 0px 20px;
+td b{
+    color: #4D4029;
 }
 
-.amount {
-    display: flex;
-    justify-content: flex-end;
-    width: 20%;
-}
-.order {
-    /*!*display: flex;*!
-    justify-content: flex-end;
-    flex-flow: wrap;*/
-    float: right;
-}
-
-span {
-    padding: 0 20px 50px;
-}
-
-select #type {
-    display: flex;
-    border: 1px solid #4D4029;
-}
 

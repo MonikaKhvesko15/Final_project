@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookService {
-    //List<Book> findAll() throws ServiceException;
     List<Book> getBooksPart(int startPosition, int endPosition) throws ServiceException;
     Optional<Book> findBookByTitle(String title) throws ServiceException;
-    void deleteBookById(Integer bookId) throws DaoException, ServiceException;
+    boolean deleteBookById(Integer bookId) throws DaoException, ServiceException;
     Optional<Book> getBookById(Integer bookId) throws ServiceException;
     void saveBook(Book book) throws ServiceException;
 }

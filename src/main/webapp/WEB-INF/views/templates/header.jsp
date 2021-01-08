@@ -11,25 +11,17 @@
         <fmt:message key="local.title"/>
     </div>
 
-    <%--
-        <section class="library__search">
-            <form class="library__search-form" method="POST" action="#">
-                <input type="text" value="Book title..." onfocus="if (this.value == 'Book title...') {this.value = ''};" onblur="if (this.value == '') {this.value = 'Book title...'}">
-                <button id="search-button">
-                    <img src="${pageContext.request.contextPath}/images/icon_search.png" alt="search">
-                </button>
-            </form>
-        </section>
-    --%>
+    <div class = "search">
     <c:choose>
         <c:when test="${requestScope.isBookPage}">
-            <form class="search-form" action="${pageContext.request.contextPath}/controller?command=book_search"
+            <form action="${pageContext.request.contextPath}/controller?command=book_search"
                   method="POST">
-                <input type="text" name="title">
-                <a><input class="search-button" type="submit" value="search"></a>
+                <input class = "enter" type="text" name="title">
+                <input class = "edit" type="submit" value="search">
             </form>
         </c:when>
     </c:choose>
+    </div>
 
     <c:choose>
         <c:when test="${sessionScope.user.role == 'READER'}">

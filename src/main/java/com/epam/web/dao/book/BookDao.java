@@ -18,4 +18,5 @@ public interface BookDao extends Dao<Book> {
     void increaseBookAmount(Integer id) throws DaoException;
 
     void decreaseBookAmount(Integer id) throws DaoException;
+
 }

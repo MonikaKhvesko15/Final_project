@@ -51,27 +51,4 @@ public class Publisher implements Identifiable{
         this.establishYear = establishYear;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Publisher publisher = (Publisher) o;
-        return establishYear == publisher.establishYear &&
-                Objects.equals(id, publisher.id) &&
-                Objects.equals(name, publisher.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, establishYear);
-    }
-
-    @Override
-    public String toString() {
-        return "Publisher{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", establishYear=" + establishYear +
-                '}';
-    }
 }

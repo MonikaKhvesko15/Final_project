@@ -8,9 +8,9 @@
 <html lang="${sessionScope.language}">
 <head>
     <meta charset="utf-8">
-    <title>My orders</title>
+    <title>All orders</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/book_catalog.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/orders.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -24,7 +24,15 @@
     <main class="content">
         <div class="data">
             <table>
-
+                <tr>
+                    <td><b>Title</b></td>
+                    <td><b>Author</b></td>
+                    <td><b>Issue date</b></td>
+                    <td><b>Return date</b></td>
+                    <td><b>Type</b></td>
+                    <td><b>Status</b></td>
+                    <td><b></b></td>
+                </tr>
                 <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
                     <tr>
                         <td>${(15)*(requestScope.currentPage - 1) + index.count}</td>
@@ -37,26 +45,22 @@
                         <div class="buttons">
                             <c:choose>
                                 <c:when test="${order.status=='UNDER_CONSIDERATION'}">
-                                    <form class="issue"
-                                          action="${pageContext.request.contextPath}/controller?command=issue_book"
+                                    <form action="${pageContext.request.contextPath}/controller?command=issue_book"
                                           method="POST">
-                                        <th class="issue">
-                                            <a>
+                                        <th><a>
                                                 <input type="hidden" name="orderId" value=${order.id}>
-                                                <input class="btn-submit" type="submit" value=<fmt:message
+                                                <input class="edit" type="submit" value=<fmt:message
                                                         key="local.issue"/>>
                                             </a>
                                         </th>
                                     </form>
                                 </c:when>
                                 <c:when test="${order.status=='ACCEPTED'}">
-                                    <form class="return"
-                                          action="${pageContext.request.contextPath}/controller?command=return_book"
+                                    <form action="${pageContext.request.contextPath}/controller?command=return_book"
                                           method="POST">
-                                        <th class="return">
-                                            <a>
+                                        <th><a>
                                                 <input type="hidden" name="orderId" value=${order.id}>
-                                                <input class="btn-submit" type="submit" value=<fmt:message
+                                                <input class="edit" type="submit" value=<fmt:message
                                                         key="local.return"/>>
                                             </a>
                                         </th>
@@ -66,28 +70,28 @@
                         </div>
                     </tr>
                 </c:forEach>
-                <c:choose>
-                    <c:when test="${(requestScope.currentPage - 1) == 0}">
-                        <a align="center" href="" type="submit" class="pagination"><fmt:message
-                                key="orders.previous"/></a>
-                    </c:when>
-                    <c:otherwise>
-                        <a align="center"
-                           href="${pageContext.request.contextPath}/controller?command=view_orders&currentPage=${requestScope.currentPage-1}"
-                           type="submit" class="pagination"><fmt:message key="orders.previous"/></a>
-                    </c:otherwise>
-                </c:choose>
-                <div class="pagination">${requestScope.currentPage}</div>
-                <c:choose>
-                    <c:when test="${requestScope.orderList.size() != 15}">
-                        <a align="center" href="" type="submit" class="pagination"><fmt:message key="orders.next"/></a>
-                    </c:when>
-                    <c:otherwise>
-                        <a align="center"
-                           href="${pageContext.request.contextPath}/controller?command=view_orders&currentPage=${requestScope.currentPage+1}"
-                           type="submit" class="pagination"><fmt:message key="orders.next"/></a>
-                    </c:otherwise>
-                </c:choose>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${(requestScope.currentPage - 1) == 0}">--%>
+<%--                        <a align="center" href="" type="submit" class="pagination"><fmt:message--%>
+<%--                                key="orders.previous"/></a>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <a align="center"--%>
+<%--                           href="${pageContext.request.contextPath}/controller?command=view_orders&currentPage=${requestScope.currentPage-1}"--%>
+<%--                           type="submit" class="pagination"><fmt:message key="orders.previous"/></a>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
+<%--                <div class="pagination">${requestScope.currentPage}</div>--%>
+<%--                <c:choose>--%>
+<%--                    <c:when test="${requestScope.orderList.size() != 15}">--%>
+<%--                        <a align="center" href="" type="submit" class="pagination"><fmt:message key="orders.next"/></a>--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                        <a align="center"--%>
+<%--                           href="${pageContext.request.contextPath}/controller?command=view_orders&currentPage=${requestScope.currentPage+1}"--%>
+<%--                           type="submit" class="pagination"><fmt:message key="orders.next"/></a>--%>
+<%--                    </c:otherwise>--%>
+<%--                </c:choose>--%>
             </table>
 
 

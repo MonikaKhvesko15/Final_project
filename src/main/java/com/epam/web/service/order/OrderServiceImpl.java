@@ -3,9 +3,8 @@ package com.epam.web.service.order;
 import com.epam.web.dao.book.BookDao;
 import com.epam.web.dao.helper.DaoHelperImpl;
 import com.epam.web.dao.helper.DaoHelperFactory;
-import com.epam.web.dao.mapper.OrderServiceMapper;
+import com.epam.web.service.OrderServiceMapper;
 import com.epam.web.dao.order.OrderDao;
-import com.epam.web.entity.Book;
 import com.epam.web.entity.Order;
 import com.epam.web.entity.dto.OrderDto;
 import com.epam.web.exception.ConnectionPoolException;
@@ -45,26 +44,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void destroyOrder(Order order) throws ServiceException {
-        try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
-            OrderDao orderDao = daoHelper.createOrderDao();
-            BookDao bookDao = daoHelper.createBookDao();
-
-            Integer id = (Integer) order.getId();
-            Integer bookId = order.getBookId();
-
-            //transaction
-            daoHelper.startTransaction();
-            orderDao.removeById(id);
-            bookDao.increaseBookAmount(bookId);
-            daoHelper.commitTransaction();
-
-        } catch (DaoException | ConnectionPoolException | SQLException e) {
-            throw new ServiceException(e.getMessage(), e);
-        }
-    }
-
-    @Override
     public Optional<Order> getOrderById(Integer orderId) throws ServiceException {
         try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
@@ -79,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDto> getOrdersDtoPart(int startPosition, int endPosition) throws ServiceException {
         try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
-            List<Order> orderList = orderDao.findOrdersPart(startPosition, endPosition);
+            List<Order> orderList = orderDao.findActiveOrdersPart(startPosition, endPosition);
             return orderServiceMapper.getAllOrdersDto(orderList);
 
         } catch (DaoException | ConnectionPoolException | SQLException e) {

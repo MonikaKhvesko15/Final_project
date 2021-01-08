@@ -100,31 +100,4 @@ public class User implements Identifiable {
         this.isBlocked = isBlocked;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return isBlocked == user.isBlocked &&
-                Objects.equals(id, user.id) &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(firstname, user.firstname) &&
-                Objects.equals(surname, user.surname) &&
-                role == user.role;
-    }
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", surname='" + surname + '\'' +
-                ", role=" + role +
-                ", isBlocked=" + isBlocked +
-                '}';
-    }
 }

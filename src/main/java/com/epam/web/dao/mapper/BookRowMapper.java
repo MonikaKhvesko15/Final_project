@@ -2,6 +2,7 @@ package com.epam.web.dao.mapper;
 
 import com.epam.web.entity.Book;
 import com.epam.web.entity.Publisher;
+import com.epam.web.entity.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,6 +28,8 @@ public class BookRowMapper implements RowMapper<Book> {
 
         Publisher publisher = publisherRowMapper.map(resultSet);
 
-        return new Book(id, title, author, pages, amount, publisher);
+        boolean isDeleted = resultSet.getBoolean(Book.STATUS);
+
+        return new Book(id, title, author, pages, amount, publisher, isDeleted);
     }
 }

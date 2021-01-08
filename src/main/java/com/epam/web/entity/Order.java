@@ -19,7 +19,8 @@ public class Order implements Identifiable {
     public enum Status {
         ACCEPTED,
         UNDER_CONSIDERATION,
-        FINISHED;
+        COMPLETED,
+        REJECTED;
     }
 
     public enum Type {

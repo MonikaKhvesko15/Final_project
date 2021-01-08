@@ -1,4 +1,4 @@
-package com.epam.web.dao.mapper;
+package com.epam.web.service;
 
 import com.epam.web.dao.book.BookDao;
 import com.epam.web.dao.helper.DaoHelperImpl;

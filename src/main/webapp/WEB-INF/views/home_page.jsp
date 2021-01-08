@@ -53,8 +53,8 @@
                 </tr>
             </table>
             <form action="${pageContext.request.contextPath}/controller?command=edit_user" method="POST">
-                <div class="editField"><input type="text" name="firstname" required></div>
-                <div class="editField"><input type="text" name="surname" required></div>
+                <div class="editField"><input type="text" name="firstname" required class = "enter"></div>
+                <div class="editField"><input type="text" name="surname" required class = "enter"></div>
                 <input class="edit" type="submit" value=<fmt:message key="local.edit"/>>
             </form>
         </div>

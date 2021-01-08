@@ -29,6 +29,9 @@
             <p><fmt:message key="error_page.user_blocked"/></p>
         </c:if>
 
+        <c:if test="${impossibleToDelete}">
+            <p><fmt:message key="error_page.impossibleDeleteBook"/></p>
+        </c:if>
     </main>
 
 </div>

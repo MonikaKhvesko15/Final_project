@@ -50,7 +50,7 @@ public class SaveBookCommand implements Command {
             String amountString = request.getParameter(AMOUNT_PARAMETER);
             Integer amount = Integer.parseInt(amountString);
 
-            Book book = new Book(id, title, author, pages, amount, publisher);
+            Book book = new Book(id, title, author, pages, amount, publisher, false);
 
             bookService.saveBook(book);
 

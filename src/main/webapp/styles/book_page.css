@@ -23,7 +23,7 @@ main {
     flex-flow: row;
     justify-content: flex-start;
     align-items: center;
-    padding: 30px;
+    padding: 0px 30px;
 }
 
 .data img {
@@ -40,6 +40,7 @@ table {
 th {
     display: flex;
     float: left;
+    color: #4D4029;
 }
 
 th p {
@@ -60,10 +61,11 @@ th p {
     justify-content: flex-end;
     width: 20%;
 }
+
 .order {
-    /*!*display: flex;*!
+    display: flex;
     justify-content: flex-end;
-    flex-flow: wrap;*/
+    width: 22%;
     float: right;
 }
 

@@ -13,7 +13,7 @@ public interface Dao<T extends Identifiable> {
     Optional<T> getById(int id) throws DaoException;
 
     //read
-    List<T> findAll(String tablename) throws DaoException;
+    List<T> findAll() throws DaoException;
 
     //create/update
     // if entity has id -> update

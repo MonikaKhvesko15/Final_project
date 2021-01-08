@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS books
     pages        INT          NOT NULL,
     amount       INT DEFAULT 0,
     publisher_id INT          NOT NULL,
+    isDeleted BIT DEFAULT 0,
     PRIMARY KEY (id),
     FOREIGN KEY (publisher_id)
         REFERENCES publishers (id)
@@ -43,7 +44,7 @@ CREATE TABLE IF NOT EXISTS orders
     id          INT AUTO_INCREMENT,
     issue_date  DATE NOT NULL,
     return_date DATE NOT NULL,
-    status      ENUM ('ACCEPTED','UNDER_CONSIDERATION') DEFAULT 'UNDER_CONSIDERATION',
+    status      ENUM ('ACCEPTED','UNDER_CONSIDERATION','COMPLETED','REJECTED') DEFAULT 'UNDER_CONSIDERATION',
     type        ENUM ('READER_ROOM','SUBSCRIPTION') DEFAULT 'READER_ROOM',
     user_id     INT NOT NULL,
     book_id     INT NOT NULL,

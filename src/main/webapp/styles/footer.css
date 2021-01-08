@@ -1,0 +1,31 @@
+.center {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    flex: 0 0 auto;
+}
+
+.pagination {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.pagination a {
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #e9e9e9;
+    border: none;
+}
+
+.pagination a.active:hover {
+    border: none;
+}
+

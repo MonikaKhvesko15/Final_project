@@ -9,9 +9,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Home page</title>
+    <title>Edit book page</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/home_page.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/book_page.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -62,7 +62,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th><input class="btn-submit" type="submit" value=<fmt:message key="local.edit"/>></th>
+                        <th><input class="edit" type="submit" value=<fmt:message key="local.edit"/>></th>
                     </tr>
                 </form>
             </table>

@@ -25,10 +25,6 @@
             <p><fmt:message key="message.book.not.found"/></p>
         </c:if>
 
-        <%--        <c:if test="${noBooks}">--%>
-        <%--            <p><fmt:message key="message.no.books"/></p>--%>
-        <%--        </c:if>--%>
-
         <c:if test="${bookOrdered}">
             <p><fmt:message key="message.book.ordered"/></p>
         </c:if>

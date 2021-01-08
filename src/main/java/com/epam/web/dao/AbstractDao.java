@@ -72,7 +72,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
     @Override
-    public List<T> findAll(String tablename) throws DaoException {
+    public List<T> findAll() throws DaoException {
         return executeQuery("SELECT * FROM " + tableName);
     }
 

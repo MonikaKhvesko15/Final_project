@@ -26,12 +26,6 @@ main {
     padding: 30px;
 }
 
-.data img {
-    width: 120px;
-    height: 150px;
-    margin: 40px 0px;
-}
-
 table {
     width: 100%;
     padding: 0px 20px;
@@ -44,6 +38,13 @@ th {
 
 th p {
     font-size: 13pt;
+}
+
+.infa {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    float: left;
 }
 
 .book_name {
@@ -76,3 +77,30 @@ select #type {
     border: 1px solid #4D4029;
 }
 
+.lock  img {
+    width: 20px;
+    height: 20px;
+}
+
+.block {
+    background-color: white;
+    float: right;
+    width: 80px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4D4029;
+    margin: 5px 0px;
+    padding: 3px 0px;
+    border: 1px solid #4D4029;
+    border-radius: 5px;
+}
+
+.block:hover {
+    background: #4D4029;
+    color: white;
+    box-shadow: inset 0 0 0 1px white;
+}
+
+a.btn-block {
+    vertical-align: center;
+}

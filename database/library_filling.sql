@@ -49,11 +49,11 @@ VALUES ('Pride and Prjudice', 'Jane Austen', 291, 2);
 INSERT INTO books (title, author, pages, amount, publisher_id)
 VALUES ('Great Expectations', 'Charles Dickens', 696, 16, 3);
 
-INSERT INTO books (title, author, pages, amount, publisher_id)
-VALUES ('Emma', 'Jane Austen', 636, 55, 4);
+INSERT INTO books (title, author, pages, amount, publisher_id, isDeleted)
+VALUES ('Emma', 'Jane Austen', 636, 55, 4, 1);
 
-INSERT INTO books (title, author, pages, amount, publisher_id)
-VALUES ('Romeo and Juliet', 'William Shakespeare', 329, 66, 5);
+INSERT INTO books (title, author, pages, amount, publisher_id, isDeleted)
+VALUES ('Romeo and Juliet', 'William Shakespeare', 329, 66, 5, 1);
 
 INSERT INTO books (title, author, pages,  publisher_id)
 VALUES ('The Great Gatsby', 'F. Scott Fitzgerald', 345, 1);
@@ -82,8 +82,7 @@ INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
 VALUES ('2020-11-29', '2020-12-31','ACCEPTED', 4, 8);
 
 INSERT INTO orders (issue_date, return_date, status, user_id, book_id)
-VALUES ('2020-06-01', '2020-06-01','UNDER_CONSIDERATION', 1, 10);
+VALUES ('2020-06-01', '2020-06-01','COMPLETED', 1, 10);
 
 INSERT INTO orders (issue_date, return_date, user_id, book_id)
 VALUES ('2020-10-15', '2020-11-15', 1, 7);
-

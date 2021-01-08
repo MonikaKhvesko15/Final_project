@@ -25,9 +25,11 @@ public class ReturnBookCommand implements Command {
         try {
             String orderIdString = request.getParameter(ORDER_ID_PARAMETER);
             Integer orderId = Integer.parseInt(orderIdString);
+            Order.Status newStatus = Order.Status.COMPLETED;
 
-            Order order = service.getOrderById(orderId).get();
-            service.destroyOrder(order);
+            //CHANGE!!!!!!!!!!!!!!!!!!!!!!!!
+            service.changeOrderStatus(orderId, newStatus);
+            //+increaase book amount!!!!!!!!!!!!!!
             return CommandResult.redirect(VIEW_ORDERS_PAGE);
         } catch (ServiceException e) {
             throw new ServiceException(e.getMessage(), e);
