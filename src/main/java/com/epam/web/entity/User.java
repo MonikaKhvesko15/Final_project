@@ -2,9 +2,6 @@ package com.epam.web.entity;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class User implements Identifiable {
     //table name for users
@@ -22,13 +19,6 @@ public class User implements Identifiable {
     @Override
     public Serializable getId() {
         return id;
-    }
-
-
-    public enum Role {
-        READER,
-        LIBRARIAN,
-        ADMIN;
     }
 
     private Integer id;

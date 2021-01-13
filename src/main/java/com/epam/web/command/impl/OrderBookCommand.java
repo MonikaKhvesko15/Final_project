@@ -30,7 +30,6 @@ public class OrderBookCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        try {
             HttpSession session = request.getSession();
 
             Integer userId = (Integer.valueOf(session.getAttribute(USER_ID_ATTRIBUTE).toString()));
@@ -53,8 +52,5 @@ public class OrderBookCommand implements Command {
             request.setAttribute(BOOK_ORDERED, true);
             return CommandResult.forward(MESSAGE_JSP);
 
-        } catch (ServiceException | ConnectionPoolException e) {
-            throw new ServiceException(e.getMessage(), e);
-        }
     }
 }

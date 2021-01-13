@@ -17,7 +17,7 @@ import java.util.List;
 public class ViewReadersCommand implements Command {
     private static final String CURRENT_PAGE_PARAMETER = "currentPage";
     private static final int FIRST_PAGE = 1;
-    private static final int RECORDS_PER_PAGE = 15;
+    private static final int RECORDS_PER_PAGE = 20;
     private static final String READER_LIST_PARAMETER = "readerList";
     private static final String READERS_PAGE = "WEB-INF/views/all_readers.jsp";
 

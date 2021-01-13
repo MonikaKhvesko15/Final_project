@@ -2,20 +2,20 @@ package com.epam.web.dao.helper;
 
 import com.epam.web.dao.connection.ConnectionPool;
 import com.epam.web.dao.connection.ProxyConnection;
-import com.epam.web.dao.book.BookDao;
-import com.epam.web.dao.book.BookDaoImpl;
-import com.epam.web.dao.order.OrderDao;
-import com.epam.web.dao.order.OrderDaoImpl;
-import com.epam.web.dao.publisher.PublisherDao;
-import com.epam.web.dao.publisher.PublisherDaoImpl;
-import com.epam.web.dao.user.UserDao;
-import com.epam.web.dao.user.UserDaoImpl;
+import com.epam.web.dao.impl.book.BookDao;
+import com.epam.web.dao.impl.book.BookDaoImpl;
+import com.epam.web.dao.impl.order.OrderDao;
+import com.epam.web.dao.impl.order.OrderDaoImpl;
+import com.epam.web.dao.impl.publisher.PublisherDao;
+import com.epam.web.dao.impl.publisher.PublisherDaoImpl;
+import com.epam.web.dao.impl.user.UserDao;
+import com.epam.web.dao.impl.user.UserDaoImpl;
 import com.epam.web.exception.ConnectionPoolException;
 import com.epam.web.exception.DaoException;
 
 import java.sql.SQLException;
 
-public class DaoHelperImpl implements AutoCloseable, DaoHelper {
+public class DaoHelperImpl implements DaoHelper {
 
     private ProxyConnection connection;
 
@@ -68,7 +68,7 @@ public class DaoHelperImpl implements AutoCloseable, DaoHelper {
 
 
     @Override
-    public void close() throws SQLException, DaoException {
+    public void close() throws DaoException {
         if (connection != null) {
             try {
                 connection.close();

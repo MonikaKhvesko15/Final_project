@@ -15,26 +15,28 @@
 <nav class="menu">
     <div class="topnav">
         <ul>
-            <p id="menuHeader"><fmt:message key="local.menu"/></p>
-
             <c:choose>
-                <c:when test="${sessionScope.user.role == 'READER'}">
-                    <li><a href="${pageContext.request.contextPath}/controller?command=home_page"><fmt:message
-                            key="local.menu.home"/></a></li>
+                <c:when test="${sessionScope.role == 'GUEST'}">
+                    <p id="menuHeader"><fmt:message key="local.menu"/></p>
                     <li><a href="${pageContext.request.contextPath}/controller?command=book_catalog"><fmt:message
                             key="local.menu.book.catalog"/></a></li>
-                    <li><a href="${pageContext.request.contextPath}/controller?command=view_orders"><fmt:message
+                </c:when>
+                <c:when test="${sessionScope.user.role == 'READER'}">
+                    <p id="menuHeader"><fmt:message key="local.menu"/></p>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=book_catalog"><fmt:message
+                            key="local.menu.book.catalog"/></a></li>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=reader_orders"><fmt:message
                             key="local.menu.reader.orders"/></a></li>
                 </c:when>
                 <c:when test="${sessionScope.user.role == 'LIBRARIAN'}">
-                    <li><a href="${pageContext.request.contextPath}/controller?command=home_page"><fmt:message
-                            key="local.menu.home"/></a></li>
+                    <p id="menuHeader"><fmt:message key="local.menu"/></p>
                     <li><a href="${pageContext.request.contextPath}/controller?command=view_orders"><fmt:message
                             key="local.menu.all.orders"/></a></li>
+                    <li><a href="${pageContext.request.contextPath}/controller?command=orders_history"><fmt:message
+                            key="local.menu.orders.history"/></a></li>
                 </c:when>
                 <c:when test="${sessionScope.user.role == 'ADMIN'}">
-                    <li><a href="${pageContext.request.contextPath}/controller?command=home_page"><fmt:message
-                            key="local.menu.home"/></a></li>
+                    <p id="menuHeader"><fmt:message key="local.menu"/></p>
                     <li><a href="${pageContext.request.contextPath}/controller?command=book_catalog"><fmt:message
                             key="local.menu.book.catalog"/></a></li>
                     <li><a href="${pageContext.request.contextPath}/controller?command=add_book_page"><fmt:message

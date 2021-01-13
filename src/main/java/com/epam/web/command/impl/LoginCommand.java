@@ -6,6 +6,7 @@ import com.epam.web.entity.User;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.service.user.UserServiceImpl;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,8 +22,7 @@ public class LoginCommand implements Command {
     private static final String ROLE_ATTRIBUTE = "role";
 
     private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
-    private static final String HOME_PAGE = "/Final_project_war/controller?command=home_page";
-    private static final String ERROR_PAGE = "/Final_project_war/controller?command=error_page";
+    private static final String HOME_PAGE = "/controller?command=home_page";
     private static final String ERROR_JSP = "WEB-INF/views/error.jsp";
     private static final String USER_BLOCK_ERROR_MESSAGE = "userBlockErrorMessage";
 
@@ -49,7 +49,11 @@ public class LoginCommand implements Command {
                 session.setAttribute(LOGIN_PARAMETER, user.getLogin());
                 session.setAttribute(USER_ATTRIBUTE, user);
                 session.setAttribute(ROLE_ATTRIBUTE, user.getRole().toString());
-                commandResult = CommandResult.redirect(HOME_PAGE);
+
+                ServletContext servletContext = request.getServletContext();
+                String contextPath = servletContext.getContextPath();
+
+                commandResult = CommandResult.redirect(contextPath+HOME_PAGE);
             } else if (user.isBlocked()) {
                 request.setAttribute(USER_BLOCK_ERROR_MESSAGE, true);
                 commandResult = CommandResult.forward(ERROR_JSP);

@@ -11,35 +11,47 @@
         <fmt:message key="local.title"/>
     </div>
 
-    <div class = "search">
-    <c:choose>
-        <c:when test="${requestScope.isBookPage}">
-            <form action="${pageContext.request.contextPath}/controller?command=book_search"
-                  method="POST">
-                <input class = "enter" type="text" name="title">
-                <input class = "edit" type="submit" value="search">
-            </form>
-        </c:when>
-    </c:choose>
+    <div class="search">
+        <c:choose>
+            <c:when test="${requestScope.isBookPage}">
+                <form action="${pageContext.request.contextPath}/controller?command=book_search"
+                      method="POST">
+                    <input class="enter" type="text" name="title">
+                    <input class="edit" type="submit" value="<fmt:message key="local.search"/>">
+                </form>
+            </c:when>
+        </c:choose>
     </div>
 
     <c:choose>
         <c:when test="${sessionScope.user.role == 'READER'}">
             <div class="user">
-                <img src="${pageContext.request.contextPath}/images/person.jpg">
-                <p><c:out value="${sessionScope.user.firstname}"/></p>
+                <a href="${pageContext.request.contextPath}/controller?command=home_page">
+                    <img src="${pageContext.request.contextPath}/images/person.jpg" alt="Home page">
+                </a>
+                <a href="${pageContext.request.contextPath}/controller?command=home_page">
+                    <p><c:out value="${sessionScope.user.firstname}"/></p>
+                </a>
             </div>
         </c:when>
         <c:when test="${sessionScope.user.role == 'LIBRARIAN'}">
             <div class="user">
-                <img src="${pageContext.request.contextPath}/images/person.jpg">
-                <p><c:out value="${sessionScope.user.firstname}"/></p>
+                <a href="${pageContext.request.contextPath}/controller?command=home_page">
+                    <img src="${pageContext.request.contextPath}/images/person.jpg" alt="Home page">
+                </a>
+                <a href="${pageContext.request.contextPath}/controller?command=home_page">
+                    <p><c:out value="${sessionScope.user.firstname}"/></p>
+                </a>
             </div>
         </c:when>
         <c:when test="${sessionScope.user.role == 'ADMIN'}">
             <div class="user">
-                <img src="${pageContext.request.contextPath}/images/person.jpg">
-                <p><c:out value="${sessionScope.user.firstname}"/></p>
+                <a href="${pageContext.request.contextPath}/controller?command=home_page">
+                    <img src="${pageContext.request.contextPath}/images/person.jpg" alt="Home page">
+                </a>
+                <a href="${pageContext.request.contextPath}/controller?command=home_page">
+                    <p><c:out value="${sessionScope.user.firstname}"/></p>
+                </a>
             </div>
         </c:when>
     </c:choose>

@@ -1,17 +1,14 @@
 package com.epam.web.service.order;
 
-import com.epam.web.dao.book.BookDao;
-import com.epam.web.dao.helper.DaoHelperImpl;
+import com.epam.web.dao.impl.book.BookDao;
+import com.epam.web.dao.helper.DaoHelper;
 import com.epam.web.dao.helper.DaoHelperFactory;
-import com.epam.web.service.OrderServiceMapper;
-import com.epam.web.dao.order.OrderDao;
+import com.epam.web.dao.impl.order.OrderDao;
 import com.epam.web.entity.Order;
 import com.epam.web.entity.dto.OrderDto;
-import com.epam.web.exception.ConnectionPoolException;
 import com.epam.web.exception.DaoException;
 import com.epam.web.exception.ServiceException;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +22,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void createOrder(Order order) throws ConnectionPoolException, ServiceException {
-        try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
+    public void createOrder(Order order) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
             BookDao bookDao = daoHelper.createBookDao();
 
@@ -38,40 +35,81 @@ public class OrderServiceImpl implements OrderService {
             bookDao.decreaseBookAmount(bookId);
             daoHelper.commitTransaction();
 
-        } catch (Exception e) {
+        } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
     public Optional<Order> getOrderById(Integer orderId) throws ServiceException {
-        try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
             return orderDao.getById(orderId);
-        } catch (DaoException | ConnectionPoolException | SQLException e) {
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public void completeOrderById(Integer orderId, Integer bookId, Order.Status newStatus) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            OrderDao orderDao = daoHelper.createOrderDao();
+            BookDao bookDao = daoHelper.createBookDao();
+
+            //transaction
+            daoHelper.startTransaction();
+            orderDao.updateStatus(orderId, newStatus.toString());
+            bookDao.increaseBookAmount(bookId);
+            daoHelper.commitTransaction();
+
+        } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);
         }
     }
 
 
     @Override
-    public List<OrderDto> getOrdersDtoPart(int startPosition, int endPosition) throws ServiceException {
-        try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
+    public List<OrderDto> getActiveOrdersDtoPart(int startPosition, int endPosition) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
             List<Order> orderList = orderDao.findActiveOrdersPart(startPosition, endPosition);
             return orderServiceMapper.getAllOrdersDto(orderList);
 
-        } catch (DaoException | ConnectionPoolException | SQLException e) {
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<OrderDto> getReaderOrdersDtoPart(Integer userId, int startPosition, int endPosition) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            OrderDao orderDao = daoHelper.createOrderDao();
+            List<Order> orderList = orderDao.findReaderOrdersPart(userId, startPosition, endPosition);
+            return orderServiceMapper.getAllOrdersDto(orderList);
+
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public List<OrderDto> getAllOrdersDtoPart(int startPosition, int endPosition) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            OrderDao orderDao = daoHelper.createOrderDao();
+            List<Order> orderList = orderDao.findAllOrdersPart(startPosition, endPosition);
+            return orderServiceMapper.getAllOrdersDto(orderList);
+
+        } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);
         }
     }
 
     @Override
     public void changeOrderStatus(Integer orederId, Order.Status newStatus) throws ServiceException {
-        try (DaoHelperImpl daoHelper = daoHelperFactory.create()) {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();
             orderDao.updateStatus(orederId, newStatus.toString());
-        } catch (DaoException | ConnectionPoolException | SQLException e) {
+        } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);
         }
     }

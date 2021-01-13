@@ -4,6 +4,7 @@ import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
 import com.epam.web.entity.Book;
 import com.epam.web.entity.Publisher;
+import com.epam.web.exception.FieldValidatorException;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.service.book.BookService;
 import com.epam.web.service.book.BookServiceImpl;
@@ -23,6 +24,7 @@ public class SaveBookCommand implements Command {
     private static final String BOOK_ADDED = "bookAdded";
     private static final String BOOK_EDITED = "bookEdited";
     private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
+    private static final String BOOK_PAGE_JSP = "WEB-INF/views/edit_book_page.jsp";
 
     private final BookService bookService;
     private final PublisherService publisherService;
@@ -34,7 +36,6 @@ public class SaveBookCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        try {
             String publisherName = request.getParameter(PUBLISHER_NAME_PARAMETER);
             Publisher publisher = publisherService.getPublisherByName(publisherName).get();
 
@@ -52,7 +53,12 @@ public class SaveBookCommand implements Command {
 
             Book book = new Book(id, title, author, pages, amount, publisher, false);
 
-            bookService.saveBook(book);
+            try{
+                bookService.saveBook(book);
+            }catch (FieldValidatorException e){
+                request.setAttribute("invalidData", true);
+                return CommandResult.forward(BOOK_PAGE_JSP);
+            }
 
             if (idString.isEmpty()) {
                 request.setAttribute(BOOK_ADDED, true);
@@ -60,8 +66,5 @@ public class SaveBookCommand implements Command {
                 request.setAttribute(BOOK_EDITED, true);
             }
             return CommandResult.forward(MESSAGE_JSP);
-        } catch (ServiceException e) {
-            throw new ServiceException(e.getMessage(), e);
-        }
     }
 }

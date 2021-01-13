@@ -18,12 +18,9 @@ import java.util.List;
 public class ViewOrdersCommand implements Command {
     private static final String CURRENT_PAGE_PARAMETER = "currentPage";
     private static final int FIRST_PAGE = 1;
-    private static final int RECORDS_PER_PAGE = 15;
+    private static final int RECORDS_PER_PAGE = 20;
     private static final String ORDER_LIST_PARAMETER = "orderList";
-    private static final String MY_ORDERS_PAGE = "WEB-INF/views/my_orders.jsp";
     private static final String ALL_ORDERS_PAGE = "WEB-INF/views/all_orders.jsp";
-    private static final String CURRENT_DATA_ATTRIBUTE = "currentData";
-    private static final String ROLE_ATTRIBUTE = "role";
 
     private final OrderService service;
 
@@ -34,9 +31,6 @@ public class ViewOrdersCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         int currentPage;
-        CommandResult commandResult = null;
-
-        HttpSession session = request.getSession();
 
         if (request.getParameter(CURRENT_PAGE_PARAMETER) != null) {
             currentPage = Integer.parseInt(request.getParameter(CURRENT_PAGE_PARAMETER));
@@ -44,20 +38,10 @@ public class ViewOrdersCommand implements Command {
             currentPage = FIRST_PAGE;
         }
 
-        List<OrderDto> orderList = service.getOrdersDtoPart((currentPage - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE);
+        List<OrderDto> orderList = service.getActiveOrdersDtoPart((currentPage - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE);
 
         request.setAttribute(ORDER_LIST_PARAMETER, orderList);
         request.setAttribute(CURRENT_PAGE_PARAMETER, currentPage);
-        request.setAttribute(CURRENT_DATA_ATTRIBUTE, LocalDate.now());
-
-        String roleString = session.getAttribute(ROLE_ATTRIBUTE).toString();
-        User.Role role = User.Role.valueOf(roleString);
-
-        if (role == User.Role.READER) {
-            commandResult = CommandResult.forward(MY_ORDERS_PAGE);
-        } else if (role == User.Role.LIBRARIAN) {
-            commandResult = CommandResult.forward(ALL_ORDERS_PAGE);
-        }
-        return commandResult;
+        return CommandResult.forward(ALL_ORDERS_PAGE);
     }
 }

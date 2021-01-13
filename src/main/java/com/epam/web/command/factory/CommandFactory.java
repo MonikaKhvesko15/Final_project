@@ -11,6 +11,8 @@ public class CommandFactory {
     private static final String BOOK_SEARCH_COMMAND = "book_search";
     private static final String ORDER_BOOK_COMMAND = "order_book";
     private static final String VIEW_ORDERS_COMMAND = "view_orders";
+    private static final String ORDERS_HISTORY_COMMAND = "orders_history";
+    private static final String READER_ORDERS_COMMAND = "reader_orders";
     private static final String ISSUE_BOOK_COMMAND = "issue_book";
     private static final String RETURN_BOOK_COMMAND = "return_book";
     private static final String DELETE_BOOK_COMMAND = "delete_book";
@@ -53,6 +55,10 @@ public class CommandFactory {
                 return new OrderBookCommand();
             case VIEW_ORDERS_COMMAND:
                 return new ViewOrdersCommand();
+            case ORDERS_HISTORY_COMMAND:
+                return new OrdersHistoryCommand();
+            case READER_ORDERS_COMMAND:
+                return new ReaderOrdersCommand();
             case ISSUE_BOOK_COMMAND:
                 return new IssueBookCommand();
             case RETURN_BOOK_COMMAND:

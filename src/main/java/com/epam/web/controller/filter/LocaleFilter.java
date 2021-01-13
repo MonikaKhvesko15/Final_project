@@ -8,7 +8,7 @@ public class LocaleFilter implements Filter {
     private static final String LANG_PARAMETER = "language";
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 
@@ -18,6 +18,8 @@ public class LocaleFilter implements Filter {
         String language = req.getParameter(LANG_PARAMETER);
         if (language != null) {
             req.getSession().setAttribute(LANG_PARAMETER, language);
+        } else {
+            req.getSession().setAttribute(LANG_PARAMETER, "ru");
         }
         filterChain.doFilter(servletRequest, servletResponse);
     }

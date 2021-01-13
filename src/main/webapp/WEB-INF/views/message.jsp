@@ -10,27 +10,21 @@
     <meta charset="UTF-8">
     <title>Message</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/error.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="templates/header.jsp"/>
+<jsp:include page="templates/leftMenu.jsp"/>
 <div class="container">
-    <jsp:include page="templates/leftMenu.jsp"/>
-
     <main class="content">
-
         <c:if test="${bookNotFound}">
             <p><fmt:message key="message.book.not.found"/></p>
         </c:if>
 
         <c:if test="${bookOrdered}">
             <p><fmt:message key="message.book.ordered"/></p>
-        </c:if>
-
-        <c:if test="${noOrders}">
-            <p><fmt:message key="message.no.orders"/></p>
         </c:if>
 
         <c:if test="${bookDeleted}">
@@ -45,8 +39,10 @@
             <p><fmt:message key="message.book.added"/></p>
         </c:if>
 
+        <c:if test="${foundBookDeleted}">
+            <p><fmt:message key="message.foundBook.deleted"/></p>
+        </c:if>
     </main>
-
 </div>
 </body>
 </html>

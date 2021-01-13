@@ -21,7 +21,7 @@ public class BookSearchCommand implements Command {
     private static final String BOOK_CATALOG_PAGE = "WEB-INF/views/book_catalog.jsp";
     private static final String IS_BOOK_PAGE = "isBookPage";
     private static final String BOOK_NOT_FOUND_MESSAGE = "bookNotFound";
-    private static final String BOOK_DELETED_MESSAGE = "bookDeleted";
+    private static final String BOOK_DELETED_MESSAGE = "foundBookDeleted";
 
     private final BookService service;
 
@@ -41,10 +41,10 @@ public class BookSearchCommand implements Command {
             Optional<Book> foundBookOptional = service.findBookByTitle(title);
             if (foundBookOptional.isPresent()) {
                 book = foundBookOptional.get();
-                if(!book.isDeleted()) {
+                if (!book.isDeleted()) {
                     request.setAttribute(FOUND_BOOK_PARAMETER, book);
                     commandResult = CommandResult.forward(BOOK_CATALOG_PAGE);
-                }else {
+                } else {
                     request.setAttribute(BOOK_DELETED_MESSAGE, true);
                     commandResult = CommandResult.forward(MESSAGE_JSP);
                 }

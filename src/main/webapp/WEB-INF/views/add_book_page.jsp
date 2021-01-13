@@ -38,11 +38,11 @@
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.pages"/></th>
-                        <th><input type="number" name="pages" min="1" required></th>
+                        <th><input type="number" name="pages" min="1" max="3000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.amount"/></th>
-                        <th><input type="number" name="amount" min="0" required></th>
+                        <th><input type="number" name="amount" min="0" max="1000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.publisher.name"/></th>
@@ -64,6 +64,9 @@
                         <th><input class="edit" type="submit" value=<fmt:message key="local.add"/>></th>
                     </tr>
                 </form>
+                <c:if test="${invalidData}">
+                    <span style="color: orangered"><fmt:message key="invalid.data"/></span>
+                </c:if>
             </table>
         </div>
     </main>

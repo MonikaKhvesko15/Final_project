@@ -7,12 +7,13 @@ import com.epam.web.exception.ServiceException;
 import com.epam.web.service.order.OrderService;
 import com.epam.web.service.order.OrderServiceImpl;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class IssueBookCommand implements Command {
     private static final String ORDER_ID_PARAMETER = "orderId";
-    private static final String VIEW_ORDERS_PAGE = "/Final_project_war/controller?command=view_orders";
+    private static final String VIEW_ORDERS_PAGE = "/controller?command=view_orders";
 
     private final OrderService service;
 
@@ -22,15 +23,13 @@ public class IssueBookCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-        try {
-            String orderIdString = request.getParameter(ORDER_ID_PARAMETER);
-            Integer orderId = Integer.parseInt(orderIdString);
-            Order.Status newStatus = Order.Status.ACCEPTED;
-            service.changeOrderStatus(orderId, newStatus);
+        String orderIdString = request.getParameter(ORDER_ID_PARAMETER);
+        Integer orderId = Integer.parseInt(orderIdString);
+        Order.Status newStatus = Order.Status.ACCEPTED;
+        service.changeOrderStatus(orderId, newStatus);
 
-            return CommandResult.redirect(VIEW_ORDERS_PAGE);
-        } catch (ServiceException e) {
-            throw new ServiceException(e.getMessage(), e);
-        }
+        ServletContext servletContext = request.getServletContext();
+        String contextPath = servletContext.getContextPath();
+        return CommandResult.redirect(contextPath + VIEW_ORDERS_PAGE);
     }
 }

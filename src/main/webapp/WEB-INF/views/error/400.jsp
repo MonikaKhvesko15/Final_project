@@ -10,30 +10,20 @@
     <meta charset="UTF-8">
     <title>Error</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/error.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
-<body>
-<jsp:include page="templates/header.jsp"/>
-<div class="container">
-    <jsp:include page="templates/leftMenu.jsp"/>
 
+<body>
+<jsp:include page="../templates/header.jsp"/>
+<div class="container">
+    <nav class="menu"></nav>
     <main class="content">
 
-        <c:if test="${errorMessage}">
-            <p><fmt:message key="error_page.main_controller"/></p>
-        </c:if>
+            <p><fmt:message key="error.400"/></p>
 
-        <c:if test="${userBlockErrorMessage}">
-            <p><fmt:message key="error_page.user_blocked"/></p>
-        </c:if>
-
-        <c:if test="${impossibleToDelete}">
-            <p><fmt:message key="error_page.impossibleDeleteBook"/></p>
-        </c:if>
     </main>
-
 </div>
 </body>
 </html>

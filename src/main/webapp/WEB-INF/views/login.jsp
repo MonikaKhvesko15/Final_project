@@ -17,8 +17,8 @@
 
 <body>
 <jsp:include page="templates/header.jsp"/>
+<jsp:include page="templates/leftMenu.jsp"/>
 <div class="container">
-    <nav class="menu"></nav>
     <main class="content">
         <p><fmt:message key="local.welcome"/></p>
         <form class="login" action="${pageContext.request.contextPath}/controller?command=login" method="POST">
@@ -27,7 +27,7 @@
             <label><span><fmt:message key="local.form.login.username"/></span> <input type="text" name="login" required></label>
             <label><span><fmt:message key="local.form.login.password"/> </span> <input type="password" name="password"
                                                                                        required></label>
-            <input class="btn-submit" type="submit" value=<fmt:message key="local.form.button.login"/>>
+            <input class="btn-submit" type="submit" value=<fmt:message key="local.login"/>>
         </form>
         ${errorMessage}
     </main>

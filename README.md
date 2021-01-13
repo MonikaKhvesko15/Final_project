@@ -27,7 +27,8 @@ The librarian has 2 statuses: *ENABLE*, *BLOCKED*. Librarian with status *ENABLE
         1. Login/Logout
         2. Edit personal information
         3. Issue/return book
-        4. Switch language
+        4. View orders history
+        5. Switch language
         
 ##### 3. Administrator
 
@@ -44,4 +45,4 @@ The administrator fills the site with books, changes their description if necess
         7. Switch language
     
 ### **Objects:** **book**, **order**, **publisher**.
-The *book* has parameters such as title, author, numb of pages,  amount, publisher (publisher name, establish year). The *order* can be either accepted (librarian issues a book) or finished (if reader returned book).
+The *book* has parameters such as title, author, numb of pages,  amount, status(isDeleted), publisher (publisher name, establish year). The *order* can be either under consideration(until the librarian gives out the book), accepted (librarian issues a book), completed (if reader returned book), rejected(if admin deleted book).

@@ -57,6 +57,9 @@
                 <div class="editField"><input type="text" name="surname" required class = "enter"></div>
                 <input class="edit" type="submit" value=<fmt:message key="local.edit"/>>
             </form>
+            <c:if test="${invalidData}">
+               <span style="color: orangered"><fmt:message key="invalid.data"/></span>
+            </c:if>
         </div>
     </main>
 </div>

@@ -1,5 +1,6 @@
 package com.epam.web.dao.mapper;
 
+import com.epam.web.entity.Role;
 import com.epam.web.entity.User;
 
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ public class UserRowMapper implements RowMapper<User> {
         String surname = resultSet.getString(User.SURNAME);
 
         String roleString = resultSet.getString(User.ROLE);
-        User.Role role = User.Role.valueOf(roleString.toUpperCase());
+        Role role = Role.valueOf(roleString.toUpperCase());
 
         boolean isBlocked = resultSet.getBoolean(User.STATUS);
 

@@ -1,8 +1,7 @@
-package com.epam.web.dao.user;
+package com.epam.web.dao.impl.user;
 
 import com.epam.web.dao.extractor.UserFieldsExtractor;
 import com.epam.web.dao.AbstractDao;
-import com.epam.web.entity.Book;
 import com.epam.web.entity.User;
 import com.epam.web.exception.DaoException;
 import com.epam.web.dao.mapper.UserRowMapper;

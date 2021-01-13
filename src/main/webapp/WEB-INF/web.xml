@@ -2,36 +2,77 @@
          xmlns="http://xmlns.jcp.org/xml/ns/javaee"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
          http://www.oracle.com/webfolder/technetwork/jsc/xml/ns/javaee/web-app_4_0.xsd"
-version="4.0">
+         version="4.0">
 
-  <display-name>Final_project</display-name>
+    <display-name>Final_project</display-name>
 
-  <servlet>
-    <servlet-name>main</servlet-name>
-    <servlet-class>com.epam.web.controller.MainController</servlet-class>
-  </servlet>
+    <servlet>
+        <servlet-name>main</servlet-name>
+        <servlet-class>com.epam.web.controller.MainController</servlet-class>
+    </servlet>
 
-  <servlet-mapping>
-    <servlet-name>main</servlet-name>
-    <url-pattern>/controller</url-pattern>
-  </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>main</servlet-name>
+        <url-pattern>/controller</url-pattern>
+    </servlet-mapping>
 
-  <filter>
-    <filter-name>Encoding</filter-name>
-    <filter-class>com.epam.web.controller.filter.EncodingFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>Encoding</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+    <filter>
+        <filter-name>Encoding</filter-name>
+        <filter-class>com.epam.web.controller.filter.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
-  <filter>
-    <filter-name>language</filter-name>
-    <filter-class>com.epam.web.controller.filter.LocaleFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>language</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
+    <filter>
+        <filter-name>Sequrity</filter-name>
+        <filter-class>com.epam.web.controller.filter.SecurityFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Sequrity</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>language</filter-name>
+        <filter-class>com.epam.web.controller.filter.LocaleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>language</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <jsp-config>
+        <taglib>
+            <taglib-uri>customtags</taglib-uri>
+            <taglib-location>/WEB-INF/tld/custom.tld</taglib-location>
+        </taglib>
+    </jsp-config>
+
+    <error-page>
+        <error-code>400</error-code>
+        <location>/WEB-INF/views/error/400.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>401</error-code>
+        <location>/WEB-INF/views/error/401.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/views/error/403.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/error/404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/views/error/500.jsp</location>
+    </error-page>
 
 </web-app>

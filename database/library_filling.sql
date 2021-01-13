@@ -3,23 +3,19 @@ USE library;
 /*--------------filling in the table "users"---------------------*/
 
 INSERT INTO users (login, password, firstname, surname, role)
-VALUES ('123', SHA1('123'), 'Monika', 'Khvesko', 'READER');
-
-INSERT INTO users (login, password, firstname, surname, role, isBlocked)
-VALUES ('alice111', SHA1('abc321'), 'Alice', 'Simmons', 'READER', 1);
+VALUES ('reader', SHA1('qwerty'), 'Monika', 'Khvesko', 'READER');
 
 INSERT INTO users (login, password, firstname, surname, role)
-VALUES ('user333', SHA1('user'), 'Adrian', 'Watkins', 'LIBRARIAN');
+VALUES ('user1', SHA1('123'), 'Alice', 'Simmons', 'READER');
+
+INSERT INTO users (login, password, firstname, surname, role)
+VALUES ('librarian', SHA1('12345'), 'Adrian', 'Watkins', 'LIBRARIAN');
 
 INSERT INTO users (login, password, firstname, surname, role, isBlocked)
-VALUES ('gloria15', SHA1('141414'), 'Gloria', 'Bailey', 'LIBRARIAN', 1);
+VALUES ('user2', SHA1('123'), 'Gloria', 'Bailey', 'LIBRARIAN', 1);
 
 INSERT INTO users (login, password, firstname, surname, role)
 VALUES ('admin', SHA1('11111'), 'Nicole', 'Rivera', 'ADMIN');
-
-INSERT INTO users (login, password, firstname, surname, role, isBlocked)
-VALUES ('admin11', SHA1('admin'), 'Alberto', 'Jenkins', 'ADMIN', 1);
-
 
 /*--------------filling in the table "publishers"---------------------*/
 

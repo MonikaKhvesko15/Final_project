@@ -57,7 +57,7 @@ public abstract class AbstractDao<T extends Identifiable> implements Dao<T> {
     }
 
 
-    //in this method we write parameters in form <<?>> then substitute them in the statement
+    //in this method we write parameters in form ? then substitute them in the statement
     private PreparedStatement createStatement(String query, Object... params) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         for (int i = 1; i <= params.length; i++) {

@@ -38,11 +38,11 @@
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.pages"/></th>
-                        <th><input type="number" name="pages" value="${requestScope.editBook.pages}" min="1" required></th>
+                        <th><input type="number" name="pages" value="${requestScope.editBook.pages}" min="1" max="5000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.amount"/></th>
-                        <th><input type="number" name="amount" value="${requestScope.editBook.amount}" min="0" required></th>
+                        <th><input type="number" name="amount" value="${requestScope.editBook.amount}" min="0" max="10000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.publisher.name"/></th>
@@ -65,6 +65,9 @@
                         <th><input class="edit" type="submit" value=<fmt:message key="local.edit"/>></th>
                     </tr>
                 </form>
+                <c:if test="${invalidData}">
+                    <span style="color: orangered"><fmt:message key="invalid.data"/></span>
+                </c:if>
             </table>
         </div>
     </main>

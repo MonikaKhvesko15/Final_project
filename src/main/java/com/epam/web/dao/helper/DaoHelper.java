@@ -1,12 +1,12 @@
 package com.epam.web.dao.helper;
 
-import com.epam.web.dao.book.BookDao;
-import com.epam.web.dao.order.OrderDao;
-import com.epam.web.dao.publisher.PublisherDao;
-import com.epam.web.dao.user.UserDao;
+import com.epam.web.dao.impl.book.BookDao;
+import com.epam.web.dao.impl.order.OrderDao;
+import com.epam.web.dao.impl.publisher.PublisherDao;
+import com.epam.web.dao.impl.user.UserDao;
 import com.epam.web.exception.DaoException;
 
-public interface DaoHelper {
+public interface DaoHelper extends AutoCloseable{
     UserDao createUserDao();
 
     BookDao createBookDao();
@@ -18,5 +18,7 @@ public interface DaoHelper {
     void startTransaction() throws DaoException;
 
     void commitTransaction() throws DaoException;
+
+    void close()throws DaoException;
 
 }

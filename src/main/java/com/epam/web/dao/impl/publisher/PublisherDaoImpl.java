@@ -1,4 +1,4 @@
-package com.epam.web.dao.publisher;
+package com.epam.web.dao.impl.publisher;
 
 import com.epam.web.dao.AbstractDao;
 import com.epam.web.dao.extractor.PublisherFieldsExtractor;

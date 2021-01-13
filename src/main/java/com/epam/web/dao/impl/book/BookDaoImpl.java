@@ -1,4 +1,4 @@
-package com.epam.web.dao.book;
+package com.epam.web.dao.impl.book;
 
 import com.epam.web.dao.AbstractDao;
 

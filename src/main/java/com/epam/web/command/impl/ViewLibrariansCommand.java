@@ -14,7 +14,7 @@ import java.util.List;
 public class ViewLibrariansCommand implements Command {
     private static final String CURRENT_PAGE_PARAMETER = "currentPage";
     private static final int FIRST_PAGE = 1;
-    private static final int RECORDS_PER_PAGE = 15;
+    private static final int RECORDS_PER_PAGE = 20;
     private static final String LIBRARIAN_LIST_PARAMETER = "librarianList";
     private static final String LIBRARIANS_PAGE = "WEB-INF/views/all_librarians.jsp";
 

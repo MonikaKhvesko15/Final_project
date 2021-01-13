@@ -16,8 +16,8 @@
 </head>
 <body>
 <jsp:include page="templates/header.jsp"/>
+<jsp:include page="templates/leftMenu.jsp"/>
 <div class="container">
-    <nav class="menu"></nav>
     <main class="content">
         <p><fmt:message key="local.welcome"/></p>
     </main>

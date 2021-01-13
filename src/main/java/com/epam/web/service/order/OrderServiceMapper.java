@@ -1,18 +1,16 @@
-package com.epam.web.service;
+package com.epam.web.service.order;
 
-import com.epam.web.dao.book.BookDao;
+import com.epam.web.dao.impl.book.BookDao;
 import com.epam.web.dao.helper.DaoHelperImpl;
 import com.epam.web.dao.helper.DaoHelperFactory;
-import com.epam.web.dao.user.UserDao;
+import com.epam.web.dao.impl.user.UserDao;
 import com.epam.web.entity.Book;
 import com.epam.web.entity.Order;
 import com.epam.web.entity.User;
 import com.epam.web.entity.dto.OrderDto;
-import com.epam.web.exception.ConnectionPoolException;
 import com.epam.web.exception.DaoException;
 import com.epam.web.exception.ServiceException;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ public class OrderServiceMapper {
 
     }
 
-    public List<OrderDto> getAllOrdersDto(List<Order> orderList) throws DaoException, ConnectionPoolException, ServiceException {
+    public List<OrderDto> getAllOrdersDto(List<Order> orderList) throws ServiceException {
         List<OrderDto> orderDtoList = new ArrayList<>();
         for (Order order : orderList) {
             OrderDto orderDto = convertToOrderDto(order);
@@ -34,7 +32,7 @@ public class OrderServiceMapper {
         return orderDtoList;
     }
 
-    private OrderDto convertToOrderDto(Order order) throws ConnectionPoolException, DaoException, ServiceException {
+    private OrderDto convertToOrderDto(Order order) throws ServiceException {
 
         Integer id = (Integer) order.getId();
         LocalDate issueDate = order.getIssueDate();
@@ -58,7 +56,7 @@ public class OrderServiceMapper {
             String username = user.getFirstname();
             String surname = user.getSurname();
             return new OrderDto(id, issueDate, returnDate, status, type, bookTitle, author, username, surname);
-        } catch (DaoException | SQLException e) {
+        } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);
         }
 

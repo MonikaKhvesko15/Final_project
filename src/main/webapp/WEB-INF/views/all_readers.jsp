@@ -11,6 +11,7 @@
     <title>Readers</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/all_users.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/footer.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
@@ -27,7 +28,7 @@
 
                 <c:forEach var="reader" items="${requestScope.readerList}" varStatus="index">
                     <tr>
-                        <td>${(15)*(requestScope.currentPage - 1) + index.count}</td>
+                        <td>${(20)*(requestScope.currentPage - 1) + index.count}</td>
                         <td>${reader.firstname}</td>
                         <td>${reader.surname}</td>
                         <td>
@@ -73,33 +74,37 @@
                         </div>
                     </tr>
                 </c:forEach>
-                <%--                <c:choose>--%>
-                <%--                    <c:when test="${(requestScope.currentPage - 1) == 0}">--%>
-                <%--                        <a align="center" href="" type="submit" class="pagination"><fmt:message--%>
-                <%--                                key="orders.previous"/></a>--%>
-                <%--                    </c:when>--%>
-                <%--                    <c:otherwise>--%>
-                <%--                        <a align="center"--%>
-                <%--                           href="${pageContext.request.contextPath}/controller?command=view_readers&currentPage=${requestScope.currentPage-1}"--%>
-                <%--                           type="submit" class="pagination"><fmt:message key="orders.previous"/></a>--%>
-                <%--                    </c:otherwise>--%>
-                <%--                </c:choose>--%>
-                <%--                <div class="pagination">${requestScope.currentPage}</div>--%>
-                <%--                <c:choose>--%>
-                <%--                    <c:when test="${requestScope.readerList.size() != 15}">--%>
-                <%--                        <a align="center" href="" type="submit" class="pagination"><fmt:message key="orders.next"/></a>--%>
-                <%--                    </c:when>--%>
-                <%--                    <c:otherwise>--%>
-                <%--                        <a align="center"--%>
-                <%--                           href="${pageContext.request.contextPath}/controller?command=view_readers&currentPage=${requestScope.currentPage+1}"--%>
-                <%--                           type="submit" class="pagination"><fmt:message key="orders.next"/></a>--%>
-                <%--                    </c:otherwise>--%>
-                <%--                </c:choose>--%>
             </table>
 
 
         </div>
-
+        <%--    pagination--%>
+        <div class="center">
+            <div class="pagination" align="center">
+                <c:choose>
+                    <c:when test="${(requestScope.currentPage - 1) == 0}">
+                        <a align="center" href="" type="submit">&laquo;</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a align="center"
+                           href="${pageContext.request.contextPath}/controller?command=view_readers&currentPage=${requestScope.currentPage-1}"
+                           type="submit">&laquo;</a>
+                    </c:otherwise>
+                </c:choose>
+                <a href="" class="active">${requestScope.currentPage}</a>
+                <c:choose>
+                    <c:when test="${requestScope.bookList.size() != 20}">
+                        <a align="center" href="" type="submit">&raquo;</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a align="center"
+                           href="${pageContext.request.contextPath}/controller?command=view_readers&currentPage=${requestScope.currentPage+1}"
+                           type="submit">&raquo;</a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </div>
+        <%--    pagination--%>
     </main>
 </div>
 </body>
