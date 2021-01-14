@@ -3,7 +3,7 @@ package com.epam.web.entity;
 
 import java.io.Serializable;
 
-public class User implements Identifiable {
+public class User implements Identifiable, Cloneable {
     //table name for users
     public static final String TABLE = "users";
 
@@ -90,4 +90,8 @@ public class User implements Identifiable {
         this.isBlocked = isBlocked;
     }
 
+    @Override
+    public User clone() throws CloneNotSupportedException {
+        return (User) super.clone();
+    }
 }

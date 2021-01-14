@@ -12,7 +12,7 @@ public class UserValidator implements Validator<User> {
     private final String NAME_REGEX = "([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)";
 
     @Override
-    public boolean checkCorrectnessEnteredData(User user) throws FieldValidatorException {
+    public boolean isInputDataCorrect(User user) {
         boolean isValid = true;
         String login = user.getLogin();
         if (!isCorrespondsRegex(login, LOGIN_REGEX)) {

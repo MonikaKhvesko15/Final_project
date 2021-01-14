@@ -15,14 +15,15 @@ CREATE TABLE IF NOT EXISTS publishers
 CREATE TABLE IF NOT EXISTS users
 (
     id        INT AUTO_INCREMENT,
-    login     VARCHAR(25) NOT NULL UNIQUE,
+    login     VARCHAR(20) NOT NULL UNIQUE,
     password  VARCHAR(50) NOT NULL,
-    firstname VARCHAR(25) NOT NULL,
-    surname   VARCHAR(25) NOT NULL,
+    firstname VARCHAR(20) NOT NULL,
+    surname   VARCHAR(20) NOT NULL,
     role      ENUM ('GUEST','READER','LIBRARIAN','ADMIN'),
     isBlocked BIT DEFAULT 0,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    CONSTRAINT united_name_surname UNIQUE (firstname, surname)
 );
 
 CREATE TABLE IF NOT EXISTS books

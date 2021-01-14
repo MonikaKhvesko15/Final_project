@@ -7,6 +7,7 @@ import com.epam.web.dao.impl.order.OrderDao;
 import com.epam.web.entity.Book;
 import com.epam.web.entity.Order;
 import com.epam.web.exception.DaoException;
+import com.epam.web.exception.FieldValidatorException;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.validator.BookValidator;
 import com.epam.web.validator.Validator;
@@ -76,7 +77,11 @@ public class BookServiceImpl implements BookService {
     public void saveBook(Book book) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             BookDao bookDao = daoHelper.createBookDao();
-            bookDao.save(book);
+            if (bookValidator.isInputDataCorrect(book)) {
+                bookDao.save(book);
+            } else {
+                throw new FieldValidatorException();
+            }
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);
         }

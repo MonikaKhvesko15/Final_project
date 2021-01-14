@@ -30,19 +30,22 @@ public class EditUserCommand implements Command {
 
 
     @Override
-    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException, CloneNotSupportedException {
         String userFirstname = request.getParameter(FIRSTNAME_PARAMETER);
         String userSurname = request.getParameter(SURNAME_PARAMETER);
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute(USER_ATTRIBUTE);
-        user.setFirstname(userFirstname);
-        user.setSurname(userSurname);
+        User testUser = user.clone();
+        testUser.setFirstname(userFirstname);
+        testUser.setSurname(userSurname);
 
         ServletContext servletContext = request.getServletContext();
         String contextPath = servletContext.getContextPath();
         try {
-            service.editUser(user);
+            service.editUser(testUser);
+            user.setFirstname(userFirstname);
+            user.setSurname(userSurname);
             return CommandResult.redirect(contextPath + HOME_PAGE);
         } catch (FieldValidatorException e) {
             request.setAttribute("invalidData", true);

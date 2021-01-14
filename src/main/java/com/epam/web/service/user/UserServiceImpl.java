@@ -1,6 +1,5 @@
 package com.epam.web.service.user;
 
-import com.epam.web.dao.impl.book.BookDao;
 import com.epam.web.dao.helper.DaoHelper;
 import com.epam.web.dao.helper.DaoHelperFactory;
 import com.epam.web.dao.impl.user.UserDao;
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
     public void editUser(User user) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             UserDao dao = daoHelper.createUserDao();
-            if (userValidator.checkCorrectnessEnteredData(user)) {
+            if (userValidator.isInputDataCorrect(user)) {
                 dao.updateFirstnameAndSurnameById((Integer) user.getId(), user.getFirstname(), user.getSurname());
             } else {
                 throw new FieldValidatorException();

@@ -25,14 +25,14 @@ public class SecurityFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute(USER_ATTRIBUTE);
-        Role role =null;
-        if(user!=null){
-            role=user.getRole();
-        }else {
+        Role role = null;
+        if (user != null) {
+            role = user.getRole();
+        } else {
             role = Role.GUEST;
             session.setAttribute(User.ROLE, role);
         }
-        String command=req.getParameter(COMMAND_PARAMETER);
+        String command = req.getParameter(COMMAND_PARAMETER);
         if ((command == null) || role.hasAccess(command)) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {

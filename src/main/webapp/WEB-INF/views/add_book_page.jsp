@@ -30,11 +30,11 @@
                     <input type="hidden" name="bookId" value="${null}">
                     <tr>
                         <th><fmt:message key="local.book.title"/></th>
-                        <th><input type="text" name="title" required></th>
+                        <th><input type="text" name="title" minlength="2" maxlength="50"  required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.author"/></th>
-                        <th><input type="text" name="author" required></th>
+                        <th><input type="text" name="author" minlength="2" maxlength="50" pattern="[^0-9!*$?]+" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.pages"/></th>

@@ -14,8 +14,9 @@
     <div class="search">
         <c:choose>
             <c:when test="${requestScope.isBookPage}">
-                <form action="${pageContext.request.contextPath}/controller?command=book_search"
-                      method="POST">
+                <form action="${pageContext.request.contextPath}/controller"
+                      method="GET">
+                    <input type="hidden" name="command" value="book_search">
                     <input class="enter" type="text" name="title">
                     <input class="edit" type="submit" value="<fmt:message key="local.search"/>">
                 </form>
@@ -59,11 +60,11 @@
     <div class="buttons">
 
         <c:choose>
-            <c:when test="${sessionScope.login == null}">
+            <c:when test="${sessionScope.user == null}">
                 <a href="${pageContext.request.contextPath}/controller?command=login_page">
                     <fmt:message key="local.login"/></a>
             </c:when>
-            <c:when test="${sessionScope.login != null}">
+            <c:when test="${sessionScope.user != null}">
                 <a href="${pageContext.request.contextPath}/controller?command=logout">
                     <fmt:message key="local.logout"/></a>
             </c:when>

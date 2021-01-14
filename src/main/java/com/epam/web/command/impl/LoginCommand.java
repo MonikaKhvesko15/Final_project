@@ -17,7 +17,6 @@ public class LoginCommand implements Command {
     private static final String LOGIN_PARAMETER = "login";
     private static final String PASSWORD_PARAMETER = "password";
     private static final String ERROR_MESSAGE_ATTRIBUTE = "errorMessage";
-    private static final String USER_ID_ATTRIBUTE = "userId";
     private static final String USER_ATTRIBUTE = "user";
     private static final String ROLE_ATTRIBUTE = "role";
 
@@ -45,15 +44,13 @@ public class LoginCommand implements Command {
             User user = userOptional.get();
             if (!(user.isBlocked())) {
                 HttpSession session = request.getSession();
-                session.setAttribute(USER_ID_ATTRIBUTE, user.getId().toString());
-                session.setAttribute(LOGIN_PARAMETER, user.getLogin());
                 session.setAttribute(USER_ATTRIBUTE, user);
                 session.setAttribute(ROLE_ATTRIBUTE, user.getRole().toString());
 
                 ServletContext servletContext = request.getServletContext();
                 String contextPath = servletContext.getContextPath();
 
-                commandResult = CommandResult.redirect(contextPath+HOME_PAGE);
+                commandResult = CommandResult.redirect(contextPath + HOME_PAGE);
             } else if (user.isBlocked()) {
                 request.setAttribute(USER_BLOCK_ERROR_MESSAGE, true);
                 commandResult = CommandResult.forward(ERROR_JSP);

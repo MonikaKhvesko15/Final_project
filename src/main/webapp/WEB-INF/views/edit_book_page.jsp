@@ -30,19 +30,23 @@
                     <input type="hidden" name="bookId" value="${requestScope.editBook.id}">
                     <tr>
                         <th><fmt:message key="local.book.title"/></th>
-                        <th><input type="text" name="title" value="${requestScope.editBook.title}" required></th>
+                        <th><input type="text" name="title" value="${requestScope.editBook.title}" minlength="2"
+                                   maxlength="50" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.author"/></th>
-                        <th><input type="text" name="author" value="${requestScope.editBook.author}" required></th>
+                        <th><input type="text" name="author" value="${requestScope.editBook.author}" minlength="2"
+                                   maxlength="50" pattern="[^0-9!*$?]+" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.pages"/></th>
-                        <th><input type="number" name="pages" value="${requestScope.editBook.pages}" min="1" max="5000" required></th>
+                        <th><input type="number" name="pages" value="${requestScope.editBook.pages}" min="1" max="3000"
+                                   required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.amount"/></th>
-                        <th><input type="number" name="amount" value="${requestScope.editBook.amount}" min="0" max="10000" required></th>
+                        <th><input type="number" name="amount" value="${requestScope.editBook.amount}" min="0"
+                                   max="1000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.publisher.name"/></th>

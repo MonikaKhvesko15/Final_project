@@ -39,7 +39,7 @@
                         <div class="element-amount">
                             <p><b><fmt:message key="local.book.amount"/></b>${book.amount}</p>
                         </div>
-                        <c:if test="${sessionScope.role=='READER'}">
+                        <c:if test="${sessionScope.user.role=='READER'}">
                             <c:choose>
                                 <c:when test="${book.amount > 0}">
                                     <div class="buttons">
@@ -63,7 +63,7 @@
                                 </c:when>
                             </c:choose>
                         </c:if>
-                        <c:if test="${sessionScope.role=='ADMIN'}">
+                        <c:if test="${sessionScope.user.role=='ADMIN'}">
                             <form class="delete"
                                   action="${pageContext.request.contextPath}/controller?command=delete_book"
                                   method="post">
@@ -101,7 +101,7 @@
                     <div class="element-amount">
                         <p><b><fmt:message key="local.book.amount"/></b>${requestScope.foundBook.amount}</p>
                     </div>
-                    <c:if test="${sessionScope.role=='READER'}">
+                    <c:if test="${sessionScope.user.role=='READER'}">
                         <c:choose>
                             <c:when test="${requestScope.foundBook.amount > 0}">
                                 <div class="buttons">
@@ -125,7 +125,7 @@
                             </c:when>
                         </c:choose>
                     </c:if>
-                    <c:if test="${sessionScope.role=='ADMIN'}">
+                    <c:if test="${sessionScope.user.role=='ADMIN'}">
                         <form class="delete"
                               action="${pageContext.request.contextPath}/controller?command=delete_book"
                               method="post">

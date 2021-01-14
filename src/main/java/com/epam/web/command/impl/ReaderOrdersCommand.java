@@ -2,6 +2,7 @@ package com.epam.web.command.impl;
 
 import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
+import com.epam.web.entity.User;
 import com.epam.web.entity.dto.OrderDto;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.service.order.OrderService;
@@ -20,7 +21,7 @@ public class ReaderOrdersCommand implements Command {
     private static final String ORDER_LIST_PARAMETER = "orderList";
     private static final String MY_ORDERS_PAGE = "WEB-INF/views/my_orders.jsp";
     private static final String CURRENT_DATA_ATTRIBUTE = "currentData";
-    private static final String USER_ID_ATTRIBUTE = "userId";
+    private static final String USER_ATTRIBUTE = "user";
 
     private final OrderService service;
 
@@ -39,8 +40,8 @@ public class ReaderOrdersCommand implements Command {
             currentPage = FIRST_PAGE;
         }
 
-        String userIdString = (String) session.getAttribute(USER_ID_ATTRIBUTE);
-        Integer userId = Integer.parseInt(userIdString);
+        User user = (User) session.getAttribute(USER_ATTRIBUTE);
+        Integer userId = (Integer) user.getId();
 
         List<OrderDto> orderList = service.getReaderOrdersDtoPart(userId,(currentPage - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE);
 

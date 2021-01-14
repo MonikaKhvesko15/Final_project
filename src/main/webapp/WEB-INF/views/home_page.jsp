@@ -52,9 +52,10 @@
                     </th>
                 </tr>
             </table>
+
             <form action="${pageContext.request.contextPath}/controller?command=edit_user" method="POST">
-                <div class="editField"><input type="text" name="firstname" required class = "enter"></div>
-                <div class="editField"><input type="text" name="surname" required class = "enter"></div>
+                <div class="editField"><input class = "enter" type="text" name="firstname" pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)" minlength="2" maxlength="20" required></div>
+                <div class="editField"><input class = "enter" type="text" name="surname" pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)" minlength="2" maxlength="20" required></div>
                 <input class="edit" type="submit" value=<fmt:message key="local.edit"/>>
             </form>
             <c:if test="${invalidData}">

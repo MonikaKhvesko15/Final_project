@@ -12,35 +12,33 @@ public class BookValidator implements Validator<Book> {
     private static final int MAX_PAGES_AMOUNT = 3000;
     private static final int MIN_BOOK_AMOUNT = 0;
     private static final int MAX_BOOK_AMOUNT = 1000;
-    private final String AUTHOR_REGEX = "^([a-z ,.'-]+)|([А-яа-я ,.'-]+)$";
-    private final String TITLE_REGEX = "^([a-z ,.'-]+)|([А-яа-я ,.'-]+)$";
+    private static final int MIN_TITLE_LENGHT = 2;
+    private static final int MAX_TITLE_LENGHT = 50;
+    private final String AUTHOR_REGEX = "[^0-9!*$?]+";
 
 
     @Override
-    public boolean checkCorrectnessEnteredData(Book book) throws FieldValidatorException {
+    public boolean isInputDataCorrect(Book book) {
         boolean isValid = true;
         String title = book.getTitle();
-        if (!isCorrespondsRegex(title, TITLE_REGEX)) {
+        if (title.length() < MIN_TITLE_LENGHT || title.length() > MAX_TITLE_LENGHT) {
             isValid = false;
-            //throw new FieldValidatorException();
         }
         String author = book.getAuthor();
         if (!isCorrespondsRegex(author, AUTHOR_REGEX)) {
             isValid = false;
-            //throw new FieldValidatorException();
         }
         int pages = book.getPages();
         if (pages < MIN_PAGES_AMOUNT || pages > MAX_PAGES_AMOUNT) {
             isValid = false;
-            //throw new FieldValidatorException();
         }
         Integer amount = book.getAmount();
         if (amount < MIN_BOOK_AMOUNT || (amount > MAX_BOOK_AMOUNT)) {
             isValid = false;
-            //throw new FieldValidatorException();
         }
         return isValid;
     }
+
 
     private boolean isCorrespondsRegex(String line, String regex) {
         Pattern pattern = Pattern.compile(regex);
