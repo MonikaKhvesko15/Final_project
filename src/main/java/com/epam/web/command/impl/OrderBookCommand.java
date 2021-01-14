@@ -3,6 +3,7 @@ package com.epam.web.command.impl;
 import com.epam.web.command.CommandResult;
 import com.epam.web.command.factory.Command;
 import com.epam.web.entity.Order;
+import com.epam.web.entity.User;
 import com.epam.web.entity.dto.OrderDto;
 import com.epam.web.exception.ConnectionPoolException;
 import com.epam.web.exception.ServiceException;
@@ -16,7 +17,7 @@ import java.time.LocalDate;
 
 public class OrderBookCommand implements Command {
     private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
-    private static final String USER_ID_ATTRIBUTE = "userId";
+    private static final String USER_ATTRIBUTE = "user";
     private static final String ISSUE_TYPE_PARAMETER = "issue_type";
     private static final String BOOK_ID_PARAMETER = "bookId";
     private static final String BOOK_ORDERED = "bookOrdered";
@@ -32,7 +33,9 @@ public class OrderBookCommand implements Command {
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
             HttpSession session = request.getSession();
 
-            Integer userId = (Integer.valueOf(session.getAttribute(USER_ID_ATTRIBUTE).toString()));
+
+            User user = (User)session.getAttribute(USER_ATTRIBUTE);
+            Integer userId = (Integer) user.getId();
 
             String issueTypeString = request.getParameter(ISSUE_TYPE_PARAMETER);
             Order.Type issueType = Order.Type.valueOf(issueTypeString.toUpperCase());

@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 public class LogoutCommand implements Command {
     private static final String LOGIN_PAGE = "/controller?command=login_page";
     private static final String ID = "id";
-    private static final String LOGIN = "login";
     private static final String USER = "user";
     private static final String ROLE = "role";
 
@@ -23,7 +22,6 @@ public class LogoutCommand implements Command {
         String contextPath = servletContext.getContextPath();
         if (session != null) {
             session.removeAttribute(ID);
-            session.removeAttribute(LOGIN);
             session.removeAttribute(USER);
             session.removeAttribute(ROLE);
 
