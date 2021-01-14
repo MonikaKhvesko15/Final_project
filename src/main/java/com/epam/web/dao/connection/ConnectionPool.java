@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
@@ -16,8 +17,8 @@ public class ConnectionPool {
     private Queue<ProxyConnection> freeConnections;
     private Queue<ProxyConnection> usingConnections;
     private static final int POOL_SIZE = 10;
-    private static final ReentrantLock CONNECTIONS_LOCKER = new ReentrantLock();
-    private static final ReentrantLock INSTANCE_LOCKER = new ReentrantLock();
+    private static final Lock CONNECTIONS_LOCKER = new ReentrantLock();
+    private static final Lock INSTANCE_LOCKER = new ReentrantLock();
     private static final AtomicBoolean isCreated = new AtomicBoolean();
 
     private ConnectionPool() throws ConnectionPoolException {
