@@ -24,11 +24,11 @@ public class EditBookPageCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-            String bookIdString = request.getParameter(BOOK_ID_PARAMETER);
-            Integer bookId = Integer.parseInt(bookIdString);
+        String bookIdString = request.getParameter(BOOK_ID_PARAMETER);
+        Integer bookId = Integer.parseInt(bookIdString);
 
-            Book book = service.getBookById(bookId).get();
-            request.setAttribute(EDIT_BOOK, book);
-            return CommandResult.forward(EDIT_BOOK_PAGE_JSP);
+        Book book = service.getBookById(bookId).get();
+        request.setAttribute(EDIT_BOOK, book);
+        return CommandResult.forward(EDIT_BOOK_PAGE_JSP);
     }
 }

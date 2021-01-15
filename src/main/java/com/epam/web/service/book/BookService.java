@@ -9,8 +9,12 @@ import java.util.Optional;
 
 public interface BookService {
     List<Book> getBooksPart(int startPosition, int endPosition) throws ServiceException;
+
     Optional<Book> findBookByTitle(String title) throws ServiceException;
+
     void deleteBookById(Integer bookId) throws ServiceException;
+
     Optional<Book> getBookById(Integer bookId) throws ServiceException;
+
     void saveBook(Book book) throws ServiceException;
 }

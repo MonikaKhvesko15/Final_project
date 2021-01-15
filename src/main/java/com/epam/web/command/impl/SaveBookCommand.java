@@ -36,35 +36,35 @@ public class SaveBookCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-            String publisherName = request.getParameter(PUBLISHER_NAME_PARAMETER);
-            Publisher publisher = publisherService.getPublisherByName(publisherName).get();
+        String publisherName = request.getParameter(PUBLISHER_NAME_PARAMETER);
+        Publisher publisher = publisherService.getPublisherByName(publisherName).get();
 
-            String idString = request.getParameter(BOOK_ID_PARAMETER);
-            Integer id = idString.isEmpty() ? null : Integer.parseInt(idString);
+        String idString = request.getParameter(BOOK_ID_PARAMETER);
+        Integer id = idString.isEmpty() ? null : Integer.parseInt(idString);
 
-            String title = request.getParameter(TITLE_PARAMETER);
-            String author = request.getParameter(AUTHOR_PARAMETER);
+        String title = request.getParameter(TITLE_PARAMETER);
+        String author = request.getParameter(AUTHOR_PARAMETER);
 
-            String pagesString = request.getParameter(PAGES_PARAMETER);
-            int pages = Integer.parseInt(pagesString);
+        String pagesString = request.getParameter(PAGES_PARAMETER);
+        int pages = Integer.parseInt(pagesString);
 
-            String amountString = request.getParameter(AMOUNT_PARAMETER);
-            Integer amount = Integer.parseInt(amountString);
+        String amountString = request.getParameter(AMOUNT_PARAMETER);
+        Integer amount = Integer.parseInt(amountString);
 
-            Book book = new Book(id, title, author, pages, amount, publisher, false);
+        Book book = new Book(id, title, author, pages, amount, publisher, false);
 
-            try{
-                bookService.saveBook(book);
-            }catch (FieldValidatorException e){
-                request.setAttribute("invalidData", true);
-                return CommandResult.forward(BOOK_PAGE_JSP);
-            }
+        try {
+            bookService.saveBook(book);
+        } catch (FieldValidatorException e) {
+            request.setAttribute("invalidData", true);
+            return CommandResult.forward(BOOK_PAGE_JSP);
+        }
 
-            if (idString.isEmpty()) {
-                request.setAttribute(BOOK_ADDED, true);
-            } else {
-                request.setAttribute(BOOK_EDITED, true);
-            }
-            return CommandResult.forward(MESSAGE_JSP);
+        if (idString.isEmpty()) {
+            request.setAttribute(BOOK_ADDED, true);
+        } else {
+            request.setAttribute(BOOK_EDITED, true);
+        }
+        return CommandResult.forward(MESSAGE_JSP);
     }
 }

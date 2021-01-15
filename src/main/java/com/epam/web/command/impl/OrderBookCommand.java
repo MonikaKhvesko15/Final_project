@@ -31,29 +31,29 @@ public class OrderBookCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
-            HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
 
-            User user = (User)session.getAttribute(USER_ATTRIBUTE);
-            Integer userId = (Integer) user.getId();
+        User user = (User) session.getAttribute(USER_ATTRIBUTE);
+        Integer userId = (Integer) user.getId();
 
-            String issueTypeString = request.getParameter(ISSUE_TYPE_PARAMETER);
-            Order.Type issueType = Order.Type.valueOf(issueTypeString.toUpperCase());
+        String issueTypeString = request.getParameter(ISSUE_TYPE_PARAMETER);
+        Order.Type issueType = Order.Type.valueOf(issueTypeString.toUpperCase());
 
-            String bookIdString = request.getParameter(BOOK_ID_PARAMETER);
-            Integer bookId = Integer.parseInt(bookIdString);
+        String bookIdString = request.getParameter(BOOK_ID_PARAMETER);
+        Integer bookId = Integer.parseInt(bookIdString);
 
-            LocalDate issueDate = LocalDate.now();
-            LocalDate returnDate = LocalDate.now();
-            if (issueType == Order.Type.SUBSCRIPTION) {
-                returnDate = issueDate.plusDays(30);
-            }
+        LocalDate issueDate = LocalDate.now();
+        LocalDate returnDate = LocalDate.now();
+        if (issueType == Order.Type.SUBSCRIPTION) {
+            returnDate = issueDate.plusDays(30);
+        }
 
-            Order order = new Order(null, issueDate, returnDate, null, issueType, bookId, userId);
-            orderService.createOrder(order);
+        Order order = new Order(null, issueDate, returnDate, null, issueType, bookId, userId);
+        orderService.createOrder(order);
 
-            request.setAttribute(BOOK_ORDERED, true);
-            return CommandResult.forward(MESSAGE_JSP);
+        request.setAttribute(BOOK_ORDERED, true);
+        return CommandResult.forward(MESSAGE_JSP);
 
     }
 }

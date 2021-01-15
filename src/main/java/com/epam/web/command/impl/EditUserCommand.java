@@ -30,7 +30,7 @@ public class EditUserCommand implements Command {
 
 
     @Override
-    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException, CloneNotSupportedException {
+    public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         String userFirstname = request.getParameter(FIRSTNAME_PARAMETER);
         String userSurname = request.getParameter(SURNAME_PARAMETER);
 

@@ -6,7 +6,7 @@ import com.epam.web.dao.impl.publisher.PublisherDao;
 import com.epam.web.dao.impl.user.UserDao;
 import com.epam.web.exception.DaoException;
 
-public interface DaoHelper extends AutoCloseable{
+public interface DaoHelper extends AutoCloseable {
     UserDao createUserDao();
 
     BookDao createBookDao();
@@ -19,6 +19,6 @@ public interface DaoHelper extends AutoCloseable{
 
     void commitTransaction() throws DaoException;
 
-    void close()throws DaoException;
+    void close() throws DaoException;
 
 }

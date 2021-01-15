@@ -31,11 +31,11 @@ public class DateFormatterTag extends BodyTagSupport {
         }
 
         HttpSession session = pageContext.getSession();
-        Object languageObj =  session.getAttribute(LANG_ATTRIBUTE);
-        Locale locale = new Locale("ru","BY");
+        Object languageObj = session.getAttribute(LANG_ATTRIBUTE);
+        Locale locale = new Locale("ru", "BY");
 
-        if(languageObj != null) {
-            String language= languageObj.toString();
+        if (languageObj != null) {
+            String language = languageObj.toString();
             switch (language) {
                 case "ru":
                     locale = new Locale("ru", "BY");

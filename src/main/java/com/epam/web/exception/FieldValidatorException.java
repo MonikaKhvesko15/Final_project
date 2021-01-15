@@ -1,21 +1,21 @@
 package com.epam.web.exception;
 
-public class FieldValidatorException extends ServiceException{
-    public FieldValidatorException(){
+public class FieldValidatorException extends ServiceException {
+    public FieldValidatorException() {
 
     }
 
-    public FieldValidatorException(String message){
+    public FieldValidatorException(String message) {
 
         super(message);
     }
 
-    public FieldValidatorException(String message, Throwable cause){
+    public FieldValidatorException(String message, Throwable cause) {
 
-        super(message,cause);
+        super(message, cause);
     }
 
-    public FieldValidatorException(Throwable cause){
+    public FieldValidatorException(Throwable cause) {
 
         super(cause);
     }

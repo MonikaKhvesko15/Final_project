@@ -18,7 +18,6 @@ public class ProxyConnectionCreator {
     private static final String DATABASE_URL = "url";
     private Properties properties;
 
-
     //package-private
     ProxyConnectionCreator() throws ConnectionPoolException {
         properties = new Properties();
@@ -44,6 +43,5 @@ public class ProxyConnectionCreator {
         }
         return new ProxyConnection(connection);
     }
-
 
 }

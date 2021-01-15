@@ -19,7 +19,7 @@ public class PublisherServiceImpl implements PublisherService {
     @Override
     public Optional<Publisher> getPublisherByName(String publisherName) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
-            PublisherDao publisherDao= daoHelper.createPublisherDao();
+            PublisherDao publisherDao = daoHelper.createPublisherDao();
             return publisherDao.getByName(publisherName);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);

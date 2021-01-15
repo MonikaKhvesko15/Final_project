@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.Year;
 import java.util.Objects;
 
-public class Publisher implements Identifiable{
+public class Publisher implements Identifiable {
 
     //table name for books
     public static final String TABLE = "publishers";
@@ -25,7 +25,7 @@ public class Publisher implements Identifiable{
         return id;
     }
 
-    public Publisher(){
+    public Publisher() {
 
     }
 

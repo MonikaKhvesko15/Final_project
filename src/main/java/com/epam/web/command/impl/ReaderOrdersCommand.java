@@ -43,7 +43,7 @@ public class ReaderOrdersCommand implements Command {
         User user = (User) session.getAttribute(USER_ATTRIBUTE);
         Integer userId = (Integer) user.getId();
 
-        List<OrderDto> orderList = service.getReaderOrdersDtoPart(userId,(currentPage - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE);
+        List<OrderDto> orderList = service.getReaderOrdersDtoPart(userId, (currentPage - 1) * RECORDS_PER_PAGE, RECORDS_PER_PAGE);
 
         request.setAttribute(ORDER_LIST_PARAMETER, orderList);
         request.setAttribute(CURRENT_PAGE_PARAMETER, currentPage);

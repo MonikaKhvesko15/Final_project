@@ -1,7 +1,11 @@
 package com.epam.web.entity;
 
 
+import com.epam.web.exception.ConnectionPoolException;
+import com.epam.web.exception.ServiceException;
+
 import java.io.Serializable;
+import java.rmi.server.ServerCloneException;
 
 public class User implements Identifiable, Cloneable {
     //table name for users
@@ -91,7 +95,13 @@ public class User implements Identifiable, Cloneable {
     }
 
     @Override
-    public User clone() throws CloneNotSupportedException {
-        return (User) super.clone();
+    public User clone() {
+        User user = null;
+        try {
+            user = (User) super.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }
