@@ -19,16 +19,17 @@ main {
     display: block;
 }
 .data {
+    height: 85%;
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
-    align-items: center;
     padding: 30px;
+    flex: 1 0 auto;
 }
 
 table {
     width: 100%;
-    padding: 0px 20px;
+    padding: 0 20px;
 }
 
 th {
@@ -42,9 +43,20 @@ th p {
 
 td {
     color: #4D4029;
+    font-size: 18px;
+    padding: 5px;
 }
 
-td b{
+.border-bottom {
+    border-bottom: 1px solid #4D4029;
+}
+
+.border-br {
+    border-right: 1px solid #4D4029;
+    border-bottom: 1px solid #4D4029;
+}
+
+td b {
     color: #4D4029;
 }
 

@@ -58,6 +58,9 @@ public class SaveBookCommand implements Command {
         } catch (FieldValidatorException e) {
             request.setAttribute("invalidData", true);
             return CommandResult.forward(BOOK_PAGE_JSP);
+        }catch (ServiceException e){
+            request.setAttribute("bookDuplication", true);
+            return CommandResult.forward(MESSAGE_JSP);
         }
 
         if (idString.isEmpty()) {

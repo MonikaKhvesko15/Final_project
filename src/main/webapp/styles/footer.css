@@ -1,3 +1,6 @@
+
+/* FOOTER */
+
 .center {
     display: flex;
     flex-flow: row;
@@ -9,7 +12,6 @@
 
 .pagination {
     display: inline-block;
-    width: 100%;
     text-align: center;
 }
 
@@ -28,4 +30,3 @@
 .pagination a.active:hover {
     border: none;
 }
-

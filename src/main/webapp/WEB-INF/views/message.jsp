@@ -19,29 +19,39 @@
 <jsp:include page="templates/leftMenu.jsp"/>
 <div class="container">
     <main class="content">
-        <c:if test="${bookNotFound}">
-            <p><fmt:message key="message.book.not.found"/></p>
-        </c:if>
+        <div class="message">
+            <c:if test="${bookNotFound}">
+                <p><fmt:message key="message.book.not.found"/></p>
+            </c:if>
 
-        <c:if test="${bookOrdered}">
-            <p><fmt:message key="message.book.ordered"/></p>
-        </c:if>
+            <c:if test="${bookOrdered}">
+                <p><fmt:message key="message.book.ordered"/></p>
+            </c:if>
 
-        <c:if test="${bookDeleted}">
-            <p><fmt:message key="message.book.deleted"/></p>
-        </c:if>
+            <c:if test="${bookDeleted}">
+                <p><fmt:message key="message.book.deleted"/></p>
+            </c:if>
 
-        <c:if test="${bookEdited}">
-            <p><fmt:message key="message.book.edited"/></p>
-        </c:if>
+            <c:if test="${bookEdited}">
+                <p><fmt:message key="message.book.edited"/></p>
+            </c:if>
 
-        <c:if test="${bookAdded}">
-            <p><fmt:message key="message.book.added"/></p>
-        </c:if>
+            <c:if test="${bookAdded}">
+                <p><fmt:message key="message.book.added"/></p>
+            </c:if>
 
-        <c:if test="${foundBookDeleted}">
-            <p><fmt:message key="message.foundBook.deleted"/></p>
-        </c:if>
+            <c:if test="${foundBookDeleted}">
+                <p><fmt:message key="message.foundBook.deleted"/></p>
+            </c:if>
+
+            <c:if test="${userDataDuplication}">
+                <p><fmt:message key="message.user.data.duplicated"/> </p>
+            </c:if>
+
+            <c:if test="${bookDuplication}">
+                <p><fmt:message key="message.book.duplicated"/> </p>
+            </c:if>
+        </div>
     </main>
 </div>
 </body>

@@ -20,16 +20,16 @@
 <jsp:include page="templates/leftMenu.jsp"/>
 <div class="container">
     <main class="content">
-        <p><fmt:message key="local.welcome"/></p>
-        <form class="login" action="${pageContext.request.contextPath}/controller?command=login" method="POST">
-            <h2><fmt:message key="local.login"/></h2>
-            <h3><fmt:message key="local.form.login.message"/></h3>
-            <label><span><fmt:message key="local.form.login.username"/></span> <input type="text" name="login" required></label>
-            <label><span><fmt:message key="local.form.login.password"/> </span> <input type="password" name="password"
-                                                                                       required></label>
-            <input class="btn-submit" type="submit" value=<fmt:message key="local.login"/>>
-        </form>
-        ${errorMessage}
+            <p><fmt:message key="local.welcome"/></p>
+            <form class="login" action="${pageContext.request.contextPath}/controller?command=login" method="POST">
+                <h2><fmt:message key="local.login"/></h2>
+                <h3><fmt:message key="local.form.login.message"/></h3>
+                <label><span><fmt:message key="local.form.login.username"/></span> <input type="text" name="login" required></label>
+                <label><span><fmt:message key="local.form.login.password"/> </span> <input type="password" name="password"
+                                                                                           required></label>
+                <input class="btn-submit" type="submit" value=<fmt:message key="local.login"/>>
+            </form>
+            <p>${errorMessage}</p>
     </main>
 </div>
 </body>

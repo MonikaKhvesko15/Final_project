@@ -19,11 +19,12 @@ main {
     display: block;
 }
 .data {
+    height: 85%;
     display: flex;
     flex-flow: row;
     justify-content: flex-start;
-    align-items: center;
     padding: 30px;
+    flex: 1 0 auto;
 }
 
 table {
@@ -38,13 +39,6 @@ th {
 
 th p {
     font-size: 13pt;
-}
-
-.infa {
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    float: left;
 }
 
 .book_name {

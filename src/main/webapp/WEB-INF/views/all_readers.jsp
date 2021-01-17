@@ -93,7 +93,7 @@
                 </c:choose>
                 <a href="" class="active">${requestScope.currentPage}</a>
                 <c:choose>
-                    <c:when test="${requestScope.bookList.size() != 20}">
+                    <c:when test="${requestScope.readerList.size() != 20}">
                         <a align="center" href="" type="submit">&raquo;</a>
                     </c:when>
                     <c:otherwise>

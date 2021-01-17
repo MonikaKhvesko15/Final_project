@@ -30,28 +30,28 @@
                     <input type="hidden" name="bookId" value="${requestScope.editBook.id}">
                     <tr>
                         <th><fmt:message key="local.book.title"/></th>
-                        <th><input type="text" name="title" value="${requestScope.editBook.title}" minlength="2"
+                        <th class = "input"><input type="text" name="title" value="${requestScope.editBook.title}" minlength="2"
                                    maxlength="50" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.author"/></th>
-                        <th><input type="text" name="author" value="${requestScope.editBook.author}" minlength="2"
+                        <th class = "input"><input type="text" name="author" value="${requestScope.editBook.author}" minlength="2"
                                    maxlength="50" pattern="[^0-9!*$?]+" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.pages"/></th>
-                        <th><input type="number" name="pages" value="${requestScope.editBook.pages}" min="1" max="3000"
+                        <th class = "input"><input type="number" name="pages" value="${requestScope.editBook.pages}" min="1" max="3000"
                                    required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.amount"/></th>
-                        <th><input type="number" name="amount" value="${requestScope.editBook.amount}" min="0"
+                        <th class = "input"><input type="number" name="amount" value="${requestScope.editBook.amount}" min="0"
                                    max="1000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.publisher.name"/></th>
                         <th>${requestScope.editBook.publisher.name}</th>
-                        <th>
+                        <th class = "input">
                             <select name="publisherName">
                                 <option value="Penguin Random House">Penguin Random House</option>
 
@@ -66,7 +66,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th><input class="edit" type="submit" value=<fmt:message key="local.edit"/>></th>
+                        <th class = "input"><input class="edit" type="submit" value=<fmt:message key="local.edit"/>></th>
                     </tr>
                 </form>
                 <c:if test="${invalidData}">

@@ -24,29 +24,29 @@
 
     <main class="content">
         <div class="data">
-            <img src="${pageContext.request.contextPath}/images/book_example.jpg">
+            <img src="${pageContext.request.contextPath}/images/book_example.jpg" alt = "">
             <table>
                 <form action="${pageContext.request.contextPath}/controller?command=add_book" method="POST">
                     <input type="hidden" name="bookId" value="${null}">
                     <tr>
                         <th><fmt:message key="local.book.title"/></th>
-                        <th><input type="text" name="title" minlength="2" maxlength="50"  required></th>
+                        <th class="input"><input type="text" name="title" minlength="2" maxlength="50"  required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.author"/></th>
-                        <th><input type="text" name="author" minlength="2" maxlength="50" pattern="[^0-9!*$?]+" required></th>
+                        <th class="input"><input type="text" name="author" minlength="2" maxlength="50" pattern="[^0-9!*$?]+" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.pages"/></th>
-                        <th><input type="number" name="pages" min="1" max="3000" required></th>
+                        <th class="input"><input type="number" name="pages" min="1" max="3000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.amount"/></th>
-                        <th><input type="number" name="amount" min="0" max="1000" required></th>
+                        <th class="input"><input type="number" name="amount" min="0" max="1000" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.publisher.name"/></th>
-                        <th>
+                        <th class = "input">
                             <select name="publisherName">
                                 <option value="Penguin Random House">Penguin Random House</option>
 
@@ -61,7 +61,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th><input class="edit" type="submit" value=<fmt:message key="local.add"/>></th>
+                        <th class = "input"><input class="edit" type="submit" value=<fmt:message key="local.add"/>></th>
                     </tr>
                 </form>
                 <c:if test="${invalidData}">

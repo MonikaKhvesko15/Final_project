@@ -20,6 +20,7 @@ public class EditUserCommand implements Command {
     private static final String HOME_PAGE = "/controller?command=home_page";
     private static final String USER_ATTRIBUTE = "user";
     private static final String HOME_PAGE_JSP = "WEB-INF/views/home_page.jsp";
+    private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
 
     private final UserService service;
 
@@ -50,6 +51,9 @@ public class EditUserCommand implements Command {
         } catch (FieldValidatorException e) {
             request.setAttribute("invalidData", true);
             return CommandResult.forward(HOME_PAGE_JSP);
+        }catch (ServiceException e){
+            request.setAttribute("userDataDuplication", true);
+            return CommandResult.forward(MESSAGE_JSP);
         }
 
     }

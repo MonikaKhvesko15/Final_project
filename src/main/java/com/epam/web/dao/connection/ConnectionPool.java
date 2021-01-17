@@ -41,6 +41,7 @@ public class ConnectionPool {
                     isCreated.set(true);
                 }
             } catch (ConnectionPoolException e) {
+                LOGGER.fatal(e.getMessage());
                 throw new RuntimeException("Error connecting to database");
             } finally {
                 INSTANCE_LOCKER.unlock();

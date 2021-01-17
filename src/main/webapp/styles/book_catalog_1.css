@@ -46,7 +46,7 @@
 }
 
 .element-description>p {
-    margin: 0px 0px;
+    margin: 0;
     font-family: Roboto;
     font-style: normal;
     font-weight: 300;
@@ -71,5 +71,5 @@
     font-size: 14px;
     line-height: 28px;
     color: #4D4029;
-    margin: 0px;
+    margin: 0;
 }

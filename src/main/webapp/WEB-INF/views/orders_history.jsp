@@ -26,22 +26,22 @@
         <div class="data">
             <table>
                 <tr>
-                    <td><b></b></td>
-                    <td><b><fmt:message key="local.order.user.name"/></b></td>
-                    <td><b><fmt:message key="local.order.user.surname"/></b></td>
-                    <td><b><fmt:message key="local.book.title"/></b></td>
-                    <td><b><fmt:message key="local.book.author"/></b></td>
-                    <td><b><fmt:message key="local.order.type"/></b></td>
-                    <td><b><fmt:message key="local.order.status"/></b></td>
+                    <td class = "border-br"><b></b></td>
+                    <td class = "border-br"><b><fmt:message key="local.order.user.name"/></b></td>
+                    <td class = "border-br"><b><fmt:message key="local.order.user.surname"/></b></td>
+                    <td class = "border-br"><b><fmt:message key="local.book.title"/></b></td>
+                    <td class = "border-br"><b><fmt:message key="local.book.author"/></b></td>
+                    <td class = "border-br"><b><fmt:message key="local.order.type"/></b></td>
+                    <td class = "border-bottom"><b><fmt:message key="local.order.status"/></b></td>
                 </tr>
                 <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
                     <tr>
-                        <td>${(20)*(requestScope.currentPage - 1) + index.count}</td>
-                        <td>${order.userName}</td>
-                        <td>${order.userSurname}</td>
-                        <td>${order.bookTitle}</td>
-                        <td>${order.bookAuthor}</td>
-                        <td>
+                        <td class = "border-br">${(20)*(requestScope.currentPage - 1) + index.count}</td>
+                        <td class = "border-br">${order.userName}</td>
+                        <td class = "border-br">${order.userSurname}</td>
+                        <td class = "border-br">${order.bookTitle}</td>
+                        <td class = "border-br">${order.bookAuthor}</td>
+                        <td class = "border-br">
                             <c:if test="${order.type =='SUBSCRIPTION'}">
                                 <fmt:message key="local.order.type.subscription"/>
                             </c:if>
@@ -49,7 +49,7 @@
                                 <fmt:message key="local.order.type.reader_room"/>
                             </c:if>
                         </td>
-                        <td>
+                        <td class = "border-bottom">
                         <c:choose>
                             <c:when test="${order.status=='UNDER_CONSIDERATION'}">
                                    <span style="color: goldenrod"><fmt:message
@@ -74,8 +74,8 @@
             </table>
         </div>
 
+        <%--    PAGINATION   --%>
 
-        <%--    pagination--%>
         <div class="center">
             <div class="pagination" align="center">
                 <c:choose>
@@ -90,7 +90,7 @@
                 </c:choose>
                 <a href="" class="active">${requestScope.currentPage}</a>
                 <c:choose>
-                    <c:when test="${requestScope.bookList.size() != 20}">
+                    <c:when test="${requestScope.orderList.size() != 20}">
                         <a align="center" href="" type="submit">&raquo;</a>
                     </c:when>
                     <c:otherwise>

@@ -8,7 +8,7 @@
 <html lang="${requestScope.language}">
 <head>
     <meta charset="UTF-8">
-    <title>Error</title>
+    <title>Error 404</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/error.css">
     <link href="https://fonts.googleapis.com/css2?family=Belgrano&display=swap" rel="stylesheet">

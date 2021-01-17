@@ -21,7 +21,6 @@
 <jsp:include page="templates/header.jsp"/>
 <jsp:include page="templates/leftMenu.jsp"/>
 <main class="content">
-
     <section class="content__container">
         <c:choose>
             <c:when test="${requestScope.foundBook == null}">
@@ -180,7 +179,6 @@
             </div>
         </div>
     </c:if>
-
 </main>
 
 

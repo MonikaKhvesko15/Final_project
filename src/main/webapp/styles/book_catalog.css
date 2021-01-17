@@ -29,12 +29,12 @@ main {
 .data img {
     width: 120px;
     height: 150px;
-    margin: 40px 0px;
+    margin: 40px 0;
 }
 
 table {
     width: 100%;
-    padding: 0px 20px;
+    padding: 0 20px;
 }
 
 th {
@@ -52,7 +52,7 @@ th p {
 
 .book_name {
     width: 35%;
-    padding: 0px 20px;
+    padding: 0 20px;
 }
 
 .amount {
@@ -61,9 +61,6 @@ th p {
     width: 20%;
 }
 .order {
-    /*!*display: flex;*!
-    justify-content: flex-end;
-    flex-flow: wrap;*/
     float: right;
 }
 

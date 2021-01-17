@@ -107,8 +107,8 @@ select {
 }
 
 .content {
-   /* flex-flow: row;*/
     justify-content: flex-start;
+    padding-bottom : 20px;
 }
 
 .menu, .content {
@@ -118,13 +118,12 @@ select {
 
 .search {
     display: flex;
-    margin: 10px 5px;
     padding: 7px 5px;
 }
 
 .edit {
     background-color: white;
-    float: right;
+    float: left;
     width: 80px;
     font-size: 13px;
     font-weight: 600;
@@ -143,8 +142,8 @@ select {
 
 .enter {
     border: 1px solid #4D4029;
+    border-radius: 5px;
     padding: 7px 5px;
-    margin: 1px 0px;
  }
 
 .title {
@@ -154,12 +153,13 @@ select {
 .not_available {
     display: flex;
     justify-content: center;
-    padding: 2px 7px;
-    margin: -2px;
     color: red;
     font-weight: 300;
     font-size: 14px;
     line-height: 28px;
+
+    padding: 0 7px;
+    margin: 0 12px;
 }
 
 .lock {
@@ -167,3 +167,10 @@ select {
     height: 20px;
 }
 
+.message p {
+    font-size: 26pt;
+}
+
+.message {
+    margin: 10px auto;
+}

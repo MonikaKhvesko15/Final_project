@@ -19,6 +19,7 @@
 <jsp:include page="templates/leftMenu.jsp"/>
 <div class="container">
     <main class="content">
+        <div class = "message"></div>
         <p><fmt:message key="local.welcome"/></p>
     </main>
 </div>

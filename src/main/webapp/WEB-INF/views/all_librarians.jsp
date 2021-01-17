@@ -34,10 +34,10 @@
                         <td>
                             <c:choose>
                                 <c:when test="${!librarian.blocked}">
-                                    <img src="${pageContext.request.contextPath}/images/unblock.jpg" class = "lock">
+                                    <img src="${pageContext.request.contextPath}/images/unblock.jpg" class = "lock" alt = "">
                                 </c:when>
                                 <c:when test="${librarian.blocked}">
-                                    <img src="${pageContext.request.contextPath}/images/block.jpg" class = "lock">
+                                    <img src="${pageContext.request.contextPath}/images/block.jpg" class = "lock" alt = "">
                                 </c:when>
                             </c:choose>
                         </td>
@@ -76,9 +76,8 @@
                 </c:forEach>
             </table>
 
-
         </div>
-        <%--    pagination--%>
+        <%--    pagination   --%>
         <div class="center">
             <div class="pagination" align="center">
                 <c:choose>
@@ -93,7 +92,7 @@
                 </c:choose>
                 <a href="" class="active">${requestScope.currentPage}</a>
                 <c:choose>
-                    <c:when test="${requestScope.bookList.size() != 20}">
+                    <c:when test="${requestScope.librarianList.size() != 20}">
                         <a align="center" href="" type="submit">&raquo;</a>
                     </c:when>
                     <c:otherwise>
