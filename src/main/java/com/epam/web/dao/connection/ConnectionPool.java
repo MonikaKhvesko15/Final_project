@@ -73,7 +73,7 @@ public class ConnectionPool {
         }
     }
 
-    public void killConnections() throws ConnectionPoolException, SQLException {
+    public void killConnections() {
         usingConnections.forEach(this::releaseConnection);
         closeQueueConnections(freeConnections);
     }

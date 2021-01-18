@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderService {
+
     void createOrder(Order order) throws ServiceException;
 
     List<OrderDto> getActiveOrdersDtoPart(int startPosition, int endPosition) throws ServiceException;

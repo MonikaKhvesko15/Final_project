@@ -32,7 +32,7 @@ public class MainController extends HttpServlet {
         process(request, response);
     }
 
-    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String commandName = request.getParameter(COMMAND_PARAMETER);
             Command command = CommandFactory.create(commandName);
@@ -58,12 +58,6 @@ public class MainController extends HttpServlet {
     public void destroy() {
         super.destroy();
         ConnectionPool pool = ConnectionPool.getInstance();
-        try {
-            pool.killConnections();
-        } catch (ConnectionPoolException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        pool.killConnections();
     }
 }
