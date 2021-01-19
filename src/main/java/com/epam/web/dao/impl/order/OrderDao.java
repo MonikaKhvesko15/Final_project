@@ -5,7 +5,13 @@ import com.epam.web.entity.Order;
 import com.epam.web.exception.DaoException;
 
 import java.util.List;
-
+/**
+ * The {@code OrderDao} interface complements Dao and represents specific method signatures
+ * to work with Order.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public interface OrderDao extends Dao<Order> {
     List<Order> findActiveOrdersPart(int startPosition, int endPosition) throws DaoException;
 

@@ -1,5 +1,11 @@
 package com.epam.web.exception;
-
+/**
+ * The {@code DaoException} class is <em>checked
+ * exception</em>.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public class DaoException extends Exception {
 
     public DaoException() {

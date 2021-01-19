@@ -14,6 +14,13 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * The {@code DateFormatterTag} class represents a set of specifications for implementing a tag
+ * that formats and localizes the received date according to the current locale.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public class DateFormatterTag extends BodyTagSupport {
 
     private static final String LANG_ATTRIBUTE = "language";

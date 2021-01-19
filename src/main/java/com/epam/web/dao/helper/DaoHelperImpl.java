@@ -23,7 +23,6 @@ public class DaoHelperImpl implements DaoHelper {
         this.connection = pool.getConnection();
     }
 
-    //all dao use one connection
     @Override
     public UserDao createUserDao() {
         return new UserDaoImpl(connection);

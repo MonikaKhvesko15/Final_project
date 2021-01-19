@@ -6,8 +6,13 @@ import com.epam.web.exception.DaoException;
 
 import java.util.List;
 import java.util.Optional;
-
-//CRUD
+/**
+ * The {@code Dao} interface represents typical CRUD operations.
+ *
+ * @param <T>
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public interface Dao<T extends Identifiable> {
 
     Optional<T> getById(int id) throws DaoException;

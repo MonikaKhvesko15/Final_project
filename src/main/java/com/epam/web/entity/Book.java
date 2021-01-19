@@ -3,6 +3,12 @@ package com.epam.web.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * The {@code Book} class represents Book.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public class Book implements Identifiable {
 
     //table name for books
@@ -90,5 +96,24 @@ public class Book implements Identifiable {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return pages == book.pages &&
+                isDeleted == book.isDeleted &&
+                Objects.equals(id, book.id) &&
+                Objects.equals(title, book.title) &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(amount, book.amount) &&
+                Objects.equals(publisher, book.publisher);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, title, author, pages, amount, publisher, isDeleted);
     }
 }

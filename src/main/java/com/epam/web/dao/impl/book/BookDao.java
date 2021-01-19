@@ -7,9 +7,14 @@ import com.epam.web.exception.DaoException;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ * The {@code BookDao} interface complements Dao and represents specific method signatures
+ * to work with Book.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public interface BookDao extends Dao<Book> {
-    //specific methods for bookDao
 
     List<Book> findBooksPart(int startPosition, int endPosition) throws DaoException;
 

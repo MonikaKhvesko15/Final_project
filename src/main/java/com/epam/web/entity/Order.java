@@ -2,7 +2,14 @@ package com.epam.web.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
+/**
+ * The {@code Order} class represents Order
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public class Order implements Identifiable {
     //table name for orders
     public static final String TABLE = "orders";
@@ -74,5 +81,24 @@ public class Order implements Identifiable {
 
     public Integer getUserId() {
         return userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(id, order.id) &&
+                Objects.equals(issueDate, order.issueDate) &&
+                Objects.equals(returnDate, order.returnDate) &&
+                status == order.status &&
+                type == order.type &&
+                Objects.equals(bookId, order.bookId) &&
+                Objects.equals(userId, order.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, issueDate, returnDate, status, type, bookId, userId);
     }
 }

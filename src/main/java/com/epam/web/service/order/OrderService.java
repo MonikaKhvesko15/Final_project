@@ -7,6 +7,12 @@ import com.epam.web.exception.ServiceException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The {@code OrderService} interface represents specific method signatures to work with orders.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public interface OrderService {
 
     void createOrder(Order order) throws ServiceException;

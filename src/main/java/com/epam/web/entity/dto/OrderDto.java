@@ -10,7 +10,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-//This object now contains all the information we want to show to the end-user
+/**
+ * The {@code OrderDto} class represents Order that contains all
+ * the information we want to show to the end-user.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public class OrderDto implements Identifiable {
 
     @Override
@@ -78,5 +84,24 @@ public class OrderDto implements Identifiable {
         return userSurname;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderDto orderDto = (OrderDto) o;
+        return Objects.equals(id, orderDto.id) &&
+                Objects.equals(issueDate, orderDto.issueDate) &&
+                Objects.equals(returnDate, orderDto.returnDate) &&
+                status == orderDto.status &&
+                type == orderDto.type &&
+                Objects.equals(bookTitle, orderDto.bookTitle) &&
+                Objects.equals(bookAuthor, orderDto.bookAuthor) &&
+                Objects.equals(userName, orderDto.userName) &&
+                Objects.equals(userSurname, orderDto.userSurname);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, issueDate, returnDate, status, type, bookTitle, bookAuthor, userName, userSurname);
+    }
 }

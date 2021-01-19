@@ -7,6 +7,12 @@ import com.epam.web.exception.ServiceException;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The {@code BookService} interface represents specific method signatures to work with books.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public interface BookService {
     List<Book> getBooksPart(int startPosition, int endPosition) throws ServiceException;
 

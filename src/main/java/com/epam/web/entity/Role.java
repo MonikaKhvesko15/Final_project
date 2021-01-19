@@ -3,6 +3,12 @@ package com.epam.web.entity;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The {@code Role} enum represents all possible user roles with a list of available commands.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public enum Role {
 
     GUEST(Arrays.asList("login", "book_catalog", "book_search", "login_page")),

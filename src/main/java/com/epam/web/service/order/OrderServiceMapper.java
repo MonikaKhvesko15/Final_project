@@ -15,6 +15,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The {@code OrderServiceMapper} class represents service for converting user objects into user objects Dto.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public class OrderServiceMapper {
     private DaoHelperFactory daoHelperFactory;
 

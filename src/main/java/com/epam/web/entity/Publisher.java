@@ -4,6 +4,12 @@ import java.io.Serializable;
 import java.time.Year;
 import java.util.Objects;
 
+/**
+ * The {@code Publisher} class represents Publisher.
+ *
+ * @author Monika Khvesko
+ * @version 1.0
+ */
 public class Publisher implements Identifiable {
 
     //table name for books
@@ -51,5 +57,18 @@ public class Publisher implements Identifiable {
         this.establishYear = establishYear;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publisher publisher = (Publisher) o;
+        return establishYear == publisher.establishYear &&
+                Objects.equals(id, publisher.id) &&
+                Objects.equals(name, publisher.name);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, establishYear);
+    }
 }
