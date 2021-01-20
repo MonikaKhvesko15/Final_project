@@ -7,8 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserValidator implements Validator<User> {
-    private final String LOGIN_REGEX = "^(?=.*[A-Za-z0-9]$)[A-Za-z][A-Za-z\\d_]{0,20}$";
-    //private final String PASSWORD_REGEX="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,20}$";
+    private static final int MIN_PASSWORD_LENGHT = 5;
+    private static final int MAX_PASSWORD_LENGHT = 20;
+    private final String LOGIN_REGEX = "[^!@#$%^&*()+=-]+";
     private final String NAME_REGEX = "([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)";
 
     @Override
@@ -24,6 +25,10 @@ public class UserValidator implements Validator<User> {
         }
         String surname = user.getSurname();
         if (!isCorrespondsRegex(surname, NAME_REGEX)) {
+            isValid = false;
+        }
+        String password = user.getPassword();
+        if (password.length() < MIN_PASSWORD_LENGHT || password.length() > MAX_PASSWORD_LENGHT) {
             isValid = false;
         }
         return isValid;

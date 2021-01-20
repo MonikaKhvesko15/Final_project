@@ -5,6 +5,7 @@ import com.epam.web.command.impl.*;
 public class CommandFactory {
 
     private static final String LOGIN_COMMAND = "login";
+    private static final String REGISTRATION_COMMAND = "registration";
     private static final String LOGOUT_COMMAND = "logout";
     private static final String EDIT_USER_COMMAND = "edit_user";
     private static final String BOOK_CATALOG_COMMAND = "book_catalog";
@@ -28,6 +29,9 @@ public class CommandFactory {
     private static final String LOGIN_PAGE_COMMAND = "login_page";
     private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
 
+    private static final String REGISTRATION_PAGE_COMMAND = "registration_page";
+    private static final String REGISTRATION_PAGE = "WEB-INF/views/registration.jsp";
+
     private static final String HOME_PAGE_COMMAND = "home_page";
     private static final String HOME_PAGE = "WEB-INF/views/home_page.jsp";
 
@@ -37,10 +41,14 @@ public class CommandFactory {
 
     public static Command create(String сommandName) {
         switch (сommandName) {
-            case LOGIN_COMMAND:
-                return new LoginCommand();
             case LOGIN_PAGE_COMMAND:
                 return new GoToPageCommand(LOGIN_PAGE);
+            case LOGIN_COMMAND:
+                return new LoginCommand();
+            case REGISTRATION_PAGE_COMMAND:
+                return new GoToPageCommand(REGISTRATION_PAGE);
+            case REGISTRATION_COMMAND:
+                return new RegistrationCommand();
             case LOGOUT_COMMAND:
                 return new LogoutCommand();
             case HOME_PAGE_COMMAND:

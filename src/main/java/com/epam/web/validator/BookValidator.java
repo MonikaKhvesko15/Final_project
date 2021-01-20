@@ -14,7 +14,7 @@ public class BookValidator implements Validator<Book> {
     private static final int MAX_BOOK_AMOUNT = 1000;
     private static final int MIN_TITLE_LENGHT = 2;
     private static final int MAX_TITLE_LENGHT = 50;
-    private final String AUTHOR_REGEX = "[^0-9!*$?]+";
+    private final String AUTHOR_REGEX = "([^0-9!*$?]+){2,50}";
 
 
     @Override

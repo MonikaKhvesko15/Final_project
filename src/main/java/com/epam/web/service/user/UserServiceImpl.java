@@ -36,6 +36,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void registerUser(User user) throws ServiceException {
+        try (DaoHelper daoHelper = daoHelperFactory.create()) {
+            UserDao userDao = daoHelper.createUserDao();
+            if (userValidator.isInputDataCorrect(user)) {
+                userDao.save(user);
+            } else {
+                throw new FieldValidatorException();
+            }
+        } catch (DaoException e) {
+            throw new ServiceException(e.getMessage(), e);
+        }
+    }
+
+    @Override
     public void editUser(User user) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             UserDao dao = daoHelper.createUserDao();

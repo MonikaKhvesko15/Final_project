@@ -35,6 +35,8 @@ public class SecurityFilter implements Filter {
         String command = req.getParameter(COMMAND_PARAMETER);
         if ((command == null) || role.hasAccess(command)) {
             filterChain.doFilter(servletRequest, servletResponse);
+        } else if (role == Role.GUEST) {
+            ((HttpServletResponse) servletResponse).sendError(401);
         } else {
             ((HttpServletResponse) servletResponse).sendError(403);
         }

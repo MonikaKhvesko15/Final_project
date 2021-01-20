@@ -20,6 +20,10 @@
 <div class="container">
     <main class="content">
         <div class="message">
+            <c:if test="${userAdded}">
+                <p><fmt:message key="message.user.added"/> </p>
+            </c:if>
+
             <c:if test="${bookNotFound}">
                 <p><fmt:message key="message.book.not.found"/></p>
             </c:if>

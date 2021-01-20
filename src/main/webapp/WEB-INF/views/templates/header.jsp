@@ -63,6 +63,8 @@
             <c:when test="${sessionScope.user == null}">
                 <a href="${pageContext.request.contextPath}/controller?command=login_page">
                     <fmt:message key="local.login"/></a>
+                <a href="${pageContext.request.contextPath}/controller?command=registration_page">
+                    <fmt:message key="local.registration"/></a>
             </c:when>
             <c:when test="${sessionScope.user != null}">
                 <a href="${pageContext.request.contextPath}/controller?command=logout">

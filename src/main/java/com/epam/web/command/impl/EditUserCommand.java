@@ -7,6 +7,8 @@ import com.epam.web.exception.FieldValidatorException;
 import com.epam.web.exception.ServiceException;
 import com.epam.web.service.user.UserService;
 import com.epam.web.service.user.UserServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpSession;
 
 
 public class EditUserCommand implements Command {
+    private static final Logger LOGGER = LogManager.getLogger(EditUserCommand.class);
     private static final String FIRSTNAME_PARAMETER = "firstname";
     private static final String SURNAME_PARAMETER = "surname";
     private static final String HOME_PAGE = "/controller?command=home_page";
@@ -49,13 +52,13 @@ public class EditUserCommand implements Command {
             user.setSurname(userSurname);
             return CommandResult.redirect(contextPath + HOME_PAGE);
         } catch (FieldValidatorException e) {
+            LOGGER.error("Incorrect data entered");
             request.setAttribute("invalidData", true);
             return CommandResult.forward(HOME_PAGE_JSP);
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             request.setAttribute("userDataDuplication", true);
             return CommandResult.forward(MESSAGE_JSP);
         }
-
     }
 
 }

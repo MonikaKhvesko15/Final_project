@@ -13,8 +13,8 @@ import java.util.Optional;
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
     private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE login = ? and password = SHA1(?)";
     private static final String UPDATE_USER_NAME_SURNAME = "UPDATE users SET firstname = ?, surname = ? WHERE id = ?";
-    private static final String UPDATE_USER = "UPDATE users SET login=?, password=?, firstname=?, surname=?, role=?, isBlocked=? WHERE id = ?";
-    private static final String SAVE_USER = "INSERT INTO users (login, password, firstname, surname, role, isBlocked) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_USER = "UPDATE users SET login=?, firstname=?, surname=?, role=? WHERE id = ?";
+    private static final String SAVE_USER = "INSERT INTO users (login, password, firstname, surname, role) VALUES (?, SHA1(?), ?, ?, ?)";
     private static final String GET_READERS_PART = "SELECT * FROM users WHERE users.role='READER' limit ?, ?";
     private static final String GET_LIBRARIANS_PART = "SELECT * FROM users WHERE users.role='LIBRARIAN' limit ?, ?";
     private static final String SET_BLOCK_STATUS = "UPDATE users SET isBlocked=1 WHERE id= ?";

@@ -10,11 +10,14 @@ import com.epam.web.service.book.BookService;
 import com.epam.web.service.book.BookServiceImpl;
 import com.epam.web.service.publisher.PublisherService;
 import com.epam.web.service.publisher.PublisherServiceImpl;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class SaveBookCommand implements Command {
+    private static final Logger LOGGER = LogManager.getLogger(SaveBookCommand.class);
     private static final String PUBLISHER_NAME_PARAMETER = "publisherName";
     private static final String BOOK_ID_PARAMETER = "bookId";
     private static final String TITLE_PARAMETER = "title";
@@ -56,9 +59,10 @@ public class SaveBookCommand implements Command {
         try {
             bookService.saveBook(book);
         } catch (FieldValidatorException e) {
+            LOGGER.error("Incorrect data entered");
             request.setAttribute("invalidData", true);
             return CommandResult.forward(BOOK_PAGE_JSP);
-        }catch (ServiceException e){
+        } catch (ServiceException e) {
             request.setAttribute("bookDuplication", true);
             return CommandResult.forward(MESSAGE_JSP);
         }
