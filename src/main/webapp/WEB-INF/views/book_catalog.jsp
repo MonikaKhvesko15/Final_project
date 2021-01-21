@@ -94,8 +94,11 @@
                         <p><b><fmt:message key="local.book.title"/></b>${requestScope.foundBook.title}</p>
                         <p><b><fmt:message key="local.book.author"/></b>${requestScope.foundBook.author}</p>
                         <p><b><fmt:message key="local.book.pages"/></b>${requestScope.foundBook.pages}</p>
-                        <p><b><fmt:message key="local.book.publisher.name"/></b>${requestScope.foundBook.publisher.name}</p>
-                        <p><b><fmt:message key="local.book.publisher.year"/></b>${requestScope.foundBook.publisher.establishyear}</p>
+                        <p><b><fmt:message key="local.book.publisher.name"/></b>${requestScope.foundBook.publisher.name}
+                        </p>
+                        <p><b><fmt:message
+                                key="local.book.publisher.year"/></b>${requestScope.foundBook.publisher.establishyear}
+                        </p>
                     </div>
                     <div class="element-amount">
                         <p><b><fmt:message key="local.book.amount"/></b>${requestScope.foundBook.amount}</p>
@@ -151,10 +154,10 @@
         </c:choose>
     </section>
 
-<%--    pagination--%>
+    <%--    PAGINATION   --%>
     <c:if test="${requestScope.foundBook==null}">
-        <div class = "center">
-            <div class="pagination" align = "center">
+        <div class="center">
+            <div class="pagination" align="center">
                 <c:choose>
                     <c:when test="${(requestScope.currentPage - 1) == 0}">
                         <a align="center" href="" type="submit">&laquo;</a>
@@ -165,7 +168,7 @@
                            type="submit">&laquo;</a>
                     </c:otherwise>
                 </c:choose>
-                <a href = "" class = "active">${requestScope.currentPage}</a>
+                <a href="" class="active">${requestScope.currentPage}</a>
                 <c:choose>
                     <c:when test="${requestScope.bookList.size() != 5}">
                         <a align="center" href="" type="submit">&raquo;</a>
@@ -179,6 +182,7 @@
             </div>
         </div>
     </c:if>
+    <%--    PAGINATION   --%>
 </main>
 
 

@@ -28,23 +28,23 @@
         <div class="data">
             <table>
                 <tr>
-                    <td class = "border-br"><b></b></td>
-                    <td class = "border-br"><b><fmt:message key="local.book.title"/></b></td>
-                    <td class = "border-br"><b><fmt:message key="local.book.author"/></b></td>
-                    <td class = "border-br"><b><fmt:message key="local.order.issue.date"/></b></td>
-                    <td class = "border-br"><b><fmt:message key="local.order.return.date"/></b></td>
-                    <td class = "border-br"><b><fmt:message key="local.order.type"/></b></td>
-                    <td class = "border-bottom"><b><fmt:message key="local.order.status"/></b></td>
+                    <td class="border-br"><b></b></td>
+                    <td class="border-br"><b><fmt:message key="local.book.title"/></b></td>
+                    <td class="border-br"><b><fmt:message key="local.book.author"/></b></td>
+                    <td class="border-br"><b><fmt:message key="local.order.issue.date"/></b></td>
+                    <td class="border-br"><b><fmt:message key="local.order.return.date"/></b></td>
+                    <td class="border-br"><b><fmt:message key="local.order.type"/></b></td>
+                    <td class="border-bottom"><b><fmt:message key="local.order.status"/></b></td>
                 </tr>
                 <c:forEach var="order" items="${requestScope.orderList}" varStatus="index">
 
                     <c:if test="${order.userName==sessionScope.user.firstname}">
                         <tr>
-                            <td class = "border-br">${(20)*(requestScope.currentPage - 1) + index.count}</td>
-                            <td class = "border-br">${order.bookTitle}</td>
-                            <td class = "border-br">${order.bookAuthor}</td>
-                            <td class = "border-br"><ctg:dateFormatterTag>${order.issueDate}</ctg:dateFormatterTag></td>
-                            <td class = "border-br">
+                            <td class="border-br">${(20)*(requestScope.currentPage - 1) + index.count}</td>
+                            <td class="border-br">${order.bookTitle}</td>
+                            <td class="border-br">${order.bookAuthor}</td>
+                            <td class="border-br"><ctg:dateFormatterTag>${order.issueDate}</ctg:dateFormatterTag></td>
+                            <td class="border-br">
                                 <c:if test="${!order.returnDate.isAfter(requestScope.currentData)}">
                                     <span style="color: orangered"><ctg:dateFormatterTag>${order.returnDate}</ctg:dateFormatterTag></span>
                                 </c:if>
@@ -52,7 +52,7 @@
                                     <ctg:dateFormatterTag>${order.returnDate}</ctg:dateFormatterTag>
                                 </c:if>
                             </td>
-                            <td class = "border-br">
+                            <td class="border-br">
                                 <c:if test="${order.type =='SUBSCRIPTION'}">
                                     <fmt:message key="local.order.type.subscription"/>
                                 </c:if>
@@ -60,7 +60,7 @@
                                     <fmt:message key="local.order.type.reader_room"/>
                                 </c:if>
                             </td>
-                            <td class = "border-bottom">
+                            <td class="border-bottom">
                                 <c:if test="${order.status =='UNDER_CONSIDERATION'}">
                                     <span style="color: goldenrod"><fmt:message
                                             key="local.order.status.under_consideration"/></span>
@@ -77,7 +77,7 @@
 
         </div>
 
-        <%--    pagination--%>
+        <%--    PAGINATION   --%>
 
         <div class="center">
             <div class="pagination" align="center">
@@ -104,7 +104,7 @@
                 </c:choose>
             </div>
         </div>
-        <%--    pagination--%>
+        <%--    PAGINATION   --%>
     </main>
 </div>
 </body>

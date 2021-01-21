@@ -21,7 +21,7 @@
     <main class="content">
         <div class="message">
             <c:if test="${userAdded}">
-                <p><fmt:message key="message.user.added"/> </p>
+                <p><fmt:message key="message.user.added"/></p>
             </c:if>
 
             <c:if test="${bookNotFound}">
@@ -49,11 +49,11 @@
             </c:if>
 
             <c:if test="${userDataDuplication}">
-                <p><fmt:message key="message.user.data.duplicated"/> </p>
+                <p><fmt:message key="message.user.data.duplicated"/></p>
             </c:if>
 
             <c:if test="${bookDuplication}">
-                <p><fmt:message key="message.book.duplicated"/> </p>
+                <p><fmt:message key="message.book.duplicated"/></p>
             </c:if>
         </div>
     </main>

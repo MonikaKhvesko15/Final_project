@@ -20,7 +20,7 @@
 <div class="container">
     <nav class="menu"></nav>
     <main class="content">
-            <p><fmt:message key="error.500"/></p>
+        <p><fmt:message key="error.500"/></p>
     </main>
 </div>
 </body>

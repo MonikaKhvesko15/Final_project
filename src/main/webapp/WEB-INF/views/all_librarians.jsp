@@ -34,10 +34,11 @@
                         <td>
                             <c:choose>
                                 <c:when test="${!librarian.blocked}">
-                                    <img src="${pageContext.request.contextPath}/images/unblock.jpg" class = "lock" alt = "">
+                                    <img src="${pageContext.request.contextPath}/images/unblock.jpg" class="lock"
+                                         alt="">
                                 </c:when>
                                 <c:when test="${librarian.blocked}">
-                                    <img src="${pageContext.request.contextPath}/images/block.jpg" class = "lock" alt = "">
+                                    <img src="${pageContext.request.contextPath}/images/block.jpg" class="lock" alt="">
                                 </c:when>
                             </c:choose>
                         </td>
@@ -48,7 +49,7 @@
                                     <form action="${pageContext.request.contextPath}/controller?command=block_user"
                                           method="POST">
                                         <th>
-                                            <a class = "btn-block">
+                                            <a class="btn-block">
                                                 <input type="hidden" name="userId" value=${librarian.id}>
                                                 <input type="hidden" name="userRole" value=${librarian.role}>
                                                 <input class="block" type="submit" value=<fmt:message
@@ -61,7 +62,7 @@
                                     <form action="${pageContext.request.contextPath}/controller?command=unblock_user"
                                           method="POST">
                                         <th>
-                                            <a class = "btn-block">
+                                            <a class="btn-block">
                                                 <input type="hidden" name="userId" value=${librarian.id}>
                                                 <input type="hidden" name="userRole" value=${librarian.role}>
                                                 <input class="block" type="submit" value=<fmt:message
@@ -77,7 +78,7 @@
             </table>
 
         </div>
-        <%--    pagination   --%>
+        <%--    PAGINATION   --%>
         <div class="center">
             <div class="pagination" align="center">
                 <c:choose>
@@ -103,7 +104,7 @@
                 </c:choose>
             </div>
         </div>
-        <%--    pagination--%>
+        <%--    PAGINATION   --%>
     </main>
 </div>
 </body>

@@ -40,8 +40,6 @@ public class SecurityFilter implements Filter {
         } else {
             ((HttpServletResponse) servletResponse).sendError(403);
         }
-
-
     }
 
     @Override

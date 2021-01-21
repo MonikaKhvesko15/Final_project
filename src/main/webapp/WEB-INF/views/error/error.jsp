@@ -20,11 +20,11 @@
 <jsp:include page="../templates/leftMenu.jsp"/>
 <div class="container">
     <main class="content">
-        <div class = "message">
+        <div class="message">
             <c:if test="${errorMessage}">
                 <p><fmt:message key="error_page.main_controller"/></p>
             </c:if>
-    
+
             <c:if test="${userBlockErrorMessage}">
                 <p><fmt:message key="error_page.user_blocked"/></p>
             </c:if>

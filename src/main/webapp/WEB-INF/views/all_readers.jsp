@@ -33,12 +33,12 @@
                         <td>${reader.surname}</td>
                         <td>
                             <c:choose>
-                            <c:when test="${reader.blocked}">
-                                <img src="${pageContext.request.contextPath}/images/block.jpg" class = "lock">
-                            </c:when>
-                            <c:when test="${!reader.blocked}">
-                                <img src="${pageContext.request.contextPath}/images/unblock.jpg" class = "lock">
-                            </c:when>
+                                <c:when test="${reader.blocked}">
+                                    <img src="${pageContext.request.contextPath}/images/block.jpg" class="lock">
+                                </c:when>
+                                <c:when test="${!reader.blocked}">
+                                    <img src="${pageContext.request.contextPath}/images/unblock.jpg" class="lock">
+                                </c:when>
                             </c:choose>
                         </td>
 
@@ -48,7 +48,7 @@
                                     <form action="${pageContext.request.contextPath}/controller?command=block_user"
                                           method="POST">
                                         <th>
-                                            <a class = "btn-block">
+                                            <a class="btn-block">
                                                 <input type="hidden" name="userId" value=${reader.id}>
                                                 <input type="hidden" name="userRole" value=${reader.role}>
                                                 <input class="block" type="submit" value=<fmt:message
@@ -61,7 +61,7 @@
                                     <form action="${pageContext.request.contextPath}/controller?command=unblock_user"
                                           method="POST">
                                         <th>
-                                            <a class = "btn-block">
+                                            <a class="btn-block">
                                                 <input type="hidden" name="userId" value=${reader.id}>
                                                 <input type="hidden" name="userRole" value=${reader.role}>
                                                 <input class="block" type="submit" value=<fmt:message
@@ -78,7 +78,7 @@
 
 
         </div>
-        <%--    pagination--%>
+        <%--    PAGINATION   --%>
         <div class="center">
             <div class="pagination" align="center">
                 <c:choose>
@@ -104,7 +104,7 @@
                 </c:choose>
             </div>
         </div>
-        <%--    pagination--%>
+        <%--    PAGINATION   --%>
     </main>
 </div>
 </body>

@@ -21,7 +21,7 @@
     <nav class="menu"></nav>
     <main class="content">
 
-            <p><fmt:message key="error.404"/></p>
+        <p><fmt:message key="error.404"/></p>
 
     </main>
 </div>
