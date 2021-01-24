@@ -9,7 +9,7 @@ public class UserValidatorTest {
     @Test
     public void testUserValidatorShouldReturnTrueWhenDataCorrect() {
         //given
-        User userCorrect = new User(1, "login", "pass", "Name", "Surname", Role.READER, false);
+        User userCorrect = new User(1, "login", "pass1", "Name", "Surname", Role.READER, false);
         Validator<User> userValidator = new UserValidator();
 
         //when

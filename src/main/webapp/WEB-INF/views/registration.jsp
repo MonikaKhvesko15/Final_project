@@ -32,12 +32,14 @@
                                                                                         pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)"
                                                                                         minlength="2" maxlength="20"
                                                                                         required></label>
-            <label><span><fmt:message key="local.form.register.role"/></span>
-                <select name="role">
+            <label><span ><fmt:message key="local.form.register.role"/></span>
+                <div class="user-role">
+                <select class="select-role" name="role">
                     <option value="READER"><fmt:message key="local.user.role.reader"/></option>
 
                     <option value="LIBRARIAN"><fmt:message key="local.user.role.librarian"/></option>
                 </select>
+                </div>
             </label>
             <label><span><fmt:message key="local.form.register.username"/></span> <input type="text" name="login"
                                                                                          pattern="[^!@#$%^&*()+=-]+"

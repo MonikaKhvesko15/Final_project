@@ -104,6 +104,8 @@ select {
     font-family: 'Roboto', sans-serif;
     color: #4D4029;
     outline: none;
+    font-size: 17px;
+    width: 100%;
 }
 
 .content {
@@ -144,6 +146,7 @@ select {
     border: 1px solid #4D4029;
     border-radius: 5px;
     padding: 7px 5px;
+    margin: 7px 0px;
  }
 
 .title {
