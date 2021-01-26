@@ -5,7 +5,7 @@
 <fmt:setLocale value="${sessionScope.language}"/>
 <fmt:setBundle basename="property.local"/>
 
-<html lang="${requestScope.language}">
+<html lang="${sessionScope.language}">
 <head>
     <meta charset="UTF-8">
     <title>Error 403</title>

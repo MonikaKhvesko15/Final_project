@@ -24,6 +24,7 @@ public class RegistrationCommand implements Command {
     private static final String USER_ADDED_ATTRIBUTE = "userAdded";
     private final UserService userService;
 
+
     public RegistrationCommand() {
         this.userService = new UserServiceImpl();
     }
@@ -44,8 +45,9 @@ public class RegistrationCommand implements Command {
         ServletContext servletContext = request.getServletContext();
         String contextPath = servletContext.getContextPath();
         if (!password.equals(repeatPassword)) {
-            //request.setAttribute(INVALID_DATA_ATTRIBUTE, "The passwords entered do not match");
+//            request.setAttribute(INVALID_DATA_ATTRIBUTE, "The passwords entered do not match");
             commandResult = CommandResult.redirect(contextPath + REGISTRATION_PAGE_COMMAND);
+//            commandResult = CommandResult.forward("WEB-INF/views/registration.jsp");
         } else {
             User user = new User(null, login, password, firstname, surname, role, false);
             try {
@@ -55,10 +57,10 @@ public class RegistrationCommand implements Command {
 
             } catch (FieldValidatorException e) {
                 LOGGER.error("Incorrect data entered");
-                // request.setAttribute(INVALID_DATA_ATTRIBUTE, "Enter correct data");
+//                request.setAttribute(INVALID_DATA_ATTRIBUTE, "Enter correct data");
                 commandResult = CommandResult.redirect(contextPath + REGISTRATION_PAGE_COMMAND);
             } catch (ServiceException e) {
-                // request.setAttribute(INVALID_DATA_ATTRIBUTE, "Such user already exists");
+//                request.setAttribute(INVALID_DATA_ATTRIBUTE, "Such user already exists");
                 commandResult = CommandResult.redirect(contextPath + REGISTRATION_PAGE_COMMAND);
             }
         }
