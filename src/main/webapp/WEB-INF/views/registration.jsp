@@ -42,7 +42,7 @@
                 </div>
             </label>
             <label><span><fmt:message key="local.form.register.username"/></span> <input type="text" name="login"
-                                                                                         pattern="[^!@#$%^&*()+=-]+"
+                                                                                         pattern="([^!@#$%^&*()+=-]+)"
                                                                                          minlength="2" maxlength="20"
                                                                                          required></label>
             <label><span><fmt:message key="local.form.register.password"/> </span> <input type="password"

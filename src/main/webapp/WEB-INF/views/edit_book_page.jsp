@@ -38,7 +38,7 @@
                         <th><fmt:message key="local.book.author"/></th>
                         <th class="input"><input type="text" name="author" value="${requestScope.editBook.author}"
                                                  minlength="2"
-                                                 maxlength="50" pattern="[^0-9!*$?]+" required></th>
+                                                 maxlength="50" pattern="([^0-9!*$?]+)" required></th>
                     </tr>
                     <tr>
                         <th><fmt:message key="local.book.pages"/></th>
