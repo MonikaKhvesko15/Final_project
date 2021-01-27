@@ -12,6 +12,7 @@ The reader has the ability to search and order books in the catalog. The librari
         1. Book catalog browsing
         2. Search books
         3. Switch language
+        4. Register
         
 ##### 2. Reader
 The reader has 2 statuses: *ENABLE*, *BLOCKED*. Reader with status *ENABLE* can be blocked by the administrator, that is, get the *BLOCKED* status. You can successfully log in only with the *ENABLE* status. 
@@ -53,4 +54,4 @@ The administrator fills the site with books, changes their description if necess
         7. Switch language
     
 ### **Objects:** **book**, **order**, **publisher**.
-The *book* has parameters such as title, author, numb of pages,  amount, status(isDeleted), publisher (publisher name, establish year). The *order* can be either under consideration(until the librarian gives out the book), accepted (librarian issues a book), completed (if reader returned book), rejected(if admin deleted book).
+The *book* has parameters such as title, author, numb of pages,  amount, status(isDeleted), publisher (publisher name, establish year). The *order* can be either under consideration(until the librarian gives out the book), accepted (librarian issues a book), completed (when reader returned book), rejected(when admin deleted book).
