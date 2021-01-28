@@ -8,6 +8,7 @@ import com.epam.web.exception.ServiceException;
 import com.epam.web.service.book.BookService;
 import com.epam.web.service.book.BookServiceImpl;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,13 +16,11 @@ import java.util.Optional;
 
 public class BookSearchCommand implements Command {
 
-    private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
     private static final String TITLE_PARAMETER = "title";
     private static final String FOUND_BOOK_PARAMETER = "foundBook";
     private static final String BOOK_CATALOG_PAGE = "WEB-INF/views/book_catalog.jsp";
     private static final String IS_BOOK_PAGE = "isBookPage";
-    private static final String BOOK_NOT_FOUND_MESSAGE = "bookNotFound";
-    private static final String BOOK_DELETED_MESSAGE = "foundBookDeleted";
+    private static final String BOOK_NOT_FOUND_MESSAGE_JSP = "/controller?command=message_page&message=bookNotFound";
 
     private final BookService service;
 
@@ -37,6 +36,8 @@ public class BookSearchCommand implements Command {
         String title = request.getParameter(TITLE_PARAMETER);
         Book book = null;
         CommandResult commandResult = null;
+        ServletContext servletContext = request.getServletContext();
+        String contexPath = servletContext.getContextPath();
         if (title != null) {
             Optional<Book> foundBookOptional = service.findBookByTitle(title);
             if (foundBookOptional.isPresent()) {
@@ -45,12 +46,10 @@ public class BookSearchCommand implements Command {
                     request.setAttribute(FOUND_BOOK_PARAMETER, book);
                     commandResult = CommandResult.forward(BOOK_CATALOG_PAGE);
                 } else {
-                    request.setAttribute(BOOK_DELETED_MESSAGE, true);
-                    commandResult = CommandResult.forward(MESSAGE_JSP);
+                    commandResult = CommandResult.redirect(contexPath + BOOK_NOT_FOUND_MESSAGE_JSP);
                 }
             } else {
-                request.setAttribute(BOOK_NOT_FOUND_MESSAGE, true);
-                commandResult = CommandResult.forward(MESSAGE_JSP);
+                commandResult = CommandResult.redirect(contexPath + BOOK_NOT_FOUND_MESSAGE_JSP);
             }
         }
         return commandResult;

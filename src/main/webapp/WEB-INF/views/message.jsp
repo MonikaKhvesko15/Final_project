@@ -19,40 +19,37 @@
 <jsp:include page="templates/leftMenu.jsp"/>
 <div class="container">
     <main class="content">
+
         <div class="message">
-            <c:if test="${userAdded}">
+            <c:if test="${param.message=='userAdded'}">
                 <p><fmt:message key="message.user.added"/></p>
             </c:if>
 
-            <c:if test="${bookNotFound}">
+            <c:if test="${param.message=='bookNotFound'}">
                 <p><fmt:message key="message.book.not.found"/></p>
             </c:if>
 
-            <c:if test="${bookOrdered}">
+            <c:if test="${param.message=='bookOrdered'}">
                 <p><fmt:message key="message.book.ordered"/></p>
             </c:if>
 
-            <c:if test="${bookDeleted}">
+            <c:if test="${param.message=='bookDeleted'}">
                 <p><fmt:message key="message.book.deleted"/></p>
             </c:if>
 
-            <c:if test="${bookEdited}">
+            <c:if test="${param.message=='bookEdited'}">
                 <p><fmt:message key="message.book.edited"/></p>
             </c:if>
 
-            <c:if test="${bookAdded}">
+            <c:if test="${param.message=='bookAdded'}">
                 <p><fmt:message key="message.book.added"/></p>
             </c:if>
 
-            <c:if test="${foundBookDeleted}">
-                <p><fmt:message key="message.foundBook.deleted"/></p>
-            </c:if>
-
-            <c:if test="${userDataDuplication}">
+            <c:if test="${param.message=='userDataDuplication'}">
                 <p><fmt:message key="message.user.data.duplicated"/></p>
             </c:if>
 
-            <c:if test="${bookDuplication}">
+            <c:if test="${param.message=='bookDuplication'}">
                 <p><fmt:message key="message.book.duplicated"/></p>
             </c:if>
         </div>

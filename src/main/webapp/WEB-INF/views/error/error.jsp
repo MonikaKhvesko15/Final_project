@@ -21,11 +21,11 @@
 <div class="container">
     <main class="content">
         <div class="message">
-            <c:if test="${errorMessage}">
+            <c:if test="${param.message=='errorMessage'}">
                 <p><fmt:message key="error_page.main_controller"/></p>
             </c:if>
 
-            <c:if test="${userBlockErrorMessage}">
+            <c:if test="${param.message=='userBlockErrorMessage'}">
                 <p><fmt:message key="error_page.user_blocked"/></p>
             </c:if>
         </div>

@@ -20,7 +20,6 @@ public class BookCatalogCommand implements Command {
     private static final int FIRST_PAGE = 1;
     private static final String BOOK_CATALOG_PAGE = "WEB-INF/views/book_catalog.jsp";
     private static final String IS_BOOK_PAGE = "isBookPage";
-    private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
 
     private final BookService service;
 

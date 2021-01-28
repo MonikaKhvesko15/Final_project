@@ -62,7 +62,7 @@
                                               required></div>
                 <input class="edit_2" type="submit" value=<fmt:message key="local.edit"/>>
             </form>
-            <c:if test="${invalidData}">
+            <c:if test="${param.message=='invalidData'}">
                 <span style="color: orangered"><fmt:message key="invalid.data"/></span>
             </c:if>
         </div>

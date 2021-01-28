@@ -10,17 +10,17 @@ import com.epam.web.exception.ServiceException;
 import com.epam.web.service.order.OrderService;
 import com.epam.web.service.order.OrderServiceImpl;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
 public class OrderBookCommand implements Command {
-    private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
+    private static final String MESSAGE_PAGE = "/controller?command=message_page&message=bookOrdered";
     private static final String USER_ATTRIBUTE = "user";
     private static final String ISSUE_TYPE_PARAMETER = "issue_type";
     private static final String BOOK_ID_PARAMETER = "bookId";
-    private static final String BOOK_ORDERED = "bookOrdered";
 
     private final OrderService orderService;
 
@@ -32,7 +32,8 @@ public class OrderBookCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         HttpSession session = request.getSession();
-
+        ServletContext servletContext = request.getServletContext();
+        String contextPath = servletContext.getContextPath();
 
         User user = (User) session.getAttribute(USER_ATTRIBUTE);
         Integer userId = (Integer) user.getId();
@@ -52,8 +53,7 @@ public class OrderBookCommand implements Command {
         Order order = new Order(null, issueDate, returnDate, null, issueType, bookId, userId);
         orderService.createOrder(order);
 
-        request.setAttribute(BOOK_ORDERED, true);
-        return CommandResult.forward(MESSAGE_JSP);
+        return CommandResult.redirect(contextPath + MESSAGE_PAGE);
 
     }
 }

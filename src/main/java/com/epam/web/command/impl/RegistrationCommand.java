@@ -19,11 +19,12 @@ import java.util.Locale;
 
 public class RegistrationCommand implements Command {
     private static final Logger LOGGER = LogManager.getLogger(RegistrationCommand.class);
-    private static final String REGISTRATION_PAGE = "WEB-INF/views/registration.jsp";
-    private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
+    private static final String REGISTRATION_PAGE = "/controller?command=registration_page";
+    private static final String WITH_MESSAGE_INVALID_DATA = "&message=invalidData";
+    private static final String WITH_MESSAGE_PASSWORD_MISMATCH = "&message=passwordMismatch";
+    private static final String WITH_MESSAGE_USER_EXISTS = "&message=suchUserExists";
+    private static final String MESSAGE_PAGE = "/controller?command=message_page&message=userAdded";
     private static final String REPEAT_PASSWORD = "repeat_password";
-    private static final String INVALID_DATA_ATTRIBUTE = "invalidData";
-    private static final String USER_ADDED_ATTRIBUTE = "userAdded";
     private final UserService userService;
 
 
@@ -34,6 +35,8 @@ public class RegistrationCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         CommandResult commandResult = null;
+        ServletContext servletContext = request.getServletContext();
+        String contextPath = servletContext.getContextPath();
 
         String firstname = request.getParameter(User.FIRSTNAME);
         String surname = request.getParameter(User.SURNAME);
@@ -44,22 +47,18 @@ public class RegistrationCommand implements Command {
         String repeatPassword = request.getParameter(REPEAT_PASSWORD);
 
         if (!password.equals(repeatPassword)) {
-            request.setAttribute(INVALID_DATA_ATTRIBUTE, "The passwords entered do not match");
-            commandResult = CommandResult.forward(REGISTRATION_PAGE);
+            commandResult = CommandResult.redirect(contextPath + REGISTRATION_PAGE + WITH_MESSAGE_PASSWORD_MISMATCH);
         } else {
             User user = new User(null, login, password, firstname, surname, role, false);
             try {
                 userService.registerUser(user);
-                request.setAttribute(USER_ADDED_ATTRIBUTE, true);
-                commandResult = CommandResult.forward(MESSAGE_JSP);
+                commandResult = CommandResult.redirect(contextPath + MESSAGE_PAGE);
 
             } catch (FieldValidatorException e) {
                 LOGGER.error("Incorrect data entered");
-                request.setAttribute(INVALID_DATA_ATTRIBUTE, "Enter correct data");
-                commandResult = CommandResult.forward(REGISTRATION_PAGE);
+                commandResult = CommandResult.redirect(contextPath + REGISTRATION_PAGE + WITH_MESSAGE_INVALID_DATA);
             } catch (ServiceException e) {
-                request.setAttribute(INVALID_DATA_ATTRIBUTE, "Such user already exists");
-                commandResult = CommandResult.forward(REGISTRATION_PAGE);
+                commandResult = CommandResult.redirect(contextPath + REGISTRATION_PAGE + WITH_MESSAGE_USER_EXISTS);
             }
         }
         return commandResult;

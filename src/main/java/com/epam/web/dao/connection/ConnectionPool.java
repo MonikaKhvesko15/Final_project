@@ -20,9 +20,10 @@ public class ConnectionPool {
     private static final Lock CONNECTIONS_LOCKER = new ReentrantLock();
     private static final Lock INSTANCE_LOCKER = new ReentrantLock();
     private static final AtomicBoolean isCreated = new AtomicBoolean();
+    private ProxyConnectionCreator proxyConnectionCreator;
 
     private ConnectionPool() throws ConnectionPoolException {
-        ProxyConnectionCreator proxyConnectionCreator = new ProxyConnectionCreator();
+        proxyConnectionCreator = new ProxyConnectionCreator();
         freeConnections = new ArrayDeque<>();
         usingConnections = new ArrayDeque<>();
 
@@ -66,8 +67,13 @@ public class ConnectionPool {
         CONNECTIONS_LOCKER.lock();
         try {
             ProxyConnection proxyConnection = freeConnections.poll();
+            if (!proxyConnection.isValid(1)) {
+                proxyConnection = proxyConnectionCreator.create();
+            }
             usingConnections.offer(proxyConnection);
             return proxyConnection;
+        } catch (SQLException e) {
+            throw new ConnectionPoolException(e.getMessage(), e);
         } finally {
             CONNECTIONS_LOCKER.unlock();
         }

@@ -11,11 +11,11 @@ import java.util.List;
  */
 public enum Role {
 
-    GUEST(Arrays.asList("login", "book_catalog", "book_search", "login_page","registration_page","registration")),
-    READER(Arrays.asList("login", "logout", "edit_user", "book_catalog", "book_search", "order_book", "reader_orders", "login_page", "home_page")),
-    LIBRARIAN(Arrays.asList("login", "logout", "edit_user", "view_orders", "orders_history", "issue_book", "return_book", "login_page", "home_page")),
+    GUEST(Arrays.asList("login", "book_catalog", "book_search", "login_page","registration_page","registration","message_page","error_page")),
+    READER(Arrays.asList("login", "logout", "edit_user", "book_catalog", "book_search", "order_book", "reader_orders", "login_page", "home_page","message_page","error_page")),
+    LIBRARIAN(Arrays.asList("login", "logout", "edit_user", "view_orders", "orders_history", "issue_book", "return_book", "login_page", "home_page","message_page","error_page")),
     ADMIN(Arrays.asList("login", "logout", "edit_user", "book_catalog", "book_search", "delete_book", "edit_book", "edit_book_page", "add_book",
-            "view_readers", "view_librarians", "block_user", "unblock_user", "login_page", "home_page", "add_book_page"));
+            "view_readers", "view_librarians", "block_user", "unblock_user", "login_page", "home_page", "add_book_page","message_page","error_page"));
 
     private final List<String> capabilities;
 

@@ -10,13 +10,13 @@ import com.epam.web.service.book.BookServiceImpl;
 import com.epam.web.service.order.OrderService;
 import com.epam.web.service.order.OrderServiceImpl;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DeleteBookCommand implements Command {
     private static final String BOOK_ID_PARAMETER = "bookId";
-    private static final String BOOK_DELETED = "bookDeleted";
-    private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
+    private static final String BOOK_DELETED_MESSAGE_JSP = "/controller?command=message_page&message=bookDeleted";
 
     private final BookService bookService;
 
@@ -27,12 +27,13 @@ public class DeleteBookCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
         CommandResult commandResult = null;
+        ServletContext servletContext = request.getServletContext();
+        String contextPath = servletContext.getContextPath();
         String bookIdString = request.getParameter(BOOK_ID_PARAMETER);
         Integer bookId = Integer.parseInt(bookIdString);
 
         bookService.deleteBookById(bookId);
-        request.setAttribute(BOOK_DELETED, true);
-        commandResult = CommandResult.forward(MESSAGE_JSP);
+        commandResult = CommandResult.redirect(contextPath + BOOK_DELETED_MESSAGE_JSP);
 
         return commandResult;
     }

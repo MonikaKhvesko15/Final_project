@@ -25,7 +25,6 @@ public class CommandFactory {
     private static final String BLOCK_USER = "block_user";
     private static final String UNBLOCK_USER = "unblock_user";
 
-
     private static final String LOGIN_PAGE_COMMAND = "login_page";
     private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
 
@@ -38,6 +37,11 @@ public class CommandFactory {
     private static final String ADD_BOOK_PAGE_COMMAND = "add_book_page";
     private static final String ADD_BOOK_PAGE = "WEB-INF/views/add_book_page.jsp";
 
+    private static final String MESSAGE_PAGE_COMMAND = "message_page";
+    private static final String MESSAGE_PAGE = "WEB-INF/views/message.jsp";
+
+    private static final String ERROR_PAGE_COMMAND = "error_page";
+    private static final String ERROR_PAGE = "WEB-INF/views/error.jsp";
 
     public static Command create(String сommandName) {
         switch (сommandName) {
@@ -88,6 +92,10 @@ public class CommandFactory {
                 return new BlockUserCommand();
             case UNBLOCK_USER:
                 return new UnblockUserCommand();
+            case MESSAGE_PAGE_COMMAND:
+                return new GoToPageCommand(MESSAGE_PAGE);
+            case ERROR_PAGE_COMMAND:
+                return new GoToPageCommand(ERROR_PAGE);
             default:
                 throw new IllegalArgumentException("No such this command");
         }

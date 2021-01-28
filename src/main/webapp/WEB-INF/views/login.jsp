@@ -29,7 +29,10 @@
                                                                                        required></label>
             <input class="btn-submit" type="submit" value=<fmt:message key="local.login"/>>
         </form>
-        <p>${errorMessage}</p>
+
+        <c:if test="${param.message=='errorMessage'}">
+            <p><fmt:message key="login.invalid.credentials"/> </p>
+        </c:if>
     </main>
 </div>
 </body>

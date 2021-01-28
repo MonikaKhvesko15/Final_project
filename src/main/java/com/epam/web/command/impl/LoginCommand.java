@@ -16,14 +16,12 @@ public class LoginCommand implements Command {
 
     private static final String LOGIN_PARAMETER = "login";
     private static final String PASSWORD_PARAMETER = "password";
-    private static final String ERROR_MESSAGE_ATTRIBUTE = "errorMessage";
     private static final String USER_ATTRIBUTE = "user";
     private static final String ROLE_ATTRIBUTE = "role";
 
-    private static final String LOGIN_PAGE = "WEB-INF/views/login.jsp";
+    private static final String LOGIN_PAGE_WITH_MESSAGE = "/controller?command=login_page&message=errorMessage";
     private static final String HOME_PAGE = "/controller?command=home_page";
-    private static final String ERROR_JSP = "WEB-INF/views/error.jsp";
-    private static final String USER_BLOCK_ERROR_MESSAGE = "userBlockErrorMessage";
+    private static final String ERROR_PAGE = "/controller?command=error_page&message=userBlockErrorMessage";
 
     private final UserServiceImpl service;
 
@@ -40,6 +38,8 @@ public class LoginCommand implements Command {
         CommandResult commandResult = null;
         Optional<User> userOptional = service.login(login, password);
 
+        ServletContext servletContext = request.getServletContext();
+        String contextPath = servletContext.getContextPath();
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if (!(user.isBlocked())) {
@@ -47,18 +47,13 @@ public class LoginCommand implements Command {
                 session.setAttribute(USER_ATTRIBUTE, user);
                 session.setAttribute(ROLE_ATTRIBUTE, user.getRole().toString());
 
-                ServletContext servletContext = request.getServletContext();
-                String contextPath = servletContext.getContextPath();
-
                 commandResult = CommandResult.redirect(contextPath + HOME_PAGE);
             } else if (user.isBlocked()) {
-                request.setAttribute(USER_BLOCK_ERROR_MESSAGE, true);
-                commandResult = CommandResult.forward(ERROR_JSP);
+                commandResult = CommandResult.redirect(contextPath + ERROR_PAGE);
             }
 
         } else {
-            request.setAttribute(ERROR_MESSAGE_ATTRIBUTE, "Invalid credentials");
-            commandResult = CommandResult.forward(LOGIN_PAGE);
+            commandResult = CommandResult.redirect(contextPath + LOGIN_PAGE_WITH_MESSAGE);
         }
         return commandResult;
     }

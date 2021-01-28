@@ -32,13 +32,13 @@
                                                                                         pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)"
                                                                                         minlength="2" maxlength="20"
                                                                                         required></label>
-            <label><span ><fmt:message key="local.form.register.role"/></span>
+            <label><span><fmt:message key="local.form.register.role"/></span>
                 <div class="user-role">
-                <select class="select-role" name="role">
-                    <option value="READER"><fmt:message key="local.user.role.reader"/></option>
+                    <select class="select-role" name="role">
+                        <option value="READER"><fmt:message key="local.user.role.reader"/></option>
 
-                    <option value="LIBRARIAN"><fmt:message key="local.user.role.librarian"/></option>
-                </select>
+                        <option value="LIBRARIAN"><fmt:message key="local.user.role.librarian"/></option>
+                    </select>
                 </div>
             </label>
             <label><span><fmt:message key="local.form.register.username"/></span> <input type="text" name="login"
@@ -55,7 +55,15 @@
                                                                                         required></label>
             <input class="btn-submit" type="submit" value=<fmt:message key="local.form.register"/>>
         </form>
-        <h3><span style="color: orangered">${invalidData}</span></h3>
+        <c:if test="${param.message=='invalidData'}">
+            <h3><span style="color: orangered"><fmt:message key="registration.message.invalid.data"/></span></h3>
+        </c:if>
+        <c:if test="${param.message=='passwordMismatch'}">
+            <h3><span style="color: orangered"><fmt:message key="registration.message.password.mismatch"/></span></h3>
+        </c:if>
+        <c:if test="${param.message=='suchUserExists'}">
+            <h3><span style="color: orangered"><fmt:message key="registration.message.user.exists"/></span></h3>
+        </c:if>
     </main>
 </div>
 </body>

@@ -22,8 +22,8 @@ public class EditUserCommand implements Command {
     private static final String SURNAME_PARAMETER = "surname";
     private static final String HOME_PAGE = "/controller?command=home_page";
     private static final String USER_ATTRIBUTE = "user";
-    private static final String HOME_PAGE_JSP = "WEB-INF/views/home_page.jsp";
-    private static final String MESSAGE_JSP = "WEB-INF/views/message.jsp";
+    private static final String HOME_PAGE_WITH_MESSAGE = "/controller?command=home_page&message=invalidData";
+    private static final String USER_DUOLICATION_MESSAGE_JSP = "/controller?command=message_page&message=userDataDuplication";
 
     private final UserService service;
 
@@ -53,11 +53,9 @@ public class EditUserCommand implements Command {
             return CommandResult.redirect(contextPath + HOME_PAGE);
         } catch (FieldValidatorException e) {
             LOGGER.error("Incorrect data entered");
-            request.setAttribute("invalidData", true);
-            return CommandResult.forward(HOME_PAGE_JSP);
+            return CommandResult.redirect(contextPath + HOME_PAGE_WITH_MESSAGE);
         } catch (ServiceException e) {
-            request.setAttribute("userDataDuplication", true);
-            return CommandResult.forward(MESSAGE_JSP);
+            return CommandResult.redirect(contextPath + USER_DUOLICATION_MESSAGE_JSP);
         }
     }
 
