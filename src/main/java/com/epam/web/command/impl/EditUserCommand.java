@@ -23,7 +23,8 @@ public class EditUserCommand implements Command {
     private static final String HOME_PAGE = "/controller?command=home_page";
     private static final String USER_ATTRIBUTE = "user";
     private static final String HOME_PAGE_WITH_MESSAGE = "/controller?command=home_page&message=invalidData";
-    private static final String USER_DUOLICATION_MESSAGE_JSP = "/controller?command=message_page&message=userDataDuplication";
+    private static final String USER_DUPLICATION_MESSAGE_JSP = "/controller?command=message_page&message=userDataDuplication";
+    private static final String DEFAULT_PASSWORD = "12345";
 
     private final UserService service;
 
@@ -43,6 +44,7 @@ public class EditUserCommand implements Command {
         User testUser = user.clone();
         testUser.setFirstname(userFirstname);
         testUser.setSurname(userSurname);
+        testUser.setPassword(DEFAULT_PASSWORD);
 
         ServletContext servletContext = request.getServletContext();
         String contextPath = servletContext.getContextPath();
@@ -52,10 +54,10 @@ public class EditUserCommand implements Command {
             user.setSurname(userSurname);
             return CommandResult.redirect(contextPath + HOME_PAGE);
         } catch (FieldValidatorException e) {
-            LOGGER.error("Incorrect data entered");
+            LOGGER.warn("Incorrect data entered");
             return CommandResult.redirect(contextPath + HOME_PAGE_WITH_MESSAGE);
         } catch (ServiceException e) {
-            return CommandResult.redirect(contextPath + USER_DUOLICATION_MESSAGE_JSP);
+            return CommandResult.redirect(contextPath + USER_DUPLICATION_MESSAGE_JSP);
         }
     }
 

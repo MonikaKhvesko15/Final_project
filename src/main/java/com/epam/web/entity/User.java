@@ -105,12 +105,13 @@ public class User implements Identifiable, Cloneable {
     public User clone() {
         User user = null;
         try {
-            user = (User) super.clone();
+            user = (User)super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
         return user;
     }
+
 
     @Override
     public boolean equals(Object o) {

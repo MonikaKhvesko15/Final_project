@@ -75,10 +75,10 @@
         <form class="language" method="post"
               action="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.queryString}">
             <select id="language" name="language" onchange="submit()">
-                <option value="ru" ${language == 'ru' ? 'selected' : ''} selected><fmt:message
+                <option value="ru" ${language == 'ru' ? 'selected' : ''} ><fmt:message
                         key="local.button.ru"/></option>
 
-                <option value="en" ${language == 'en' ? 'selected' : ''}><fmt:message
+                <option value="en" ${language == 'en' ? 'selected' : ''} ><fmt:message
                         key="local.button.en"/></option>
 
                 <option value="fr" ${language == 'fr' ? 'selected' : ''}><fmt:message
