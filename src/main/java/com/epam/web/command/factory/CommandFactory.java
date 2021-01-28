@@ -41,7 +41,7 @@ public class CommandFactory {
     private static final String MESSAGE_PAGE = "WEB-INF/views/message.jsp";
 
     private static final String ERROR_PAGE_COMMAND = "error_page";
-    private static final String ERROR_PAGE = "WEB-INF/views/error.jsp";
+    private static final String ERROR_PAGE = "WEB-INF/views/error/error.jsp";
 
     public static Command create(String сommandName) {
         switch (сommandName) {
