@@ -13,6 +13,7 @@ public class LogoutCommand implements Command {
     private static final String LOGIN_PAGE = "/controller?command=login_page";
     private static final String USER = "user";
     private static final String ROLE = "role";
+    private static final String ID = "id";
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
@@ -22,6 +23,7 @@ public class LogoutCommand implements Command {
         if (session != null) {
             session.removeAttribute(USER);
             session.removeAttribute(ROLE);
+            session.removeAttribute(ID);
         }
         return CommandResult.redirect(contextPath + LOGIN_PAGE);
     }
