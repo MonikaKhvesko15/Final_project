@@ -25,11 +25,11 @@
             <h2><fmt:message key="local.registration"/></h2>
             <h3><fmt:message key="local.form.registration.message"/></h3>
             <label><span><fmt:message key="local.form.register.firstname"/></span> <input type="text" name="firstname"
-                                                                                          pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)"
+                                                                                          pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-яёЁ]+)"
                                                                                           minlength="2" maxlength="20"
                                                                                           required></label>
             <label><span><fmt:message key="local.form.register.surname"/></span> <input type="text" name="surname"
-                                                                                        pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)"
+                                                                                        pattern="([A-Z]{1}[a-z]+)|([А-Я]{1}[а-яёЁ]+)"
                                                                                         minlength="2" maxlength="20"
                                                                                         required></label>
             <label><span><fmt:message key="local.form.register.role"/></span>

@@ -10,7 +10,7 @@ public class UserValidator implements Validator<User> {
     private static final int MIN_PASSWORD_LENGHT = 5;
     private static final int MAX_PASSWORD_LENGHT = 20;
     private final String LOGIN_REGEX = "[^!@#$%^&*()+=-]+";
-    private final String NAME_REGEX = "([A-Z]{1}[a-z]+)|([А-Я]{1}[а-я]+)";
+    private final String NAME_REGEX = "([A-Z]{1}[a-z]+)|([А-Я]{1}[а-яёЁ]+)";
 
     @Override
     public boolean isInputDataCorrect(User user) {
