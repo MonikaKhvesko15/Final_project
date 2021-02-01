@@ -68,7 +68,6 @@ public class ConnectionPool {
         try {
             ProxyConnection proxyConnection = freeConnections.poll();
             if (!proxyConnection.isValid(1)) {
-                proxyConnection.close();
                 proxyConnection = proxyConnectionCreator.create();
             }
             usingConnections.offer(proxyConnection);

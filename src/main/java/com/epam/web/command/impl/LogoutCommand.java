@@ -11,9 +11,6 @@ import javax.servlet.http.HttpSession;
 
 public class LogoutCommand implements Command {
     private static final String LOGIN_PAGE = "/controller?command=login_page";
-    private static final String USER = "user";
-    private static final String ROLE = "role";
-    private static final String ID = "id";
 
     @Override
     public CommandResult execute(HttpServletRequest request, HttpServletResponse response) throws ServiceException {
@@ -21,9 +18,7 @@ public class LogoutCommand implements Command {
         ServletContext servletContext = request.getServletContext();
         String contextPath = servletContext.getContextPath();
         if (session != null) {
-            session.removeAttribute(USER);
-            session.removeAttribute(ROLE);
-            session.removeAttribute(ID);
+            session.invalidate();
         }
         return CommandResult.redirect(contextPath + LOGIN_PAGE);
     }
