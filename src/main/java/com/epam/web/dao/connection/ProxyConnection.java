@@ -19,7 +19,7 @@ public class ProxyConnection implements Connection {
             connection.setAutoCommit(true);
         }
         ConnectionPool pool = ConnectionPool.getInstance();
-        pool.returnConnection(this);
+        pool.releaseConnection(this);
     }
 
     void reallyClose() throws SQLException {

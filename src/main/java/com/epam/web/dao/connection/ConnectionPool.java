@@ -51,19 +51,6 @@ public class ConnectionPool {
         return instance;
     }
 
-
-    public void returnConnection(ProxyConnection proxyConnection) {
-        CONNECTIONS_LOCKER.lock();
-        try {
-            if (usingConnections.contains(proxyConnection)) {
-                usingConnections.remove(proxyConnection);
-                freeConnections.offer(proxyConnection);
-            }
-        } finally {
-            CONNECTIONS_LOCKER.unlock();
-        }
-    }
-
     public ProxyConnection getConnection() throws ConnectionPoolException {
         CONNECTIONS_LOCKER.lock();
         try {
