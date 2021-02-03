@@ -25,7 +25,5 @@ public interface OrderService {
 
     void changeOrderStatus(Integer orederId, Order.Status newStatus) throws ServiceException;
 
-    Optional<Order> getOrderById(Integer orderId) throws ServiceException;
-
     void completeOrderById(Integer orderId, Integer bookId, Order.Status newStatus) throws ServiceException;
 }

@@ -51,7 +51,7 @@ public class BookServiceImpl implements BookService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             BookDao bookDao = daoHelper.createBookDao();
             OrderDao orderDao = daoHelper.createOrderDao();
-            List<Order> orders = orderDao.findAll();
+            //List<Order> orders = orderDao.findAll();
             //transaction
             daoHelper.startTransaction();
             bookDao.removeById(bookId);

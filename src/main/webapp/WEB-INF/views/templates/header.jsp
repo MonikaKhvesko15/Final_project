@@ -12,16 +12,14 @@
     </div>
 
     <div class="search">
-        <c:choose>
-            <c:when test="${requestScope.isBookPage}">
+            <c:if test="${requestScope.isBookPage}">
                 <form action="${pageContext.request.contextPath}/controller"
                       method="GET">
                     <input type="hidden" name="command" value="book_search">
                     <input class="enter" type="text" name="title">
                     <input class="edit" type="submit" value="<fmt:message key="local.search"/>">
                 </form>
-            </c:when>
-        </c:choose>
+            </c:if>
     </div>
 
     <c:choose>

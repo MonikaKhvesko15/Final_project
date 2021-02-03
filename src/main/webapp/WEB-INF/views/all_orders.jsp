@@ -42,12 +42,14 @@
                         <td class="border-br">${order.bookTitle}</td>
                         <td class="border-br">${order.bookAuthor}</td>
                         <td class="border-bottom">
-                            <c:if test="${order.type =='SUBSCRIPTION'}">
+                            <c:choose>
+                            <c:when test="${order.type =='SUBSCRIPTION'}">
                                 <fmt:message key="local.order.type.subscription"/>
-                            </c:if>
-                            <c:if test="${order.type == 'READER_ROOM'}">
+                            </c:when>
+                            <c:when test="${order.type == 'READER_ROOM'}">
                                 <fmt:message key="local.order.type.reader_room"/>
-                            </c:if>
+                            </c:when>
+                            </c:choose>
                         </td>
 
                         <div class="buttons">

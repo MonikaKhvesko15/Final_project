@@ -29,6 +29,7 @@ public class DateFormatterTag extends BodyTagSupport {
     public int doAfterBody() throws JspException {
         BodyContent content = this.bodyContent;
         String body = content.getString();
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {

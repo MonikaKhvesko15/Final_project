@@ -61,6 +61,7 @@ public class OrderServiceMapper {
 
             String username = user.getFirstname();
             String surname = user.getSurname();
+
             return new OrderDto(id, issueDate, returnDate, status, type, bookTitle, author, username, surname);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage(), e);

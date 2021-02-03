@@ -43,12 +43,14 @@
                 <tr>
                     <th><fmt:message key="local.status"/></th>
                     <th>
-                        <c:if test="${sessionScope.user.blocked == true}">
+                        <c:choose>
+                        <c:when test="${sessionScope.user.blocked == true}">
                             <fmt:message key="local.status.block"/>
-                        </c:if>
-                        <c:if test="${sessionScope.user.blocked == false}">
+                        </c:when>
+                        <c:when test="${sessionScope.user.blocked == false}">
                             <fmt:message key="local.status.unblock"/>
-                        </c:if>
+                        </c:when>
+                        </c:choose>
                     </th>
                 </tr>
             </table>

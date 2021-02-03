@@ -41,16 +41,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Optional<Order> getOrderById(Integer orderId) throws ServiceException {
-        try (DaoHelper daoHelper = daoHelperFactory.create()) {
-            OrderDao orderDao = daoHelper.createOrderDao();
-            return orderDao.getById(orderId);
-        } catch (DaoException e) {
-            throw new ServiceException(e.getMessage(), e);
-        }
-    }
-
-    @Override
     public void completeOrderById(Integer orderId, Integer bookId, Order.Status newStatus) throws ServiceException {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             OrderDao orderDao = daoHelper.createOrderDao();

@@ -56,6 +56,7 @@ public class ConnectionPool {
         CONNECTIONS_LOCKER.lock();
         try {
             if (usingConnections.contains(proxyConnection)) {
+                usingConnections.remove(proxyConnection);
                 freeConnections.offer(proxyConnection);
             }
         } finally {
