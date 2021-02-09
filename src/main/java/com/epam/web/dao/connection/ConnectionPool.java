@@ -26,10 +26,13 @@ public class ConnectionPool {
         proxyConnectionCreator = new ProxyConnectionCreator();
         freeConnections = new ArrayDeque<>();
         usingConnections = new ArrayDeque<>();
-
-        for (int i = 0; i < POOL_SIZE; i++) {
-            ProxyConnection proxyConnection = proxyConnectionCreator.create();
-            freeConnections.add(proxyConnection);
+        try {
+            for (int i = 0; i < POOL_SIZE; i++) {
+                ProxyConnection proxyConnection = proxyConnectionCreator.create();
+                freeConnections.offer(proxyConnection);
+            }
+        } catch (ConnectionPoolException e) {
+            throw new ConnectionPoolException(e.getMessage(), e);
         }
     }
 
@@ -37,10 +40,8 @@ public class ConnectionPool {
         if (!isCreated.get()) {
             INSTANCE_LOCKER.lock();
             try {
-                if (!isCreated.get()) {
-                    instance = new ConnectionPool();
-                    isCreated.set(true);
-                }
+                instance = new ConnectionPool();
+                isCreated.set(true);
             } catch (ConnectionPoolException e) {
                 LOGGER.fatal(e.getMessage());
                 throw new RuntimeException("Error connecting to database");
